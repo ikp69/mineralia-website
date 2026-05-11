@@ -1,12 +1,13 @@
 'use client';
 
-import { ShieldCheck, Award, MapPin } from 'lucide-react';
+import { ShieldCheck, Award, MapPin, BadgeCheck } from 'lucide-react';
 import Reveal, { RevealContainer, RevealItem } from '@/components/animations/Reveal';
 
 const stats = [
   { value: '40+', label: 'Countries Served', icon: MapPin },
-  { value: '25+', label: 'Years Experience', icon: Award },
+  { value: '38+', label: 'Years Experience', icon: Award },
   { value: 'ISO', label: '9001:2015 Certified', icon: ShieldCheck },
+  { value: 'CE', label: 'CE Certified', icon: BadgeCheck },
 ];
 
 export default function GlobalFootprint() {
@@ -32,7 +33,7 @@ export default function GlobalFootprint() {
           </div>
         </Reveal>
 
-        <RevealContainer className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12" staggerDelay={0.2}>
+        <RevealContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12" staggerDelay={0.2}>
           {stats.map((stat, idx) => {
             const Icon = stat.icon;
             return (

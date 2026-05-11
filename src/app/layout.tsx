@@ -19,7 +19,7 @@ const dmSerif = DM_Serif_Display({
 export const metadata: Metadata = {
   title: "Mineralia | Global Critical Mineral Supply Leader",
   description:
-    "Precision-grade industrial minerals sourced from 40+ countries, backed by 25+ years of supply chain excellence.",
+    "Precision-grade industrial minerals sourced from 40+ countries, backed by 38+ years of supply chain excellence.",
 };
 
 export default function RootLayout({

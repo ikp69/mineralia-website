@@ -23,7 +23,6 @@ function HoverFooter() {
         { label: "Global Supply Chain", href: "/supply-chain" },
         { label: "Market Insights", href: "/insights" },
         { label: "Careers", href: "/careers" },
-        { label: "Japanese Market (日本市場向け)", href: "/minerals-for-japanese-industry" },
       ],
     },
     {

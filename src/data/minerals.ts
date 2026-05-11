@@ -36,7 +36,7 @@ export type Mineral = {
 
 export const minerals: Mineral[] = [
   {
-    name: "Bauxite",
+    name: "Calcined Bauxite",
     slug: "bauxite",
     category: "Industrial Mineral",
     formula: "Al2O3·nH2O",
@@ -87,8 +87,8 @@ export const minerals: Mineral[] = [
       }
     ],
     industries: ["Refractories", "Cement", "Abrasives", "Metallurgy"],
-    technicalProfileLabel: "Download Bauxite Technical Profile",
-    inquiryTitle: "Request Bauxite Supply",
+    technicalProfileLabel: "Download Calcined Bauxite Technical Profile",
+    inquiryTitle: "Request Calcined Bauxite Supply",
     image: "/images/minerals/bauxite.png"
   },
 
@@ -150,59 +150,61 @@ export const minerals: Mineral[] = [
   },
 
   {
-    name: "Kaolin",
+    name: "Kaolin & Calcined Kaolin",
     slug: "kaolin",
     category: "Industrial Mineral",
-    formula: "Al2Si2O5(OH)4",
+    formula: "Al2Si2O5(OH)4 / Al2O3·2SiO2",
     shortDescription:
-      "Refined kaolin clay supplied for ceramics, paper, paints, rubber, and specialty industrial applications.",
+      "Raw and calcined kaolin supplied for ceramics, refractories, paper, paints, rubber, and advanced industrial applications.",
     overview:
-      "Kaolin is a versatile industrial clay known for its brightness, fine particle profile, and functional performance across ceramics, paper, coatings, rubber, and allied sectors. It is selected based on whiteness, particle size, chemistry, and process suitability.",
+      "Kaolin is a versatile white clay mineral valued for its brightness, fine particle size, and chemical inertness. Calcined Kaolin is produced by thermally processing raw kaolin at high temperatures (600–1100°C), driving off hydroxyl groups and transforming the structure into metakaolin or fully calcined alumino-silicate — offering significantly enhanced hardness, whiteness, opacity, and refractory performance. Together, raw and calcined kaolin serve a wide spectrum of industrial applications from ceramics and paper to refractories and specialty coatings.",
     sourceDetails: {
-      sourceName: "Processed Kaolin Supply",
+      sourceName: "Kaolin & Calcined Kaolin Supply Network",
       region: "Multi-Origin",
-      country: "India / Turkey / Ukraine",
-      dispatchPorts: ["Mundra", "Kandla", "Izmir"],
+      country: "India / Turkey / Ukraine / Brazil",
+      dispatchPorts: ["Mundra", "Kandla", "Izmir", "Santos"],
       sourcingNote:
-        "Offered in raw, washed, and selected processed grades depending on brightness and application needs."
+        "Available in raw washed, air-classified, and calcined grades. Supply structured based on brightness, particle size distribution, Al2O3 content, and end-use application requirements."
     },
     contactDetails: {
-      exportAvailability: "Containerized export and regular industrial supply available"
+      exportAvailability: "Containerized export and regular industrial supply available in both raw and calcined forms"
     },
-    packaging: ["25 kg bags", "50 kg bags", "1 MT jumbo bags"],
+    packaging: ["25 kg bags", "50 kg bags", "1 MT jumbo bags", "Bulk"],
     qualityParameters: [
-      { parameter: "Brightness", value: "As per confirmed grade / application" },
-      { parameter: "Al2O3", value: "On request" },
-      { parameter: "SiO2", value: "On request" },
-      { parameter: "Fe2O3", value: "On request" },
+      { parameter: "Al2O3", value: "Raw: 35–38% | Calcined: 40–45%" },
+      { parameter: "SiO2", value: "Raw: 45–50% | Calcined: 50–55%" },
+      { parameter: "Fe2O3", value: "As per confirmed grade / assay" },
+      { parameter: "TiO2", value: "As per confirmed grade / assay" },
+      { parameter: "Brightness (ISO)", value: "Raw: 78–86% | Calcined: 88–92%+" },
       { parameter: "Moisture", value: "On request" },
-      { parameter: "Residue / Mesh", value: "As per confirmed grade" }
+      { parameter: "Residue / Mesh", value: "As per confirmed grade" },
+      { parameter: "LOI", value: "Raw: 12–14% | Calcined: <1%" }
     ],
     applications: [
       {
-        title: "Ceramics",
+        title: "Ceramics & Sanitaryware",
         description:
-          "Used in tiles, sanitaryware, porcelain, and whiteware formulations requiring controlled plasticity and whiteness."
+          "Both raw and calcined kaolin are used in tiles, sanitaryware, porcelain, and technical ceramics for controlled plasticity, whiteness, and firing behavior."
+      },
+      {
+        title: "Refractories",
+        description:
+          "Calcined kaolin is a key raw material in refractory castables, bricks, and kiln furniture requiring high alumino-silicate content and thermal stability."
       },
       {
         title: "Paper & Coatings",
         description:
-          "Functions as a filler and coating mineral in applications requiring brightness and smoothness."
+          "Calcined kaolin provides superior opacity and brightness as a coating pigment and filler in paper, paperboard, and specialty coatings."
       },
       {
-        title: "Paints & Polymers",
+        title: "Paints, Rubber & Polymers",
         description:
-          "Used as a functional extender in paints, rubber, and specialty compound systems."
-      },
-      {
-        title: "Specialty Industrial Use",
-        description:
-          "Applicable where controlled particle size and mineral consistency are commercially important."
+          "Used as a functional extender in paints, rubber compounds, adhesives, and specialty polymer systems for improved mechanical and barrier properties."
       }
     ],
-    industries: ["Ceramics", "Paper", "Paints & Coatings", "Polymers"],
-    technicalProfileLabel: "Download Kaolin Technical Profile",
-    inquiryTitle: "Request Kaolin Supply",
+    industries: ["Ceramics", "Refractories", "Paper & Coatings", "Paints & Polymers"],
+    technicalProfileLabel: "Download Kaolin & Calcined Kaolin Technical Profile",
+    inquiryTitle: "Request Kaolin & Calcined Kaolin Supply",
     image: "/images/minerals/kaolin.png"
   },
 
@@ -542,5 +544,63 @@ export const minerals: Mineral[] = [
     technicalProfileLabel: "Download Fluorspar Technical Profile",
     inquiryTitle: "Request Fluorspar Supply",
     image: "/images/minerals/fluorspar.png"
+  },
+
+  {
+    name: "Dead Burnt Magnesite",
+    slug: "dead-burnt-magnesite",
+    category: "Refractory Raw Material",
+    formula: "MgO",
+    shortDescription:
+      "High-density dead burnt magnesite supplied for refractory bricks, furnace linings, and high-temperature industrial applications.",
+    overview:
+      "Dead Burnt Magnesite (DBM) is produced by calcining natural magnesite at very high temperatures (1600–2000°C), resulting in a dense, sintered periclase product with extremely low reactivity and high refractoriness. It is one of the most critical raw materials in the refractory industry, used extensively in steel, cement, and non-ferrous metal furnace linings. DBM is valued for its high MgO content, high bulk density, low porosity, and excellent resistance to basic slag attack.",
+    sourceDetails: {
+      sourceName: "Global DBM Supply Network",
+      region: "Multi-Origin",
+      country: "China / India / Turkey / North Korea",
+      dispatchPorts: ["Mundra", "Kandla", "Tianjin", "Qingdao"],
+      sourcingNote:
+        "Available in multiple grades based on MgO content, bulk density, and CaO/SiO2 ratio. Supply structured for refractory manufacturers, steel plants, and cement industries."
+    },
+    contactDetails: {
+      exportAvailability: "Bulk vessel, jumbo bags, and containerized dispatch available"
+    },
+    packaging: ["Bulk vessel", "1 MT jumbo bags", "25 kg bags"],
+    qualityParameters: [
+      { parameter: "MgO", value: "90% – 97% min (grade dependent)" },
+      { parameter: "SiO2", value: "As per confirmed grade / assay" },
+      { parameter: "CaO", value: "As per confirmed grade / assay" },
+      { parameter: "Fe2O3", value: "As per confirmed grade / assay" },
+      { parameter: "Al2O3", value: "As per confirmed grade / assay" },
+      { parameter: "Bulk Density", value: "3.0 – 3.40 g/cc (grade dependent)" },
+      { parameter: "LOI", value: "As per confirmed grade / assay" }
+    ],
+    applications: [
+      {
+        title: "Refractory Brick Manufacturing",
+        description:
+          "Primary raw material for magnesia bricks, magnesia-carbon bricks, and magnesia-chrome bricks used in steel converters, electric arc furnaces, and ladles."
+      },
+      {
+        title: "Steel & Metallurgy",
+        description:
+          "Used in furnace linings for BOF, EAF, and secondary metallurgy vessels where resistance to high temperature and basic slag is essential."
+      },
+      {
+        title: "Cement Industry",
+        description:
+          "Used in rotary kiln linings and high-temperature zones in cement production facilities."
+      },
+      {
+        title: "Non-Ferrous Metal Processing",
+        description:
+          "Applied in copper, lead, zinc, and other non-ferrous smelting furnaces requiring high-purity basic refractory materials."
+      }
+    ],
+    industries: ["Refractories", "Steel & Metallurgy", "Cement", "Non-Ferrous Metals"],
+    technicalProfileLabel: "Download Dead Burnt Magnesite Technical Profile",
+    inquiryTitle: "Request Dead Burnt Magnesite Supply",
+    image: "/images/minerals/magnesite.png"
   }
 ];

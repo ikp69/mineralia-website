@@ -14,7 +14,7 @@ interface CTASectionProps {
 
 export default function CTASection({
   title = "Reliable Mineral Supply for Global Industry",
-  description = "Secure your supply chain with precision-grade industrial minerals, backed by 25+ years of excellence and a network spanning 40+ countries.",
+  description = "Secure your supply chain with precision-grade industrial minerals, backed by 38+ years of excellence and a network spanning 40+ countries.",
   buttonText = "Request Supply Quote",
   buttonLink = "/contact",
   className,

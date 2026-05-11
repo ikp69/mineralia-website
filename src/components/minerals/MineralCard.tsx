@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, MapPin } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Mineral } from "@/data/minerals";
 
 interface MineralCardProps {
@@ -37,15 +37,6 @@ export default function MineralCard({ mineral }: MineralCardProps) {
         </p>
 
         <div className="space-y-4 mt-auto">
-          <div>
-            <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-1">
-              <MapPin size={12} /> Origin
-            </h4>
-            <div className="text-sm font-medium text-slate-700 line-clamp-1">
-              {mineral.sourceDetails.country}
-            </div>
-          </div>
-          
           <div>
             <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Industries</h4>
             <div className="flex flex-wrap gap-2">

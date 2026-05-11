@@ -164,19 +164,18 @@ export default function ContactPage() {
                   <li className="flex items-start gap-4">
                     <MapPin size={20} className="text-accent-terra shrink-0 mt-1" />
                     <span className="leading-relaxed">
-                      HEAD OFFICE : KHASRA NO - 1204, <br />
-                      DELHI MEERUT ROAD, MORTA, <br />
+                      PLOT NO - 1204, DELHI MEERUT ROAD, MORTA, <br />
                       NEAR - METRO PILLAR NO - 688, <br />
                       DISTRICT GHAZIABAD, UTTAR PRADESH - 201003
                     </span>
                   </li>
                   <li className="flex items-center gap-4">
                     <Phone size={20} className="text-accent-terra shrink-0" />
-                    <span>+41 22 555 0192</span>
+                    <span>+91 97171 00509</span>
                   </li>
                   <li className="flex items-center gap-4">
                     <Mail size={20} className="text-accent-terra shrink-0" />
-                    <a href="mailto:supply@mineralia.com" className="hover:text-accent-terra transition-colors w-full truncate">supply@mineralia.com</a>
+                    <a href="mailto:v.tyagi@mineralia.org.in" className="hover:text-accent-terra transition-colors w-full truncate">v.tyagi@mineralia.org.in</a>
                   </li>
                   <li className="flex items-start gap-4">
                     <Clock size={20} className="text-accent-terra shrink-0 mt-1" />

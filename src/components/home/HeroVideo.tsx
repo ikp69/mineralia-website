@@ -38,7 +38,7 @@ export default function HeroVideo() {
           </h1>
           <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-8 md:mb-10 font-light">
             Precision-grade industrial minerals sourced from 40+ countries,
-            backed by 25+ years of supply chain excellence.
+            backed by 38+ years of supply chain excellence.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">

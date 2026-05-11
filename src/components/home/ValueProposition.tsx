@@ -8,7 +8,7 @@ const pillars = [
   {
     icon: Globe,
     title: 'Global Sourcing',
-    description: 'We source premium minerals from over 40 countries, ensuring a resilient and diversified supply chain resistant to regional disruptions.',
+    description: 'We deal in premium minerals from over 40 countries, ensuring a resilient and diversified supply chain resistant to regional disruptions.',
   },
   {
     icon: Microscope,

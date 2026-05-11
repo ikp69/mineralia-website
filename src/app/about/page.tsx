@@ -45,17 +45,34 @@ export default function AboutOverviewPage() {
       {/* Story */}
       <section className="py-24">
         <div className="container mx-auto px-4 md:px-8 max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             <div>
               <h2 className="font-serif text-3xl md:text-5xl font-bold text-mineralia-navy mb-6">Our Story</h2>
-              <div className="space-y-6 text-lg text-slate-600 leading-relaxed">
+              <div className="space-y-5 text-lg text-slate-600 leading-relaxed">
                 <p>
-                  Founded in Geneva in 1999, Mineralia began with a singular vision: to bridge the gap between fragmented global mineral extraction and the exacting demands of advanced manufacturing.
+                  In 2010, Mineralia Impex Pvt. Ltd. was founded by Varun Tyagi — under the guidance of a family deeply connected with the minerals and mining industry since 1987. The vision was never just to trade minerals. It was to build a global industrial resource platform.
                 </p>
                 <p>
-                  Today, we are a $100M+ global supply chain partner, moving critical raw materials—from Bauxite to Zircon Sand—across 40+ countries. We do not simply trade commodities; we engineer supply chain solutions that provide our clients with total chemical and logistical certainty.
+                  From India, Mineralia began connecting manufacturers, ceramic industries, refractory plants, steel companies, and industrial buyers with reliable sources of raw materials across multiple countries. What started as a focused mineral trading operation gradually evolved into a globally connected sourcing and supply network spanning Asia, Africa, CIS countries, Europe, and beyond.
+                </p>
+                <p>
+                  The real turning point came when the world itself started changing. As industries moved toward electric mobility, renewable energy, semiconductor ecosystems, advanced ceramics, energy storage, AI infrastructure, and strategic mineral security — Mineralia recognised that minerals were no longer just commodities. <span className="font-semibold text-mineralia-navy">They were becoming geopolitical assets.</span>
+                </p>
+                <p>
+                  That realisation transformed Mineralia's vision from a traditional mineral business into a future-focused global materials platform — positioning itself at the intersection of industrial growth, critical mineral security, advanced manufacturing, clean energy, and next-generation infrastructure.
+                </p>
+                <p>
+                  What makes this story unique is that Mineralia was never built through massive funding or hype. It was built through market understanding, international relationships, industry experience, persistence, and the ability to identify opportunities before they become mainstream.
                 </p>
               </div>
+
+              <div className="mt-8 p-6 bg-slate-50 border-l-4 border-mineralia-teal rounded-r-lg">
+                <p className="text-slate-700 italic text-base leading-relaxed">
+                  "The future will belong to companies that control knowledge, supply chains, energy, and critical resources together."
+                </p>
+                <p className="mt-3 text-sm font-semibold text-mineralia-navy">— Varun Tyagi, Founder</p>
+              </div>
+
               <Link
                 href="/about/chairman-message"
                 className="mt-8 inline-flex items-center gap-2 text-mineralia-teal font-medium hover:text-mineralia-teal-hover transition-colors"
@@ -64,13 +81,33 @@ export default function AboutOverviewPage() {
                 <ArrowRight size={18} />
               </Link>
             </div>
-            <div className="relative h-[500px] w-full rounded-lg overflow-hidden shadow-xl">
-              <Image 
-                src="/images/minerals/feldspar.png"
-                alt="Mineralia Processing Facility"
-                fill
-                className="object-cover"
-              />
+            <div className="flex flex-col gap-8">
+              <div className="relative h-[380px] w-full rounded-lg overflow-hidden shadow-xl">
+                <Image
+                  src="/images/minerals/feldspar.png"
+                  alt="Mineralia Processing Facility"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="bg-slate-50 rounded-lg p-5 border border-slate-200">
+                  <p className="text-3xl font-bold text-mineralia-teal mb-1">2010</p>
+                  <p className="text-sm text-slate-600">Founded with a global vision</p>
+                </div>
+                <div className="bg-slate-50 rounded-lg p-5 border border-slate-200">
+                  <p className="text-3xl font-bold text-mineralia-teal mb-1">1987</p>
+                  <p className="text-sm text-slate-600">Family legacy in minerals &amp; mining</p>
+                </div>
+                <div className="bg-slate-50 rounded-lg p-5 border border-slate-200">
+                  <p className="text-3xl font-bold text-mineralia-teal mb-1">40+</p>
+                  <p className="text-sm text-slate-600">Countries in our supply network</p>
+                </div>
+                <div className="bg-slate-50 rounded-lg p-5 border border-slate-200">
+                  <p className="text-3xl font-bold text-mineralia-teal mb-1">6+</p>
+                  <p className="text-sm text-slate-600">Mineral categories served globally</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

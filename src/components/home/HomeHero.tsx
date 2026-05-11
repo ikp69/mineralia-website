@@ -74,7 +74,7 @@ export default function HomeHero() {
           transition={{ delay: 1.5, duration: 0.8 }}
           className="text-lg md:text-xl text-slate-300 mb-12 max-w-2xl mx-auto font-sans font-light leading-relaxed"
         >
-          Precision-grade industrial minerals sourced from 40+ countries, backed by 25+ years of supply chain excellence.
+          Precision-grade industrial minerals sourced from 40+ countries, backed by 38+ years of supply chain excellence.
         </motion.p>
 
         {/* CTAs */}

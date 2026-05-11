@@ -44,7 +44,6 @@ export default function Footer() {
               <li><Link href="/about/quality-assurance" className="text-slate-text hover:text-accent-copper transition-colors text-sm">Quality Assurance</Link></li>
               <li><Link href="/supply-chain" className="text-slate-text hover:text-accent-copper transition-colors text-sm">Global Supply Chain</Link></li>
               <li><Link href="/insights" className="text-slate-text hover:text-accent-copper transition-colors text-sm">Market Insights</Link></li>
-              <li><Link href="/minerals-for-japanese-industry" className="text-slate-text hover:text-accent-copper transition-colors text-sm">Japanese Market (日本市場向け)</Link></li>
             </ul>
           </div>
 
@@ -66,15 +65,15 @@ export default function Footer() {
             <ul className="space-y-4 text-slate-text text-sm">
               <li className="flex items-start gap-3">
                 <MapPin size={16} className="text-accent-copper shrink-0 mt-0.5" />
-                <span>100 Global Trade Center,<br />Geneva, Switzerland 1204</span>
+                <span>PLOT NO - 1204, DELHI MEERUT ROAD, MORTA,<br />NEAR - METRO PILLAR NO - 688,<br />DISTRICT GHAZIABAD, UTTAR PRADESH - 201003</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={16} className="text-accent-copper shrink-0" />
-                <span>+41 22 555 0192</span>
+                <span>+91 97171 00509</span>
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={16} className="text-accent-copper shrink-0" />
-                <span>supply@mineralia.com</span>
+                <span>v.tyagi@mineralia.org.in</span>
               </li>
             </ul>
             <Link
