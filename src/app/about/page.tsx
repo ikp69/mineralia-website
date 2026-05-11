@@ -24,7 +24,7 @@ export default function AboutOverviewPage() {
               About Mineralia
             </h1>
             <p className="text-xl md:text-2xl font-light text-slate-300 max-w-2xl leading-relaxed">
-              25 years of redefining the global industrial mineral supply chain through precision, scale, and uncompromising quality.
+              38 years of redefining the global industrial mineral supply chain through precision, scale, and uncompromising quality.
             </p>
           </FadeUp>
         </div>

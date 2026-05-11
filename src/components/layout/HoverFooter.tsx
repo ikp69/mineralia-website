@@ -55,18 +55,13 @@ function HoverFooter() {
     },
     {
       icon: <Phone size={18} className="text-[#3ca2fa]" />,
-      text: "+41 22 555 0192",
-      href: "tel:+41225550192",
+      text: "+91 97171 00509",
+      href: "tel:+919717100509",
     },
     {
       icon: <Mail size={18} className="text-[#3ca2fa]" />,
-      text: "contact@mineralia.com",
-      href: "mailto:contact@mineralia.com",
-    },
-    {
-      icon: <Mail size={18} className="text-[#3ca2fa]" />,
-      text: "supply@mineralia.com",
-      href: "mailto:supply@mineralia.com",
+      text: "v.tyagi@mineralia.org.in",
+      href: "mailto:v.tyagi@mineralia.org.in",
     },
   ];
 
