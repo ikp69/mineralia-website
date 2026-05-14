@@ -121,7 +121,7 @@
   },
   {
     "name": "Zircon Sand",
-    "slug": "zircon-sand",
+    "slug": "zirconium-silicate",
     "formula": "ZrSiO₄",
     "composition": { "ZrO2": "64-66%", "SiO2": "32-34%", "Fe2O3": "<0.1%", "TiO2": "<0.2%" },
     "properties": ["High melting point", "Excellent thermal stability", "Low thermal expansion"],

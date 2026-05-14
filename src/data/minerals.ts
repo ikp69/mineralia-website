@@ -2,8 +2,8 @@ export type Mineral = {
   name: string
   slug: string
   category: string
-  industryGroup?: string
-  subCategory?: string
+  industryGroups: string[]
+  subCategory: string
   formula: string
   shortDescription: string
   overview: string
@@ -22,14 +22,8 @@ export type Mineral = {
     exportAvailability?: string
   }
   packaging: string[]
-  qualityParameters: {
-    parameter: string
-    value: string
-  }[]
-  applications: {
-    title: string
-    description: string
-  }[]
+  qualityParameters: { parameter: string; value: string }[]
+  applications: { title: string; description: string }[]
   industries: string[]
   technicalProfileLabel: string
   inquiryTitle: string
@@ -37,286 +31,182 @@ export type Mineral = {
 }
 
 export const minerals: Mineral[] = [
-  {
-    name: "Calcined Bauxite",
-    slug: "bauxite",
-    category: "Refractory Raw Material",
-    industryGroup: "Refractory & Steel Industry",
-    subCategory: "Core Refractory Minerals",
-    formula: "Al2O3·nH2O",
-    shortDescription:
-      "Aluminum-bearing ore supplied for refractories, cement, abrasives, and metallurgical applications.",
-    overview:
-      "Bauxite is a commercially important aluminum-bearing mineral used across refractory, metallurgical, abrasive, and cement industries. It is valued for its alumina content, thermal stability, and suitability for downstream processing in industrial applications requiring strength, heat resistance, and mineral consistency.",
-    sourceDetails: {
-      sourceName: "Global Bauxite Supply Network",
-      region: "Multi-Origin",
-      country: "India / Guinea / Australia",
-      dispatchPorts: ["Mundra", "Kandla", "Vizag"],
-      sourcingNote:
-        "Available through qualified sourcing channels with commercial options based on grade, alumina content, and end-use requirements."
-    },
-    contactDetails: {
-      exportAvailability: "Bulk export, containerized dispatch, and contract supply available"
-    },
-    packaging: ["Bulk vessel", "1 MT jumbo bags", "25 kg bags"],
-    qualityParameters: [
-      { parameter: "Al2O3", value: "As per confirmed grade / assay" },
-      { parameter: "SiO2", value: "As per confirmed grade / assay" },
-      { parameter: "Fe2O3", value: "As per confirmed grade / assay" },
-      { parameter: "TiO2", value: "As per confirmed grade / assay" },
-      { parameter: "LOI", value: "As per confirmed grade / assay" },
-      { parameter: "Moisture", value: "On request" }
-    ],
-    applications: [
-      {
-        title: "Refractory Manufacturing",
-        description:
-          "Used in refractory bricks, castables, and high-temperature linings where alumina-rich mineral input is critical."
-      },
-      {
-        title: "Cement Industry",
-        description:
-          "Utilized as an alumina-bearing corrective material in cement raw mix formulations."
-      },
-      {
-        title: "Abrasives",
-        description:
-          "Suitable for selected abrasive and calcined mineral applications depending on grade and processing route."
-      },
-      {
-        title: "Metallurgical Processing",
-        description:
-          "Commercially relevant as the principal aluminum-bearing ore for downstream alumina and aluminum production."
-      }
-    ],
-    industries: ["Refractories", "Cement", "Abrasives", "Metallurgy"],
-    technicalProfileLabel: "Download Calcined Bauxite Technical Profile",
-    inquiryTitle: "Request Calcined Bauxite Supply",
-    image: "/images/minerals/bauxite.png"
-  },
+
+  // ─── CERAMIC & PORCELAIN INDUSTRY — Clay & Body Minerals ─────────────────
 
   {
-    name: "Chrome Ore",
-    slug: "chrome-ore",
-    category: "Metallurgical Mineral",
-    industryGroup: "Refractory & Steel Industry",
-    subCategory: "Core Refractory Minerals",
-    formula: "FeCr2O4",
-    shortDescription:
-      "Chromium-bearing ore supplied for ferroalloys, stainless steel, refractories, and foundry applications.",
-    overview:
-      "Chrome ore is a critical metallurgical mineral used in ferrochrome production, stainless steel manufacturing, refractory systems, and specialty foundry applications. It is valued for its chromium content, thermal resistance, and strategic role in alloy performance.",
-    sourceDetails: {
-      sourceName: "Global Chrome Ore Supply Network",
-      region: "Multi-Origin",
-      country: "South Africa / Turkey / Oman",
-      dispatchPorts: ["Durban", "Mundra", "Sohar"],
-      sourcingNote:
-        "Commercial supply can be structured by chrome content, Cr:Fe ratio, size fraction, and end-use specification."
-    },
-    contactDetails: {
-      exportAvailability: "Spot cargo and contract volumes available subject to origin and grade"
-    },
-    packaging: ["Bulk cargo", "1 MT jumbo bags"],
-    qualityParameters: [
-      { parameter: "Cr2O3", value: "As per confirmed grade / assay" },
-      { parameter: "Cr:Fe Ratio", value: "On request" },
-      { parameter: "SiO2", value: "On request" },
-      { parameter: "Al2O3", value: "On request" },
-      { parameter: "MgO", value: "On request" },
-      { parameter: "Size", value: "Lumpy / calibrated / fines as required" }
-    ],
-    applications: [
-      {
-        title: "Ferroalloy Production",
-        description:
-          "Used as a feedstock in ferrochrome manufacturing for stainless and alloy steel applications."
-      },
-      {
-        title: "Stainless Steel",
-        description:
-          "Supports chromium input requirements for corrosion resistance and alloy performance."
-      },
-      {
-        title: "Refractory Systems",
-        description:
-          "Applicable in selected refractory formulations requiring chrome-bearing mineral input."
-      },
-      {
-        title: "Foundry Applications",
-        description:
-          "Used in specialty moulding and heat-resistant foundry environments depending on grade."
-      }
-    ],
-    industries: ["Steel & Metallurgy", "Ferroalloys", "Refractories", "Foundry"],
-    technicalProfileLabel: "Download Chrome Ore Technical Profile",
-    inquiryTitle: "Request Chrome Ore Supply",
-    image: "/images/minerals/chrome-ore.png"
-  },
-
-  {
-    name: "Kaolin & Calcined Kaolin",
+    name: "Kaolin",
     slug: "kaolin",
     category: "Clay & Body Mineral",
-    industryGroup: "Ceramic & Porcelain Industry",
+    industryGroups: ["Ceramic & Porcelain Industry"],
     subCategory: "Clay & Body Minerals",
-    formula: "Al2Si2O5(OH)4 / Al2O3·2SiO2",
-    shortDescription:
-      "Raw and calcined kaolin supplied for ceramics, refractories, paper, paints, rubber, and advanced industrial applications.",
-    overview:
-      "Kaolin is a versatile white clay mineral valued for its brightness, fine particle size, and chemical inertness. Calcined Kaolin is produced by thermally processing raw kaolin at high temperatures (600–1100°C), driving off hydroxyl groups and transforming the structure into metakaolin or fully calcined alumino-silicate — offering significantly enhanced hardness, whiteness, opacity, and refractory performance. Together, raw and calcined kaolin serve a wide spectrum of industrial applications from ceramics and paper to refractories and specialty coatings.",
+    formula: "Al₂Si₂O₅(OH)₄",
+    shortDescription: "Primary white clay mineral supplied for ceramic bodies, paper coatings, paints, and specialty industrial applications.",
+    overview: "Kaolin is a fine-grained white clay mineral with low plasticity, high whiteness, and chemical inertness. It is the foundational raw material for porcelain, bone china, and technical ceramic bodies, providing the alumino-silicate framework essential for fired strength and dimensional stability. Its brightness, controlled particle size, and clean-burning character make it indispensable across ceramics, paper, and coatings industries.",
     sourceDetails: {
-      sourceName: "Kaolin & Calcined Kaolin Supply Network",
+      sourceName: "Kaolin Supply Network",
       region: "Multi-Origin",
-      country: "India / Turkey / Ukraine / Brazil",
+      country: "India / Turkey / Brazil / Ukraine",
       dispatchPorts: ["Mundra", "Kandla", "Izmir", "Santos"],
-      sourcingNote:
-        "Available in raw washed, air-classified, and calcined grades. Supply structured based on brightness, particle size distribution, Al2O3 content, and end-use application requirements."
+      sourcingNote: "Available in washed, air-classified, and water-washed grades. Supply structured by brightness, PSD, and Al₂O₃ content."
     },
-    contactDetails: {
-      exportAvailability: "Containerized export and regular industrial supply available in both raw and calcined forms"
-    },
-    packaging: ["25 kg bags", "50 kg bags", "1 MT jumbo bags", "Bulk"],
+    contactDetails: { exportAvailability: "Containerized export available for industrial buyers" },
+    packaging: ["25 kg bags", "50 kg bags", "1 MT jumbo bags"],
     qualityParameters: [
-      { parameter: "Al2O3", value: "Raw: 35–38% | Calcined: 40–45%" },
-      { parameter: "SiO2", value: "Raw: 45–50% | Calcined: 50–55%" },
-      { parameter: "Fe2O3", value: "As per confirmed grade / assay" },
-      { parameter: "TiO2", value: "As per confirmed grade / assay" },
-      { parameter: "Brightness (ISO)", value: "Raw: 78–86% | Calcined: 88–92%+" },
-      { parameter: "Moisture", value: "On request" },
-      { parameter: "Residue / Mesh", value: "As per confirmed grade" },
-      { parameter: "LOI", value: "Raw: 12–14% | Calcined: <1%" }
+      { parameter: "Al₂O₃", value: "35–38%" },
+      { parameter: "SiO₂", value: "45–50%" },
+      { parameter: "Fe₂O₃", value: "As per grade" },
+      { parameter: "Brightness (ISO)", value: "78–86%" },
+      { parameter: "LOI", value: "12–14%" }
     ],
     applications: [
-      {
-        title: "Ceramics & Sanitaryware",
-        description:
-          "Both raw and calcined kaolin are used in tiles, sanitaryware, porcelain, and technical ceramics for controlled plasticity, whiteness, and firing behavior."
-      },
-      {
-        title: "Refractories",
-        description:
-          "Calcined kaolin is a key raw material in refractory castables, bricks, and kiln furniture requiring high alumino-silicate content and thermal stability."
-      },
-      {
-        title: "Paper & Coatings",
-        description:
-          "Calcined kaolin provides superior opacity and brightness as a coating pigment and filler in paper, paperboard, and specialty coatings."
-      },
-      {
-        title: "Paints, Rubber & Polymers",
-        description:
-          "Used as a functional extender in paints, rubber compounds, adhesives, and specialty polymer systems for improved mechanical and barrier properties."
-      }
+      { title: "Porcelain & Technical Ceramics", description: "Core body mineral in porcelain, bone china, and technical ceramic formulations." },
+      { title: "Paper Coating & Filling", description: "Used as a coating pigment and filler for brightness and printability in paper." },
+      { title: "Paints & Rubber", description: "Functional extender in architectural paints, rubber compounds, and adhesives." }
     ],
-    industries: ["Ceramics", "Refractories", "Paper & Coatings", "Paints & Polymers"],
-    technicalProfileLabel: "Download Kaolin & Calcined Kaolin Technical Profile",
-    inquiryTitle: "Request Kaolin & Calcined Kaolin Supply",
+    industries: ["Ceramics", "Paper & Coatings", "Paints & Polymers"],
+    technicalProfileLabel: "Download Kaolin Technical Profile",
+    inquiryTitle: "Request Kaolin Supply",
     image: "/images/minerals/kaolin.png"
   },
 
   {
-    name: "Manganese Ore",
-    slug: "manganese-ore",
-    category: "Metallurgical Mineral",
-    industryGroup: "Refractory & Steel Industry",
-    subCategory: "Steel & Foundry Raw Materials",
-    formula: "MnO2 / Mn-bearing ore",
-    shortDescription:
-      "Manganese-bearing ore supplied for steelmaking, ferroalloy production, and metallurgical processing.",
-    overview:
-      "Manganese ore is a strategically important metallurgical mineral used primarily in steelmaking and ferroalloy production. It plays an essential role in deoxidation, alloy balance, and metallurgical efficiency, with commercial selection based on manganese content, gangue profile, and sizing.",
+    name: "Calcined Kaolin",
+    slug: "calcined-kaolin",
+    category: "Clay & Body Mineral",
+    industryGroups: ["Ceramic & Porcelain Industry"],
+    subCategory: "Clay & Body Minerals",
+    formula: "Al₂O₃·2SiO₂",
+    shortDescription: "Thermally processed kaolin supplied for refractories, paper opacity, and high-performance ceramic and coating applications.",
+    overview: "Calcined kaolin is produced by firing raw kaolin at 600–1100 °C, eliminating hydroxyl groups to create a structurally transformed alumino-silicate with enhanced hardness, whiteness, and opacity. It outperforms raw kaolin in refractory applications, coated paper, and high-brightness coatings, offering significantly reduced LOI and improved abrasion resistance.",
     sourceDetails: {
-      sourceName: "Global Manganese Ore Supply",
+      sourceName: "Calcined Kaolin Supply Network",
       region: "Multi-Origin",
-      country: "South Africa / Gabon / India",
-      dispatchPorts: ["Durban", "Port Elizabeth", "Mundra"],
-      sourcingNote:
-        "Supplied in commercial grades suitable for metallurgical buyers requiring stable quality and supply continuity."
+      country: "India / Turkey / Brazil",
+      dispatchPorts: ["Mundra", "Kandla", "Izmir"],
+      sourcingNote: "Available in metakaolin and fully calcined grades. Supply structured by Al₂O₃, brightness, and particle size."
     },
-    contactDetails: {
-      exportAvailability: "Bulk and containerized dispatch available depending on grade and tonnage"
-    },
-    packaging: ["Bulk cargo", "1 MT jumbo bags"],
+    contactDetails: { exportAvailability: "Containerized export available" },
+    packaging: ["25 kg bags", "50 kg bags", "1 MT jumbo bags"],
     qualityParameters: [
-      { parameter: "Mn", value: "As per confirmed grade / assay" },
-      { parameter: "Fe", value: "On request" },
-      { parameter: "SiO2", value: "On request" },
-      { parameter: "Al2O3", value: "On request" },
-      { parameter: "P", value: "On request" },
-      { parameter: "Size", value: "Lumpy / fines as specified" }
+      { parameter: "Al₂O₃", value: "40–45%" },
+      { parameter: "SiO₂", value: "50–55%" },
+      { parameter: "Brightness (ISO)", value: "88–92%+" },
+      { parameter: "LOI", value: "<1%" },
+      { parameter: "Fe₂O₃", value: "As per grade" }
     ],
     applications: [
-      {
-        title: "Steelmaking",
-        description:
-          "Used to support alloy balance and metallurgical performance in carbon and alloy steel production."
-      },
-      {
-        title: "Ferroalloy Production",
-        description:
-          "Serves as a feedstock for manganese alloy manufacturing across industrial steel applications."
-      },
-      {
-        title: "Foundry & Metallurgical Use",
-        description:
-          "Applicable in downstream metallurgical systems where manganese input is functionally required."
-      }
+      { title: "Refractory Castables", description: "Key raw material in refractory castables, bricks, and kiln furniture." },
+      { title: "Paper Coating Pigment", description: "Superior opacity and brightness as a coating pigment in coated paper and board." },
+      { title: "Ceramics", description: "Used in tiles, sanitaryware, and technical ceramics for controlled firing behaviour." }
     ],
-    industries: ["Steel & Metallurgy", "Ferroalloys", "Foundry"],
-    technicalProfileLabel: "Download Manganese Ore Technical Profile",
-    inquiryTitle: "Request Manganese Ore Supply",
-    image: "/images/minerals/manganese-ore.png"
+    industries: ["Ceramics", "Refractories", "Paper & Coatings"],
+    technicalProfileLabel: "Download Calcined Kaolin Technical Profile",
+    inquiryTitle: "Request Calcined Kaolin Supply",
+    image: "/images/minerals/kaolin.png"
+  },
+
+  {
+    name: "Ball Clay",
+    slug: "ball-clay",
+    category: "Clay & Body Mineral",
+    industryGroups: ["Ceramic & Porcelain Industry"],
+    subCategory: "Clay & Body Minerals",
+    formula: "Al₂O₃·2SiO₂·2H₂O",
+    shortDescription: "Highly plastic secondary clay supplied for tiles, sanitaryware, stoneware, and technical ceramic body formulations.",
+    overview: "Ball clay is a fine-grained sedimentary clay prized for its exceptional plasticity, green strength, and clean firing characteristics. It enhances workability and structural integrity in unfired ceramic bodies, making it essential in floor tiles, wall tiles, sanitaryware, and stoneware. Its plasticity index and particle size distribution are the key commercial selection criteria.",
+    sourceDetails: {
+      sourceName: "Ball Clay Supply Network",
+      region: "Multi-Origin",
+      country: "India / UK / Ukraine / Turkey",
+      dispatchPorts: ["Mundra", "Kandla", "Izmir"],
+      sourcingNote: "Available in washed and processed grades by plasticity index and fired colour specification."
+    },
+    contactDetails: { exportAvailability: "Containerized export available for ceramic buyers" },
+    packaging: ["25 kg bags", "50 kg bags", "1 MT jumbo bags"],
+    qualityParameters: [
+      { parameter: "Al₂O₃", value: "24–30%" },
+      { parameter: "SiO₂", value: "50–60%" },
+      { parameter: "Fe₂O₃", value: "As per grade" },
+      { parameter: "LOI", value: "8–14%" },
+      { parameter: "Plasticity Index", value: "On request" }
+    ],
+    applications: [
+      { title: "Floor & Wall Tiles", description: "Provides plasticity and green strength in tile body formulations." },
+      { title: "Sanitaryware", description: "Used in sanitaryware body compositions for workability and fired strength." },
+      { title: "Stoneware & Tableware", description: "Incorporated in stoneware and tableware for improved forming characteristics." }
+    ],
+    industries: ["Ceramics", "Sanitaryware", "Technical Ceramics"],
+    technicalProfileLabel: "Download Ball Clay Technical Profile",
+    inquiryTitle: "Request Ball Clay Supply",
+    image: "/images/minerals/kaolin.png"
+  },
+
+  {
+    name: "China Clay",
+    slug: "china-clay",
+    category: "Clay & Body Mineral",
+    industryGroups: ["Ceramic & Porcelain Industry"],
+    subCategory: "Clay & Body Minerals",
+    formula: "Al₂Si₂O₅(OH)₄",
+    shortDescription: "Premium-grade white kaolin supplied for fine porcelain, bone china, sanitaryware, and high-quality ceramic body applications.",
+    overview: "China clay is the trade name for high-purity, high-brightness primary kaolin specifically processed for fine ceramics and porcelain manufacture. It delivers exceptional whiteness, low iron content, and controlled particle size distribution critical for fine china, bone china tableware, and sanitaryware body formulations. China clay from primary deposits offers superior brightness and purity compared to secondary kaolins.",
+    sourceDetails: {
+      sourceName: "China Clay Supply Network",
+      region: "Multi-Origin",
+      country: "UK / India / Brazil / Turkey",
+      dispatchPorts: ["Mundra", "Santos", "Izmir"],
+      sourcingNote: "Available in premium washed and ultra-fine grades. Supply structured by brightness, whiteness, and Fe₂O₃ specification."
+    },
+    contactDetails: { exportAvailability: "Containerized export available for porcelain and ceramic buyers" },
+    packaging: ["25 kg bags", "50 kg bags", "1 MT jumbo bags"],
+    qualityParameters: [
+      { parameter: "Al₂O₃", value: "35–38%" },
+      { parameter: "SiO₂", value: "46–50%" },
+      { parameter: "Fe₂O₃", value: "<0.5% (premium grade)" },
+      { parameter: "TiO₂", value: "<0.3%" },
+      { parameter: "Brightness (ISO)", value: "82–88%+" }
+    ],
+    applications: [
+      { title: "Fine Porcelain & Bone China", description: "Primary body material in fine porcelain, bone china, and premium tableware." },
+      { title: "Sanitaryware", description: "Used in vitreous china and sanitary ware body formulations requiring high whiteness." },
+      { title: "Technical Ceramics", description: "Applied in high-specification ceramic components requiring purity and dimensional accuracy." }
+    ],
+    industries: ["Ceramics", "Sanitaryware", "Technical Ceramics"],
+    technicalProfileLabel: "Download China Clay Technical Profile",
+    inquiryTitle: "Request China Clay Supply",
+    image: "/images/minerals/kaolin.png"
   },
 
   {
     name: "Feldspar",
     slug: "feldspar",
     category: "Clay & Body Mineral",
-    industryGroup: "Ceramic & Porcelain Industry",
+    industryGroups: ["Ceramic & Porcelain Industry"],
     subCategory: "Clay & Body Minerals",
-    formula: "KAlSi3O8 / NaAlSi3O8 / mixed feldspathic mineral",
-    shortDescription:
-      "Feldspar supplied for ceramics, glass, glazes, and industrial mineral blending applications.",
-    overview:
-      "Feldspar is a commercially important fluxing mineral used in ceramics, glass, glazes, and allied industrial processes. It is selected for its alkali contribution, melting behavior, and role in improving vitrification, finish quality, and process efficiency.",
+    formula: "KAlSi₃O₈ / NaAlSi₃O₈",
+    shortDescription: "Feldspathic flux mineral supplied for ceramic bodies, glazes, glass, and industrial mineral blending applications.",
+    overview: "Feldspar is the most widely used fluxing mineral in ceramics and glass, providing alkali contribution and promoting vitrification at ceramic firing temperatures. It is commercially selected by K₂O and Na₂O balance, iron content, and particle size for tile bodies, sanitaryware, tableware, and glass batch applications.",
     sourceDetails: {
       sourceName: "Processed Feldspar Supply",
       region: "Multi-Origin",
       country: "India / Turkey",
       dispatchPorts: ["Mundra", "Kandla", "Izmir"],
-      sourcingNote:
-        "Available in potash and soda-rich commercial variants subject to end-use and plant requirements."
+      sourcingNote: "Available in potash-rich and soda-rich variants in powder and lump forms."
     },
-    contactDetails: {
-      exportAvailability: "Regular industrial dispatch available in powder and lump forms"
-    },
+    contactDetails: { exportAvailability: "Regular industrial dispatch available" },
     packaging: ["25 kg bags", "50 kg bags", "1 MT jumbo bags"],
     qualityParameters: [
-      { parameter: "K2O / Na2O", value: "As per confirmed grade" },
-      { parameter: "SiO2", value: "On request" },
-      { parameter: "Al2O3", value: "On request" },
-      { parameter: "Fe2O3", value: "On request" },
-      { parameter: "Whiteness", value: "On request" },
+      { parameter: "K₂O / Na₂O", value: "As per confirmed grade" },
+      { parameter: "SiO₂", value: "64–70%" },
+      { parameter: "Al₂O₃", value: "17–20%" },
+      { parameter: "Fe₂O₃", value: "On request" },
       { parameter: "Mesh Size", value: "As per application" }
     ],
     applications: [
-      {
-        title: "Ceramics",
-        description:
-          "Used in tiles, sanitaryware, tableware, and ceramic bodies requiring controlled flux contribution."
-      },
-      {
-        title: "Glass Manufacturing",
-        description:
-          "Supports alkali input and process behavior in selected glass formulations."
-      },
-      {
-        title: "Glazes & Enamels",
-        description:
-          "Used in glaze systems to improve melt characteristics and fired surface development."
-      }
+      { title: "Ceramic Bodies", description: "Used in tiles, sanitaryware, and tableware bodies as the primary fluxing mineral." },
+      { title: "Glazes & Enamels", description: "Improves melt characteristics and fired surface development in glaze systems." },
+      { title: "Glass Manufacturing", description: "Contributes alkali and alumina to glass batches." }
     ],
     industries: ["Ceramics", "Glass", "Glazes & Enamels"],
     technicalProfileLabel: "Download Feldspar Technical Profile",
@@ -325,57 +215,143 @@ export const minerals: Mineral[] = [
   },
 
   {
+    name: "Potash Feldspar",
+    slug: "potash-feldspar",
+    category: "Clay & Body Mineral",
+    industryGroups: ["Ceramic & Porcelain Industry"],
+    subCategory: "Clay & Body Minerals",
+    formula: "KAlSi₃O₈",
+    shortDescription: "High-potassium feldspar supplied for ceramic bodies, porcelain tiles, and glaze formulations requiring high-temperature vitrification.",
+    overview: "Potash feldspar (orthoclase/microcline) is rich in K₂O and promotes higher-temperature vitrification in ceramic bodies, producing harder, more durable fired products. It is the preferred feldspar for porcelain tiles, electrical porcelain, and high-fired whitewares where fired translucency and strength are critical.",
+    sourceDetails: {
+      sourceName: "Potash Feldspar Supply",
+      region: "Multi-Origin",
+      country: "India / Turkey / Pakistan",
+      dispatchPorts: ["Mundra", "Kandla", "Karachi", "Izmir"],
+      sourcingNote: "Available in washed and micronized grades. Supply structured by K₂O content and Fe₂O₃ specification."
+    },
+    contactDetails: { exportAvailability: "Regular containerized export available" },
+    packaging: ["25 kg bags", "50 kg bags", "1 MT jumbo bags"],
+    qualityParameters: [
+      { parameter: "K₂O", value: "10–14%" },
+      { parameter: "Na₂O", value: "<3%" },
+      { parameter: "Al₂O₃", value: "17–19%" },
+      { parameter: "SiO₂", value: "65–70%" },
+      { parameter: "Fe₂O₃", value: "As per grade" }
+    ],
+    applications: [
+      { title: "Porcelain Tiles", description: "Primary flux in porcelain tile body formulations for high-temperature vitrification." },
+      { title: "Electrical Porcelain", description: "Used in high-voltage insulators and electrical porcelain for strength and dielectric properties." },
+      { title: "Sanitaryware Bodies", description: "Provides fluxing and vitrification in vitreous china formulations." }
+    ],
+    industries: ["Ceramics", "Technical Ceramics", "Sanitaryware"],
+    technicalProfileLabel: "Download Potash Feldspar Technical Profile",
+    inquiryTitle: "Request Potash Feldspar Supply",
+    image: "/images/minerals/potash-feldspar.png"
+  },
+
+  {
+    name: "Soda Feldspar",
+    slug: "soda-feldspar",
+    category: "Clay & Body Mineral",
+    industryGroups: ["Ceramic & Porcelain Industry"],
+    subCategory: "Clay & Body Minerals",
+    formula: "NaAlSi₃O₈",
+    shortDescription: "Sodium-rich feldspar (albite) supplied for fast-fire ceramic tiles, wall tiles, and glass batch applications.",
+    overview: "Soda feldspar (albite) has a higher Na₂O content and lower melting temperature than potash feldspar, making it the preferred flux for fast-fire wall tile production and glass batches. Its earlier melt onset reduces firing energy requirements and improves surface quality in low-to-mid temperature ceramic firing cycles.",
+    sourceDetails: {
+      sourceName: "Soda Feldspar Supply",
+      region: "Multi-Origin",
+      country: "India / Turkey / Spain",
+      dispatchPorts: ["Mundra", "Kandla", "Izmir"],
+      sourcingNote: "Available in standard and low-iron grades. Supply structured by Na₂O content and particle size specification."
+    },
+    contactDetails: { exportAvailability: "Regular containerized export available" },
+    packaging: ["25 kg bags", "50 kg bags", "1 MT jumbo bags"],
+    qualityParameters: [
+      { parameter: "Na₂O", value: "10–12%" },
+      { parameter: "K₂O", value: "<1%" },
+      { parameter: "Al₂O₃", value: "18–21%" },
+      { parameter: "SiO₂", value: "66–70%" },
+      { parameter: "Fe₂O₃", value: "As per grade" }
+    ],
+    applications: [
+      { title: "Fast-Fire Wall Tiles", description: "Preferred flux for single-fire and fast-fire wall tile production cycles." },
+      { title: "Glass Manufacturing", description: "Contributes Na₂O and Al₂O₃ to container, flat, and specialty glass batches." },
+      { title: "Ceramic Glazes", description: "Used in glaze compositions requiring lower melt temperatures and smooth surface finish." }
+    ],
+    industries: ["Ceramics", "Glass", "Glazes & Enamels"],
+    technicalProfileLabel: "Download Soda Feldspar Technical Profile",
+    inquiryTitle: "Request Soda Feldspar Supply",
+    image: "/images/minerals/soda-feldspar.png"
+  },
+
+  {
+    name: "Quartz Powder",
+    slug: "quartz-powder",
+    category: "Clay & Body Mineral",
+    industryGroups: ["Ceramic & Porcelain Industry"],
+    subCategory: "Clay & Body Minerals",
+    formula: "SiO₂",
+    shortDescription: "Finely milled high-purity quartz supplied for ceramic bodies, glazes, glass batch, and construction applications.",
+    overview: "Quartz powder is high-purity SiO₂ milled to fine particle sizes for industrial use. As a silica source in ceramic bodies, it controls shrinkage, fired strength, and thermal expansion. In glaze compositions, it contributes silica to the glass network. Its controlled PSD and high SiO₂ content make it preferred over raw silica sand in precision ceramic and coating applications.",
+    sourceDetails: {
+      sourceName: "Processed Quartz Supply",
+      region: "Multi-Origin",
+      country: "India / Turkey / Norway",
+      dispatchPorts: ["Mundra", "Kandla", "Izmir"],
+      sourcingNote: "Available in 100–400 mesh grades. Supply structured by SiO₂ purity, Fe₂O₃, and PSD."
+    },
+    contactDetails: { exportAvailability: "Containerized and bulk supply available" },
+    packaging: ["25 kg bags", "50 kg bags", "1 MT jumbo bags"],
+    qualityParameters: [
+      { parameter: "SiO₂", value: "98–99.5% min" },
+      { parameter: "Fe₂O₃", value: "As per grade" },
+      { parameter: "Al₂O₃", value: "As per grade" },
+      { parameter: "Mesh Size", value: "100–400 mesh as per application" },
+      { parameter: "Moisture", value: "On request" }
+    ],
+    applications: [
+      { title: "Ceramic Bodies", description: "Controls fired shrinkage and thermal expansion in tile and technical ceramic bodies." },
+      { title: "Glaze Compositions", description: "Provides silica framework in ceramic glaze formulations." },
+      { title: "Construction Products", description: "Used in mortars, adhesives, and mineral-based compounds." }
+    ],
+    industries: ["Ceramics", "Glass", "Construction Materials", "Glazes & Enamels"],
+    technicalProfileLabel: "Download Quartz Powder Technical Profile",
+    inquiryTitle: "Request Quartz Powder Supply",
+    image: "/images/minerals/silica-sand.png"
+  },
+
+  {
     name: "Silica Sand",
     slug: "silica-sand",
     category: "Clay & Body Mineral",
-    industryGroup: "Ceramic & Porcelain Industry",
+    industryGroups: ["Ceramic & Porcelain Industry"],
     subCategory: "Clay & Body Minerals",
-    formula: "SiO2",
-    shortDescription:
-      "High-purity silica sand supplied for glass, foundry, ceramics, filtration, and industrial processing.",
-    overview:
-      "Silica sand is a high-value industrial mineral used across glass manufacturing, foundry operations, ceramics, filtration systems, and selected specialty applications. Commercial selection depends on silica purity, iron content, particle sizing, and end-use compatibility.",
+    formula: "SiO₂",
+    shortDescription: "High-purity silica sand supplied for glass, foundry, ceramics, filtration, and industrial processing applications.",
+    overview: "Silica sand is a high-value industrial mineral used across glass manufacturing, foundry operations, ceramics, filtration, and specialty applications. Commercial selection depends on silica purity, iron content, particle size distribution, and end-use compatibility.",
     sourceDetails: {
       sourceName: "Industrial Silica Supply",
       region: "Multi-Origin",
       country: "India / Turkey / Egypt",
       dispatchPorts: ["Mundra", "Kandla", "Alexandria"],
-      sourcingNote:
-        "Available in application-specific grades for glass, foundry, and industrial processing requirements."
+      sourcingNote: "Available in glass, foundry, and industrial grades by mesh and purity specification."
     },
-    contactDetails: {
-      exportAvailability: "Bulk and container supply available subject to grade and mesh requirement"
-    },
+    contactDetails: { exportAvailability: "Bulk and container supply available subject to mesh requirement" },
     packaging: ["Bulk vessel", "1 MT jumbo bags", "25 kg bags"],
     qualityParameters: [
-      { parameter: "SiO2", value: "As per confirmed grade / assay" },
-      { parameter: "Fe2O3", value: "On request" },
-      { parameter: "Al2O3", value: "On request" },
+      { parameter: "SiO₂", value: "As per confirmed grade" },
+      { parameter: "Fe₂O₃", value: "On request" },
+      { parameter: "Al₂O₃", value: "On request" },
       { parameter: "Moisture", value: "On request" },
-      { parameter: "LOI", value: "On request" },
       { parameter: "Mesh Size", value: "As per application" }
     ],
     applications: [
-      {
-        title: "Glass Manufacturing",
-        description:
-          "Used as a principal silica source in float glass, container glass, and selected specialty glass applications."
-      },
-      {
-        title: "Foundry Casting",
-        description:
-          "Supplied in size-controlled grades for moulding and core-making systems."
-      },
-      {
-        title: "Ceramics",
-        description:
-          "Used in ceramic body and glaze formulations requiring silica contribution and consistency."
-      },
-      {
-        title: "Filtration Media",
-        description:
-          "Applicable in selected water and industrial filtration systems depending on processed grade."
-      }
+      { title: "Glass Manufacturing", description: "Principal silica source in float glass, container glass, and specialty glass." },
+      { title: "Foundry Casting", description: "Supplied in size-controlled grades for moulding and core-making." },
+      { title: "Ceramics", description: "Used in ceramic body and glaze formulations requiring silica input." },
+      { title: "Filtration Media", description: "Applied in water and industrial filtration systems." }
     ],
     industries: ["Glass", "Foundry", "Ceramics", "Filtration"],
     technicalProfileLabel: "Download Silica Sand Technical Profile",
@@ -384,363 +360,34 @@ export const minerals: Mineral[] = [
   },
 
   {
-    name: "Calcium Carbonate",
-    slug: "calcium-carbonate",
-    category: "Industrial Mineral",
-    industryGroup: "Cross-Industry",
-    subCategory: "Industrial Minerals",
-    formula: "CaCO3",
-    shortDescription:
-      "Ground and processed calcium carbonate supplied for plastics, paints, paper, construction, and industrial applications.",
-    overview:
-      "Calcium carbonate is one of the most widely used industrial minerals across fillers, extenders, construction systems, coatings, plastics, and process industries. It is selected based on purity, brightness, particle size distribution, and compatibility with downstream manufacturing requirements.",
-    sourceDetails: {
-      sourceName: "Processed Calcium Carbonate Supply",
-      region: "Multi-Origin",
-      country: "India / Vietnam / Egypt",
-      dispatchPorts: ["Mundra", "Tuticorin", "Hai Phong"],
-      sourcingNote:
-        "Available in coated and uncoated commercial grades depending on industrial application."
-    },
-    contactDetails: {
-      exportAvailability: "Containerized supply available for industrial and bulk-volume buyers"
-    },
-    packaging: ["25 kg bags", "50 kg bags", "1 MT jumbo bags"],
-    qualityParameters: [
-      { parameter: "CaCO3", value: "As per confirmed grade / assay" },
-      { parameter: "MgO", value: "On request" },
-      { parameter: "Brightness", value: "On request" },
-      { parameter: "Whiteness", value: "On request" },
-      { parameter: "Mesh / D97", value: "As per application" },
-      { parameter: "Moisture", value: "On request" }
-    ],
-    applications: [
-      {
-        title: "Plastics & Polymers",
-        description:
-          "Used as a functional filler to improve economics, rigidity, and process performance."
-      },
-      {
-        title: "Paints & Coatings",
-        description:
-          "Acts as an extender mineral in coatings requiring controlled particle profile and brightness."
-      },
-      {
-        title: "Paper & Filler Systems",
-        description:
-          "Selected for applications requiring brightness, smoothness, and filler functionality."
-      },
-      {
-        title: "Construction Materials",
-        description:
-          "Used in compounds, adhesives, sealants, and mineral-based construction systems."
-      }
-    ],
-    industries: ["Plastics", "Paints & Coatings", "Paper", "Construction Materials"],
-    technicalProfileLabel: "Download Calcium Carbonate Technical Profile",
-    inquiryTitle: "Request Calcium Carbonate Supply",
-    image: "/images/minerals/calcium-carbonate.png"
-  },
-
-  {
-    name: "Dolomite",
-    slug: "dolomite",
-    category: "Clay & Body Mineral",
-    industryGroup: "Ceramic & Porcelain Industry",
-    subCategory: "Clay & Body Minerals",
-    formula: "CaMg(CO3)2",
-    shortDescription:
-      "Dolomite supplied for steelmaking, glass, refractories, construction, and flux applications.",
-    overview:
-      "Dolomite is a calcium-magnesium carbonate mineral used widely in steelmaking, glass, refractories, construction materials, and industrial flux applications. It is valued for its dual calcium and magnesium contribution as well as its role in thermal and process systems.",
-    sourceDetails: {
-      sourceName: "Industrial Dolomite Supply",
-      region: "Multi-Origin",
-      country: "India / Oman / Turkey",
-      dispatchPorts: ["Mundra", "Kandla", "Sohar"],
-      sourcingNote:
-        "Available in lump, powder, and graded industrial forms based on end-use requirement."
-    },
-    contactDetails: {
-      exportAvailability: "Regular bulk and packaged export supply available"
-    },
-    packaging: ["Bulk cargo", "1 MT jumbo bags", "25 kg bags"],
-    qualityParameters: [
-      { parameter: "CaO", value: "As per confirmed grade / assay" },
-      { parameter: "MgO", value: "As per confirmed grade / assay" },
-      { parameter: "SiO2", value: "On request" },
-      { parameter: "Fe2O3", value: "On request" },
-      { parameter: "LOI", value: "On request" },
-      { parameter: "Size", value: "Lump / powder / graded as required" }
-    ],
-    applications: [
-      {
-        title: "Steelmaking",
-        description:
-          "Used as a flux and conditioning mineral in selected steel and metallurgical operations."
-      },
-      {
-        title: "Refractory Use",
-        description:
-          "Applicable in refractory systems and high-temperature industrial environments."
-      },
-      {
-        title: "Glass Industry",
-        description:
-          "Supports selected glass formulations where magnesium and calcium contribution is required."
-      },
-      {
-        title: "Construction Materials",
-        description:
-          "Used in mineral blends, fillers, and construction-related industrial applications."
-      }
-    ],
-    industries: ["Steel & Metallurgy", "Refractories", "Glass", "Construction Materials"],
-    technicalProfileLabel: "Download Dolomite Technical Profile",
-    inquiryTitle: "Request Dolomite Supply",
-    image: "/images/minerals/dolomite.png"
-  },
-
-  {
-    name: "Fluorspar",
-    slug: "fluorspar",
-    category: "Metallurgical Mineral",
-    industryGroup: "Refractory & Steel Industry",
-    subCategory: "Steel & Foundry Raw Materials",
-    formula: "CaF2",
-    shortDescription:
-      "Fluorspar supplied for metallurgical, chemical, aluminum, and flux-based industrial applications.",
-    overview:
-      "Fluorspar is a strategically important fluorine-bearing mineral used across metallurgical, aluminum, and chemical processing industries. It is commercially relevant in flux applications and as a feed mineral in downstream fluorochemical value chains. Selection depends on calcium fluoride content, impurity profile, and process suitability.",
-    sourceDetails: {
-      sourceName: "Multi-Origin Fluorspar Supply",
-      region: "Qualified Industrial Supply Channels",
-      country: "India / Mongolia / Mexico / South Africa",
-      dispatchPorts: ["Mundra", "Kandla", "Durban"],
-      sourcingNote:
-        "Commercially structured supply available for metallurgical and industrial buyers based on grade, impurity profile, and logistics requirements."
-    },
-    contactDetails: {
-      exportAvailability: "Containerized and contract supply available subject to grade and market conditions"
-    },
-    packaging: ["1 MT jumbo bags", "Bulk bags", "Containerized dispatch"],
-    qualityParameters: [
-      { parameter: "CaF2", value: "As per confirmed grade / assay" },
-      { parameter: "BaSO4", value: "On request" },
-      { parameter: "SiO2", value: "On request" },
-      { parameter: "Al2O3", value: "On request" },
-      { parameter: "MgO", value: "On request" },
-      { parameter: "Fe2O3", value: "On request" },
-      { parameter: "CaCO3", value: "On request" },
-      { parameter: "Na2O", value: "On request" },
-      { parameter: "K2O", value: "On request" },
-      { parameter: "TiO2", value: "On request" },
-      { parameter: "P2O5", value: "On request" },
-      { parameter: "LOI", value: "On request" }
-    ],
-    applications: [
-      {
-        title: "Steelmaking",
-        description:
-          "Used in selected metallurgical operations as a fluxing mineral supporting process behavior and slag control."
-      },
-      {
-        title: "Aluminium Production",
-        description:
-          "Applicable in aluminum-related industrial systems where fluorine-bearing mineral input is commercially relevant."
-      },
-      {
-        title: "Chemical Processing",
-        description:
-          "Serves as an important feed mineral in fluorochemical value chains depending on grade and downstream process requirements."
-      },
-      {
-        title: "Industrial Flux Applications",
-        description:
-          "Used in high-temperature processing environments requiring controlled flux characteristics."
-      }
-    ],
-    industries: ["Steel & Metallurgy", "Aluminium", "Chemical Processing", "Industrial Flux Systems"],
-    technicalProfileLabel: "Download Fluorspar Technical Profile",
-    inquiryTitle: "Request Fluorspar Supply",
-    image: "/images/minerals/fluorspar.png"
-  },
-
-  {
-    name: "Dead Burnt Magnesite",
-    slug: "dead-burnt-magnesite",
-    category: "Refractory Raw Material",
-    industryGroup: "Refractory & Steel Industry",
-    subCategory: "Core Refractory Minerals",
-    formula: "MgO",
-    shortDescription:
-      "High-density dead burnt magnesite supplied for refractory bricks, furnace linings, and high-temperature industrial applications.",
-    overview:
-      "Dead Burnt Magnesite (DBM) is produced by calcining natural magnesite at very high temperatures (1600–2000°C), resulting in a dense, sintered periclase product with extremely low reactivity and high refractoriness. It is one of the most critical raw materials in the refractory industry, used extensively in steel, cement, and non-ferrous metal furnace linings. DBM is valued for its high MgO content, high bulk density, low porosity, and excellent resistance to basic slag attack.",
-    sourceDetails: {
-      sourceName: "Global DBM Supply Network",
-      region: "Multi-Origin",
-      country: "China / India / Turkey / North Korea",
-      dispatchPorts: ["Mundra", "Kandla", "Tianjin", "Qingdao"],
-      sourcingNote:
-        "Available in multiple grades based on MgO content, bulk density, and CaO/SiO2 ratio. Supply structured for refractory manufacturers, steel plants, and cement industries."
-    },
-    contactDetails: {
-      exportAvailability: "Bulk vessel, jumbo bags, and containerized dispatch available"
-    },
-    packaging: ["Bulk vessel", "1 MT jumbo bags", "25 kg bags"],
-    qualityParameters: [
-      { parameter: "MgO", value: "90% – 97% min (grade dependent)" },
-      { parameter: "SiO2", value: "As per confirmed grade / assay" },
-      { parameter: "CaO", value: "As per confirmed grade / assay" },
-      { parameter: "Fe2O3", value: "As per confirmed grade / assay" },
-      { parameter: "Al2O3", value: "As per confirmed grade / assay" },
-      { parameter: "Bulk Density", value: "3.0 – 3.40 g/cc (grade dependent)" },
-      { parameter: "LOI", value: "As per confirmed grade / assay" }
-    ],
-    applications: [
-      {
-        title: "Refractory Brick Manufacturing",
-        description:
-          "Primary raw material for magnesia bricks, magnesia-carbon bricks, and magnesia-chrome bricks used in steel converters, electric arc furnaces, and ladles."
-      },
-      {
-        title: "Steel & Metallurgy",
-        description:
-          "Used in furnace linings for BOF, EAF, and secondary metallurgy vessels where resistance to high temperature and basic slag is essential."
-      },
-      {
-        title: "Cement Industry",
-        description:
-          "Used in rotary kiln linings and high-temperature zones in cement production facilities."
-      },
-      {
-        title: "Non-Ferrous Metal Processing",
-        description:
-          "Applied in copper, lead, zinc, and other non-ferrous smelting furnaces requiring high-purity basic refractory materials."
-      }
-    ],
-    industries: ["Refractories", "Steel & Metallurgy", "Cement", "Non-Ferrous Metals"],
-    technicalProfileLabel: "Download Dead Burnt Magnesite Technical Profile",
-    inquiryTitle: "Request Dead Burnt Magnesite Supply",
-    image: "/images/minerals/magnesite.png"
-  },
-
-  // ── Ceramic & Porcelain Industry — Clay & Body Minerals ──────────────────
-
-  {
-    name: "Ball Clay",
-    slug: "ball-clay",
-    category: "Clay & Body Mineral",
-    industryGroup: "Ceramic & Porcelain Industry",
-    subCategory: "Clay & Body Minerals",
-    formula: "Al2O3·2SiO2·2H2O",
-    shortDescription: "Highly plastic secondary clay supplied for ceramics, sanitaryware, floor tiles, and stoneware body formulations.",
-    overview: "Ball clay is a fine-grained, highly plastic sedimentary clay mineral used extensively in ceramic body formulations. It is prized for its plasticity, green strength, and clean-burning characteristics. Ball clay enhances workability and provides structural integrity in unfired ceramic bodies, making it an essential raw material in tiles, sanitaryware, and tableware production.",
-    sourceDetails: {
-      sourceName: "Ball Clay Supply Network",
-      region: "Multi-Origin",
-      country: "India / UK / Ukraine / Turkey",
-      dispatchPorts: ["Mundra", "Kandla", "Izmir"],
-      sourcingNote: "Available in washed and processed grades. Supply structured based on plasticity index, particle size distribution, and fired color characteristics."
-    },
-    contactDetails: {
-      exportAvailability: "Containerized export available for industrial ceramic buyers"
-    },
-    packaging: ["25 kg bags", "50 kg bags", "1 MT jumbo bags"],
-    qualityParameters: [
-      { parameter: "Al2O3", value: "24–30%" },
-      { parameter: "SiO2", value: "50–60%" },
-      { parameter: "TiO2", value: "As per confirmed grade" },
-      { parameter: "Fe2O3", value: "As per confirmed grade" },
-      { parameter: "LOI", value: "8–14%" },
-      { parameter: "Plasticity Index", value: "On request" }
-    ],
-    applications: [
-      { title: "Floor & Wall Tiles", description: "Provides plasticity and green strength in tile body formulations for consistent manufacturing performance." },
-      { title: "Sanitaryware", description: "Used in sanitaryware body compositions to achieve workability and high fired strength." },
-      { title: "Stoneware & Tableware", description: "Incorporated in stoneware and tableware bodies for improved forming characteristics and fired quality." },
-      { title: "Technical Ceramics", description: "Used in specialty ceramic applications requiring controlled plasticity and alumino-silicate mineral input." }
-    ],
-    industries: ["Ceramics", "Sanitaryware", "Technical Ceramics"],
-    technicalProfileLabel: "Download Ball Clay Technical Profile",
-    inquiryTitle: "Request Ball Clay Supply",
-    image: "/images/minerals/ball-clay.png"
-  },
-
-  {
-    name: "Quartz Powder",
-    slug: "quartz-powder",
-    category: "Clay & Body Mineral",
-    industryGroup: "Ceramic & Porcelain Industry",
-    subCategory: "Clay & Body Minerals",
-    formula: "SiO2",
-    shortDescription: "Finely milled quartz powder supplied for ceramic bodies, glazes, glass, and construction mineral applications.",
-    overview: "Quartz powder is a processed, high-purity silica mineral produced by grinding and classifying quartz rock to fine particle sizes. It serves as a critical silica source in ceramic body formulations, glass batches, glaze compositions, and construction-related applications. Its controlled particle size distribution and chemical consistency make it a preferred industrial silica material.",
-    sourceDetails: {
-      sourceName: "Processed Quartz Supply",
-      region: "Multi-Origin",
-      country: "India / Turkey / Norway",
-      dispatchPorts: ["Mundra", "Kandla", "Izmir"],
-      sourcingNote: "Available in multiple mesh sizes. Supply structured based on SiO2 purity, Fe2O3 level, and particle size specification."
-    },
-    contactDetails: {
-      exportAvailability: "Containerized and bulk supply available subject to mesh and purity requirements"
-    },
-    packaging: ["25 kg bags", "50 kg bags", "1 MT jumbo bags"],
-    qualityParameters: [
-      { parameter: "SiO2", value: "98–99.5% min (grade dependent)" },
-      { parameter: "Fe2O3", value: "As per confirmed grade" },
-      { parameter: "Al2O3", value: "As per confirmed grade" },
-      { parameter: "Whiteness", value: "On request" },
-      { parameter: "Mesh Size", value: "As per application (100–400 mesh)" },
-      { parameter: "Moisture", value: "On request" }
-    ],
-    applications: [
-      { title: "Ceramic Bodies", description: "Used as a silica source in tile, tableware, and technical ceramic body formulations for controlled shrinkage and fired strength." },
-      { title: "Glaze Compositions", description: "Incorporated in ceramic glazes for silica contribution and melt behavior control." },
-      { title: "Glass Manufacturing", description: "Used as a high-purity silica batch material in selected glass formulations." },
-      { title: "Construction Products", description: "Applied in mortars, adhesives, and specialty construction compounds requiring fine silica mineral input." }
-    ],
-    industries: ["Ceramics", "Glass", "Construction Materials", "Glazes & Enamels"],
-    technicalProfileLabel: "Download Quartz Powder Technical Profile",
-    inquiryTitle: "Request Quartz Powder Supply",
-    image: "/images/minerals/quartz-powder.png"
-  },
-
-  {
     name: "Nepheline Syenite",
     slug: "nepheline-syenite",
     category: "Clay & Body Mineral",
-    industryGroup: "Ceramic & Porcelain Industry",
+    industryGroups: ["Ceramic & Porcelain Industry"],
     subCategory: "Clay & Body Minerals",
-    formula: "Na3KAl4Si4O16",
-    shortDescription: "Low-silica feldspathoidal flux mineral supplied for ceramics, glass, and glaze applications requiring low-temperature vitrification.",
-    overview: "Nepheline syenite is a naturally occurring feldspathoidal mineral offering higher alumina and alkali flux content with lower silica compared to conventional feldspar. It enables lower firing temperatures, improved vitrification, and enhanced whiteness in ceramic bodies and glazes. It is commercially valued in tiles, tableware, and glass batches where energy efficiency and surface quality are priorities.",
+    formula: "Na₃KAl₄Si₄O₁₆",
+    shortDescription: "Low-silica feldspathoid flux mineral supplied for ceramics, glass, and glaze applications requiring low-temperature vitrification.",
+    overview: "Nepheline syenite offers higher alumina and alkali flux with lower silica than conventional feldspar, enabling reduced firing temperatures and improved vitrification in ceramic bodies and glazes. It is commercially valued for energy efficiency, enhanced whiteness, and fired surface quality in tiles, tableware, and glass batches.",
     sourceDetails: {
       sourceName: "Nepheline Syenite Supply Network",
       region: "Multi-Origin",
       country: "Canada / Norway / Russia",
       dispatchPorts: ["Mundra", "Nhava Sheva"],
-      sourcingNote: "Available in standard ceramic and glass grades. Supply structured based on chemical analysis and particle size requirements."
+      sourcingNote: "Available in standard ceramic and glass grades by chemical analysis and particle size."
     },
-    contactDetails: {
-      exportAvailability: "Containerized import supply available for ceramic and glass manufacturers"
-    },
+    contactDetails: { exportAvailability: "Containerized import supply available" },
     packaging: ["25 kg bags", "50 kg bags", "1 MT jumbo bags"],
     qualityParameters: [
-      { parameter: "SiO2", value: "~60%" },
-      { parameter: "Al2O3", value: "~23%" },
-      { parameter: "Na2O + K2O", value: "~14–15%" },
-      { parameter: "Fe2O3", value: "As per confirmed grade" },
-      { parameter: "CaO", value: "On request" },
+      { parameter: "SiO₂", value: "~60%" },
+      { parameter: "Al₂O₃", value: "~23%" },
+      { parameter: "Na₂O + K₂O", value: "~14–15%" },
+      { parameter: "Fe₂O₃", value: "As per grade" },
       { parameter: "Mesh Size", value: "As per application" }
     ],
     applications: [
-      { title: "Ceramic Tiles & Bodies", description: "Used as a low-temperature fluxing agent in tile and sanitaryware bodies for improved vitrification at reduced firing temperatures." },
-      { title: "Tableware & Porcelain", description: "Enhances whiteness and fired strength in fine tableware and porcelain applications." },
-      { title: "Glass Manufacturing", description: "Contributes alkali and alumina to glass batches as an energy-efficient feldspar alternative." },
-      { title: "Glaze Systems", description: "Used in glaze compositions to improve melt flow and surface development at lower temperatures." }
+      { title: "Ceramic Tiles & Bodies", description: "Low-temperature fluxing agent improving vitrification at reduced firing temperatures." },
+      { title: "Tableware & Porcelain", description: "Enhances whiteness and fired strength in fine tableware and porcelain." },
+      { title: "Glaze Systems", description: "Improves melt flow and surface development at lower temperatures." }
     ],
     industries: ["Ceramics", "Glass", "Glazes & Enamels", "Sanitaryware"],
     technicalProfileLabel: "Download Nepheline Syenite Technical Profile",
@@ -752,75 +399,104 @@ export const minerals: Mineral[] = [
     name: "Talc",
     slug: "talc",
     category: "Clay & Body Mineral",
-    industryGroup: "Ceramic & Porcelain Industry",
+    industryGroups: ["Ceramic & Porcelain Industry"],
     subCategory: "Clay & Body Minerals",
-    formula: "Mg3Si4O10(OH)2",
+    formula: "Mg₃Si₄O₁₀(OH)₂",
     shortDescription: "Magnesium silicate mineral supplied for ceramics, paints, plastics, rubber, and paper applications.",
-    overview: "Talc is a naturally occurring magnesium silicate mineral valued for its softness, chemical inertness, whiteness, and lubrication properties. In ceramics, it acts as a flux and thermal shock modifier. Across industrial applications, it functions as an extender filler, reinforcing agent, and process aid in paints, plastics, rubber, and paper coatings.",
+    overview: "Talc is a naturally occurring magnesium silicate mineral valued for its softness, chemical inertness, whiteness, and lubrication properties. In ceramics, it acts as a flux and thermal shock modifier. Across industrial applications it functions as an extender filler, reinforcing agent, and process aid in paints, plastics, rubber, and paper coatings.",
     sourceDetails: {
       sourceName: "Industrial Talc Supply",
       region: "Multi-Origin",
-      country: "India / China / Finland / USA",
+      country: "India / China / Finland",
       dispatchPorts: ["Mundra", "Kandla", "Nhava Sheva"],
-      sourcingNote: "Available in ceramic, cosmetic, and industrial grades. Supply structured based on MgO content, brightness, particle size, and end-use requirements."
+      sourcingNote: "Available in ceramic, cosmetic, and industrial grades by MgO content, brightness, and PSD."
     },
-    contactDetails: {
-      exportAvailability: "Regular containerized export available for industrial buyers"
-    },
+    contactDetails: { exportAvailability: "Regular containerized export available" },
     packaging: ["25 kg bags", "50 kg bags", "1 MT jumbo bags"],
     qualityParameters: [
-      { parameter: "MgO", value: "As per confirmed grade / assay" },
-      { parameter: "SiO2", value: "As per confirmed grade / assay" },
-      { parameter: "Fe2O3", value: "As per confirmed grade" },
-      { parameter: "CaO", value: "On request" },
+      { parameter: "MgO", value: "As per grade" },
+      { parameter: "SiO₂", value: "As per grade" },
+      { parameter: "Fe₂O₃", value: "As per grade" },
       { parameter: "Brightness", value: "On request" },
       { parameter: "Mesh / D97", value: "As per application" }
     ],
     applications: [
-      { title: "Ceramics & Steatite", description: "Used as a flux and thermal shock modifier in ceramic bodies and steatite technical ceramics." },
-      { title: "Paints & Coatings", description: "Functions as an extender filler improving rheology, surface finish, and barrier properties." },
-      { title: "Plastics & Polymers", description: "Used to improve stiffness, dimensional stability, and surface quality in polymer compounds." },
-      { title: "Paper & Rubber", description: "Applicable in paper coatings and rubber compounds for functional mineral filler performance." }
+      { title: "Ceramics & Steatite", description: "Flux and thermal shock modifier in ceramic bodies and steatite technical ceramics." },
+      { title: "Paints & Coatings", description: "Extender filler improving rheology and surface finish in industrial coatings." },
+      { title: "Plastics & Rubber", description: "Reinforcing mineral filler in polymer compounds for improved stiffness and surface quality." }
     ],
-    industries: ["Ceramics", "Paints & Coatings", "Plastics", "Paper", "Rubber"],
+    industries: ["Ceramics", "Paints & Coatings", "Plastics", "Rubber"],
     technicalProfileLabel: "Download Talc Technical Profile",
     inquiryTitle: "Request Talc Supply",
     image: "/images/minerals/talc.png"
   },
 
   {
+    name: "Dolomite",
+    slug: "dolomite",
+    category: "Clay & Body Mineral",
+    industryGroups: ["Ceramic & Porcelain Industry", "Refractory & Steel Industry"],
+    subCategory: "Clay & Body Minerals",
+    formula: "CaMg(CO₃)₂",
+    shortDescription: "Calcium-magnesium carbonate mineral supplied for ceramics, steelmaking flux, refractories, glass, and construction applications.",
+    overview: "Dolomite is a dual calcium-magnesium carbonate mineral with wide industrial application in ceramics as a body flux, in steelmaking as a slag conditioner, and in refractories as a refractory raw material. Its CaO and MgO content after calcination make it valuable across ceramic, metallurgical, and construction sectors.",
+    sourceDetails: {
+      sourceName: "Industrial Dolomite Supply",
+      region: "Multi-Origin",
+      country: "India / Oman / Turkey",
+      dispatchPorts: ["Mundra", "Kandla", "Sohar"],
+      sourcingNote: "Available in lump, powder, and graded industrial forms based on end-use requirement."
+    },
+    contactDetails: { exportAvailability: "Regular bulk and packaged export supply available" },
+    packaging: ["Bulk cargo", "1 MT jumbo bags", "25 kg bags"],
+    qualityParameters: [
+      { parameter: "CaO", value: "As per grade" },
+      { parameter: "MgO", value: "As per grade" },
+      { parameter: "SiO₂", value: "On request" },
+      { parameter: "Fe₂O₃", value: "On request" },
+      { parameter: "Size", value: "Lump / powder / graded as required" }
+    ],
+    applications: [
+      { title: "Ceramic Bodies", description: "Used as a flux in ceramic tile and tableware body formulations." },
+      { title: "Steelmaking Flux", description: "Conditioning mineral in steel and metallurgical operations for slag control." },
+      { title: "Refractory Use", description: "Applied in refractory systems and high-temperature industrial environments." },
+      { title: "Construction Materials", description: "Used in mineral blends, fillers, and construction-related applications." }
+    ],
+    industries: ["Ceramics", "Steel & Metallurgy", "Refractories", "Glass", "Construction Materials"],
+    technicalProfileLabel: "Download Dolomite Technical Profile",
+    inquiryTitle: "Request Dolomite Supply",
+    image: "/images/minerals/dolomite.png"
+  },
+
+  {
     name: "Wollastonite",
     slug: "wollastonite",
     category: "Clay & Body Mineral",
-    industryGroup: "Ceramic & Porcelain Industry",
+    industryGroups: ["Ceramic & Porcelain Industry"],
     subCategory: "Clay & Body Minerals",
-    formula: "CaSiO3",
-    shortDescription: "Calcium silicate mineral supplied for ceramics, plastics, paints, and specialty industrial applications.",
-    overview: "Wollastonite is a naturally occurring calcium metasilicate mineral offering a combination of low moisture absorption, low thermal expansion, high brightness, and acicular crystal morphology. In ceramics, it acts as a flux and reduces fired shrinkage. In plastics and coatings, it functions as a reinforcing filler offering superior performance compared to conventional calcium carbonate.",
+    formula: "CaSiO₃",
+    shortDescription: "Calcium silicate mineral supplied for ceramics, plastics, paints, and specialty industrial applications requiring low thermal expansion.",
+    overview: "Wollastonite is a naturally occurring calcium metasilicate mineral with low moisture absorption, low thermal expansion, high brightness, and acicular crystal morphology. In ceramics it reduces fired shrinkage and acts as a flux. In plastics and coatings it functions as a reinforcing filler offering superior performance compared to conventional calcium carbonate.",
     sourceDetails: {
       sourceName: "Wollastonite Supply Network",
       region: "Multi-Origin",
-      country: "India / China / USA / Finland",
+      country: "India / China / Finland",
       dispatchPorts: ["Mundra", "Kandla", "Chennai"],
       sourcingNote: "Available in ceramic and industrial grades with varying aspect ratios and particle size distributions."
     },
-    contactDetails: {
-      exportAvailability: "Containerized export available for ceramic and industrial buyers"
-    },
+    contactDetails: { exportAvailability: "Containerized export available" },
     packaging: ["25 kg bags", "50 kg bags", "1 MT jumbo bags"],
     qualityParameters: [
       { parameter: "CaO", value: "~44–47%" },
-      { parameter: "SiO2", value: "~50–52%" },
-      { parameter: "Fe2O3", value: "As per confirmed grade" },
-      { parameter: "Al2O3", value: "As per confirmed grade" },
+      { parameter: "SiO₂", value: "~50–52%" },
+      { parameter: "Fe₂O₃", value: "As per grade" },
       { parameter: "Brightness", value: "On request" },
       { parameter: "Aspect Ratio", value: "On request" }
     ],
     applications: [
-      { title: "Ceramic Bodies & Tiles", description: "Reduces fired shrinkage and thermal expansion in ceramic tile and porcelain body formulations." },
-      { title: "Plastics & Composites", description: "Used as a reinforcing mineral filler improving stiffness, impact resistance, and surface quality." },
-      { title: "Paints & Coatings", description: "Applied as a functional extender in industrial coatings for improved weathering and mechanical performance." },
-      { title: "Refractory Coatings", description: "Used in selected refractory and high-temperature coating applications." }
+      { title: "Ceramic Bodies & Tiles", description: "Reduces fired shrinkage and thermal expansion in tile and porcelain formulations." },
+      { title: "Plastics & Composites", description: "Reinforcing mineral filler improving stiffness and surface quality in polymers." },
+      { title: "Paints & Coatings", description: "Functional extender in industrial coatings for improved weathering performance." }
     ],
     industries: ["Ceramics", "Plastics", "Paints & Coatings", "Refractories"],
     technicalProfileLabel: "Download Wollastonite Technical Profile",
@@ -832,35 +508,31 @@ export const minerals: Mineral[] = [
     name: "Bentonite",
     slug: "bentonite",
     category: "Clay & Body Mineral",
-    industryGroup: "Ceramic & Porcelain Industry",
+    industryGroups: ["Ceramic & Porcelain Industry"],
     subCategory: "Clay & Body Minerals",
-    formula: "Al2O3·4SiO2·nH2O",
-    shortDescription: "Swelling smectite clay supplied for ceramics, foundry, construction, drilling, and industrial binding applications.",
-    overview: "Bentonite is a smectite-group clay mineral with exceptional swelling, binding, and rheological properties. It is used in ceramics as a plasticizer and binder, in foundry as a green sand binder, and in civil engineering and drilling as a sealant and viscosifier. Its montmorillonite content governs its swelling index and commercial suitability for different industrial applications.",
+    formula: "Al₂O₃·4SiO₂·nH₂O",
+    shortDescription: "Swelling smectite clay supplied for ceramics, foundry, drilling, and industrial binding applications.",
+    overview: "Bentonite is a smectite-group clay mineral with exceptional swelling, binding, and rheological properties. It is used in ceramics as a plasticizer and binder, in foundry as a green sand binder, and in civil engineering and drilling as a sealant and viscosifier. Montmorillonite content governs its swelling index and commercial suitability.",
     sourceDetails: {
       sourceName: "Industrial Bentonite Supply",
       region: "Multi-Origin",
       country: "India / Turkey / USA / Greece",
       dispatchPorts: ["Mundra", "Kandla", "Izmir"],
-      sourcingNote: "Available in sodium and calcium grades. Supply structured by swelling index, moisture, and end-use application."
+      sourcingNote: "Available in sodium and calcium grades by swelling index and moisture specification."
     },
-    contactDetails: {
-      exportAvailability: "Regular containerized and bulk export supply available"
-    },
+    contactDetails: { exportAvailability: "Regular containerized and bulk export supply available" },
     packaging: ["25 kg bags", "50 kg bags", "1 MT jumbo bags", "Bulk"],
     qualityParameters: [
-      { parameter: "Montmorillonite Content", value: "As per confirmed grade" },
-      { parameter: "Swelling Index", value: "On request (Na or Ca grade)" },
-      { parameter: "SiO2", value: "As per confirmed grade" },
-      { parameter: "Al2O3", value: "As per confirmed grade" },
+      { parameter: "Montmorillonite", value: "As per grade" },
+      { parameter: "Swelling Index", value: "On request" },
+      { parameter: "SiO₂", value: "As per grade" },
       { parameter: "Moisture", value: "On request" },
       { parameter: "pH", value: "On request" }
     ],
     applications: [
-      { title: "Ceramics & Binding", description: "Used as a plasticizer and binder in ceramic body mixes for improved green strength and workability." },
-      { title: "Foundry Sand Binding", description: "Primary green sand binder in ferrous and non-ferrous foundry moulding operations." },
-      { title: "Drilling Fluids", description: "Used as a viscosifier and filtration control agent in oil, gas, and water well drilling operations." },
-      { title: "Civil Engineering & Sealing", description: "Applied in pond liners, landfill barriers, and geotechnical sealing systems." }
+      { title: "Ceramics & Binding", description: "Plasticizer and binder in ceramic body mixes for improved green strength." },
+      { title: "Foundry Sand Binding", description: "Primary green sand binder in ferrous and non-ferrous foundry moulding." },
+      { title: "Drilling Fluids", description: "Viscosifier and filtration control agent in oil, gas, and water well drilling." }
     ],
     industries: ["Ceramics", "Foundry", "Drilling", "Construction Materials"],
     technicalProfileLabel: "Download Bentonite Technical Profile",
@@ -868,159 +540,215 @@ export const minerals: Mineral[] = [
     image: "/images/minerals/bentonite.png"
   },
 
-  // ── Ceramic & Porcelain Industry — Glaze & Surface Minerals ──────────────
+  // ─── CERAMIC & PORCELAIN INDUSTRY — Glaze & Surface Minerals ─────────────
 
   {
     name: "Zirconium Silicate",
     slug: "zirconium-silicate",
     category: "Glaze & Surface Mineral",
-    industryGroup: "Ceramic & Porcelain Industry",
+    industryGroups: ["Ceramic & Porcelain Industry"],
     subCategory: "Glaze & Surface Minerals",
-    formula: "ZrSiO4",
-    shortDescription: "Zirconium silicate and zircon flour supplied for ceramic opacification, glaze opacifiers, and refractory applications.",
-    overview: "Zirconium silicate is a zirconium-bearing mineral widely used in ceramic glazes as an opacifier, and in refractory systems requiring zirconia contribution. Zircon flour — the ultra-fine milled form — provides superior opacity, whiteness, and chemical resistance in glaze and enamel formulations. It is commercially supplied in milled and micronized grades for tiles, sanitaryware, and specialty ceramic applications.",
+    formula: "ZrSiO₄",
+    shortDescription: "Zirconium silicate opacifier supplied for ceramic glazes, enamel systems, and refractory applications.",
+    overview: "Zirconium silicate is the primary opacifier in ceramic tile and sanitaryware glazes, providing white opacity, chemical resistance, and hardness. It is commercially supplied in milled and micronized grades for tiles, sanitaryware, and specialty ceramic applications requiring controlled particle size and high ZrO₂ content.",
     sourceDetails: {
       sourceName: "Zirconium Silicate Supply Network",
       region: "Multi-Origin",
       country: "Australia / South Africa / India",
       dispatchPorts: ["Mundra", "Nhava Sheva", "Fremantle"],
-      sourcingNote: "Available in standard and premium grades in multiple particle size distributions for glaze and refractory end uses."
+      sourcingNote: "Available in standard and premium grades across multiple particle size distributions."
     },
-    contactDetails: {
-      exportAvailability: "Regular containerized supply available for industrial buyers"
-    },
+    contactDetails: { exportAvailability: "Regular containerized supply available" },
     packaging: ["25 kg bags", "50 kg bags", "1 MT jumbo bags"],
     qualityParameters: [
-      { parameter: "ZrO2 + HfO2", value: "As per confirmed grade / assay" },
-      { parameter: "SiO2", value: "As per confirmed grade" },
-      { parameter: "Fe2O3", value: "As per confirmed grade" },
-      { parameter: "TiO2", value: "As per confirmed grade" },
-      { parameter: "D50 / D97", value: "As per application" },
-      { parameter: "Whiteness", value: "On request" }
+      { parameter: "ZrO₂ + HfO₂", value: "As per grade" },
+      { parameter: "SiO₂", value: "As per grade" },
+      { parameter: "Fe₂O₃", value: "As per grade" },
+      { parameter: "TiO₂", value: "As per grade" },
+      { parameter: "D50 / D97", value: "As per application" }
     ],
     applications: [
-      { title: "Glaze Opacification", description: "Primary opacifier in ceramic tile, sanitaryware, and tableware glazes for high whiteness and opacity." },
-      { title: "Enamel & Surface Coatings", description: "Used in porcelain enamel and specialty coating systems requiring chemical and heat resistance." },
-      { title: "Refractory Systems", description: "Applicable in zirconia-containing refractory castables and specialty high-temperature materials." },
-      { title: "Digital Printing Base", description: "Used in digital ceramic printing bases requiring controlled opacity and surface characteristics." }
+      { title: "Glaze Opacification", description: "Primary opacifier in tile, sanitaryware, and tableware glazes for whiteness and opacity." },
+      { title: "Enamel & Surface Coatings", description: "Used in porcelain enamel systems requiring chemical and heat resistance." },
+      { title: "Refractory Systems", description: "Applied in zirconia-containing refractory castables and specialty linings." }
     ],
     industries: ["Ceramics", "Glazes & Enamels", "Refractories", "Sanitaryware"],
     technicalProfileLabel: "Download Zirconium Silicate Technical Profile",
     inquiryTitle: "Request Zirconium Silicate Supply",
-    image: "/images/minerals/zirconium-silicate.png"
+    image: "/images/minerals/zircon-sand.png"
   },
 
   {
-    name: "Titanium Dioxide & Rutile Sand",
-    slug: "titanium-dioxide",
+    name: "Zircon Flour",
+    slug: "zircon-flour",
     category: "Glaze & Surface Mineral",
-    industryGroup: "Ceramic & Porcelain Industry",
+    industryGroups: ["Ceramic & Porcelain Industry"],
     subCategory: "Glaze & Surface Minerals",
-    formula: "TiO2",
-    shortDescription: "Titanium dioxide and natural rutile sand supplied for ceramic glazes, paints, plastics, and specialty opacification applications.",
-    overview: "Titanium dioxide is the most powerful white pigment and opacifier used across ceramics, paints, plastics, and coatings. Natural rutile sand is the primary TiO2-bearing ore used in ceramic glazes and as a raw material for synthetic TiO2 production. In ceramics, both rutile sand and processed TiO2 are used to develop opacity, surface texture, and specialty colour effects in glaze and engobe systems.",
+    formula: "ZrSiO₄",
+    shortDescription: "Ultra-fine milled zircon flour supplied for ceramic glaze opacification, refractory coatings, and investment casting applications.",
+    overview: "Zircon flour is zirconium silicate milled to ultra-fine particle sizes (typically D50 < 5 µm), providing superior opacity, surface coverage, and chemical stability in ceramic glaze and refractory coating systems. Its fine particle size enables smooth glaze surfaces and high-efficiency opacification compared to standard zirconium silicate grades.",
     sourceDetails: {
-      sourceName: "TiO2 & Rutile Supply Network",
+      sourceName: "Zircon Flour Supply Network",
       region: "Multi-Origin",
-      country: "Australia / South Africa / India / Norway",
+      country: "Australia / South Africa / Ukraine",
       dispatchPorts: ["Mundra", "Nhava Sheva", "Fremantle"],
-      sourcingNote: "Available as natural rutile sand and processed TiO2 grades. Supply structured by TiO2 content, particle size, and end-use specification."
+      sourcingNote: "Available in standard and ultra-fine grades. Supply structured by D50, D97, and ZrO₂ content."
     },
-    contactDetails: {
-      exportAvailability: "Containerized supply available for ceramic and industrial buyers"
-    },
-    packaging: ["25 kg bags", "50 kg bags", "1 MT jumbo bags"],
+    contactDetails: { exportAvailability: "Containerized supply available" },
+    packaging: ["25 kg bags", "1 MT jumbo bags"],
     qualityParameters: [
-      { parameter: "TiO2", value: "As per confirmed grade / assay" },
-      { parameter: "Fe2O3", value: "As per confirmed grade" },
-      { parameter: "SiO2", value: "As per confirmed grade" },
-      { parameter: "ZrO2", value: "On request (rutile)" },
-      { parameter: "Particle Size / D50", value: "As per application" }
+      { parameter: "ZrO₂ + HfO₂", value: "As per grade" },
+      { parameter: "SiO₂", value: "As per grade" },
+      { parameter: "Fe₂O₃", value: "As per grade" },
+      { parameter: "D50", value: "<5 µm (ultra-fine grade)" },
+      { parameter: "D97", value: "As per specification" }
     ],
     applications: [
-      { title: "Ceramic Glazes", description: "Used in glaze systems for opacity development, matte textures, and specialty crystalline effects." },
-      { title: "Paints & Coatings", description: "Primary white pigment and opacifier in architectural and industrial coating formulations." },
-      { title: "Plastics & Polymers", description: "Incorporated in plastics for whiteness, UV resistance, and opacity." },
-      { title: "Ceramic Engobes", description: "Used in engobe compositions applied between ceramic body and glaze for surface quality improvement." }
+      { title: "Ceramic Glaze Opacification", description: "High-efficiency opacifier providing superior whiteness and surface coverage in glazes." },
+      { title: "Refractory Coatings", description: "Applied in refractory surface coatings and zirconia-based thermal barriers." },
+      { title: "Investment Casting", description: "Used as a refractory filler in investment casting shell systems." }
     ],
-    industries: ["Ceramics", "Paints & Coatings", "Plastics", "Glazes & Enamels"],
-    technicalProfileLabel: "Download Titanium Dioxide & Rutile Technical Profile",
-    inquiryTitle: "Request Titanium Dioxide / Rutile Sand Supply",
-    image: "/images/minerals/titanium-dioxide.png"
+    industries: ["Ceramics", "Glazes & Enamels", "Refractories", "Foundry"],
+    technicalProfileLabel: "Download Zircon Flour Technical Profile",
+    inquiryTitle: "Request Zircon Flour Supply",
+    image: "/images/minerals/zircon-sand.png"
   },
 
   {
-    name: "Alumina & Calcined Alumina",
+    name: "Rutile Sand",
+    slug: "rutile-sand",
+    category: "Glaze & Surface Mineral",
+    industryGroups: ["Ceramic & Porcelain Industry"],
+    subCategory: "Glaze & Surface Minerals",
+    formula: "TiO₂",
+    shortDescription: "Natural rutile mineral sand supplied for ceramic glaze effects, titanium metal production, and welding electrode applications.",
+    overview: "Rutile sand is a naturally occurring TiO₂-bearing heavy mineral with high titanium content and characteristic golden-brown colour. In ceramics, it introduces titanium to create textured matte and crystalline glaze effects. It is also the premium feedstock for chloride-process TiO₂ pigment production and welding electrode coatings.",
+    sourceDetails: {
+      sourceName: "Rutile Sand Supply Network",
+      region: "Multi-Origin",
+      country: "Australia / South Africa / Sierra Leone",
+      dispatchPorts: ["Fremantle", "Durban", "Mundra"],
+      sourcingNote: "Available in standard and premium grades. Supply structured by TiO₂ content, Fe₂O₃, and ZrO₂ levels."
+    },
+    contactDetails: { exportAvailability: "Containerized and bulk supply available" },
+    packaging: ["1 MT jumbo bags", "25 kg bags", "Bulk"],
+    qualityParameters: [
+      { parameter: "TiO₂", value: "93–96% (natural rutile)" },
+      { parameter: "Fe₂O₃", value: "As per grade" },
+      { parameter: "ZrO₂", value: "As per grade" },
+      { parameter: "SiO₂", value: "As per grade" },
+      { parameter: "Size", value: "As per application" }
+    ],
+    applications: [
+      { title: "Ceramic Glaze Effects", description: "Introduces titanium to create matte, textured, and crystalline glaze effects." },
+      { title: "TiO₂ Pigment Feedstock", description: "Premium feedstock for chloride-process titanium dioxide pigment production." },
+      { title: "Welding Electrodes", description: "Used as a rutile coating in welding electrode manufacture." }
+    ],
+    industries: ["Ceramics", "Glazes & Enamels", "Pigments", "Welding"],
+    technicalProfileLabel: "Download Rutile Sand Technical Profile",
+    inquiryTitle: "Request Rutile Sand Supply",
+    image: "/images/minerals/rutile.png"
+  },
+
+  {
+    name: "Titanium Dioxide",
+    slug: "titanium-dioxide",
+    category: "Glaze & Surface Mineral",
+    industryGroups: ["Ceramic & Porcelain Industry"],
+    subCategory: "Glaze & Surface Minerals",
+    formula: "TiO₂",
+    shortDescription: "Synthetic titanium dioxide supplied for ceramic glazes, paints, plastics, and specialty opacification applications.",
+    overview: "Titanium dioxide is the most powerful white pigment and opacifier, produced in anatase and rutile crystal forms. In ceramics, it develops opacity, matte textures, and specialty colour effects in glaze and engobe systems. As the dominant white pigment globally, it is indispensable in architectural paints, plastics, and industrial coatings.",
+    sourceDetails: {
+      sourceName: "TiO₂ Supply Network",
+      region: "Multi-Origin",
+      country: "China / India / Norway / Germany",
+      dispatchPorts: ["Mundra", "Nhava Sheva"],
+      sourcingNote: "Available in rutile and anatase grades. Supply structured by TiO₂ purity, crystal form, and particle size."
+    },
+    contactDetails: { exportAvailability: "Containerized supply available for ceramic and industrial buyers" },
+    packaging: ["25 kg bags", "50 kg bags", "1 MT jumbo bags"],
+    qualityParameters: [
+      { parameter: "TiO₂", value: "98–99%+ (synthetic grade)" },
+      { parameter: "Crystal Form", value: "Rutile / Anatase as specified" },
+      { parameter: "Fe₂O₃", value: "As per grade" },
+      { parameter: "D50", value: "As per application" }
+    ],
+    applications: [
+      { title: "Ceramic Glazes & Engobes", description: "Develops opacity, matte surface, and specialty effects in glaze and engobe systems." },
+      { title: "Paints & Coatings", description: "Primary white pigment and opacifier in architectural and industrial coatings." },
+      { title: "Plastics", description: "Incorporated in plastics for whiteness, UV resistance, and opacity." }
+    ],
+    industries: ["Ceramics", "Paints & Coatings", "Plastics", "Glazes & Enamels"],
+    technicalProfileLabel: "Download Titanium Dioxide Technical Profile",
+    inquiryTitle: "Request Titanium Dioxide Supply",
+    image: "/images/minerals/rutile.png"
+  },
+
+  {
+    name: "Alumina",
     slug: "alumina",
     category: "Glaze & Surface Mineral",
-    industryGroup: "Ceramic & Porcelain Industry",
+    industryGroups: ["Ceramic & Porcelain Industry"],
     subCategory: "Glaze & Surface Minerals",
-    formula: "Al2O3",
-    shortDescription: "High-purity alumina and calcined alumina supplied for ceramics, refractories, abrasives, and advanced industrial applications.",
-    overview: "Alumina (Al2O3) in its calcined and tabular forms is a critical raw material in advanced ceramics, refractories, abrasives, and specialty industrial applications. Calcined alumina, produced by calcining aluminium hydroxide, offers controlled particle size, high purity, and tailored alpha-phase content for demanding end uses. It is widely used in ceramic glazes, refractory castables, grinding media, and electronics-grade ceramics.",
+    formula: "Al₂O₃",
+    shortDescription: "High-purity alumina supplied for ceramic glazes, advanced ceramics, refractories, and abrasive applications.",
+    overview: "Alumina (Al₂O₃) is a critical raw material in advanced ceramics, refractory systems, and glaze formulations. In ceramic glazes, it increases fired hardness, surface durability, and chemical resistance. Reactive and tabular alumina grades serve distinct roles in refractory castables, technical ceramics, and precision abrasive products.",
     sourceDetails: {
       sourceName: "Industrial Alumina Supply",
       region: "Multi-Origin",
       country: "India / China / Australia",
       dispatchPorts: ["Mundra", "Kandla", "Nhava Sheva"],
-      sourcingNote: "Available in standard, reactive, and tabular calcined grades. Supply structured by Al2O3 purity, alpha content, particle size, and BET surface area."
+      sourcingNote: "Available in standard, reactive, and tabular grades by Al₂O₃ purity, alpha phase, and PSD."
     },
-    contactDetails: {
-      exportAvailability: "Containerized supply available for industrial and advanced ceramic buyers"
-    },
+    contactDetails: { exportAvailability: "Containerized supply available" },
     packaging: ["25 kg bags", "50 kg bags", "1 MT jumbo bags"],
     qualityParameters: [
-      { parameter: "Al2O3", value: "99% min (grade dependent)" },
-      { parameter: "Na2O", value: "As per confirmed grade" },
-      { parameter: "SiO2", value: "As per confirmed grade" },
-      { parameter: "Fe2O3", value: "As per confirmed grade" },
+      { parameter: "Al₂O₃", value: "99% min (grade dependent)" },
+      { parameter: "Na₂O", value: "As per grade" },
+      { parameter: "SiO₂", value: "As per grade" },
       { parameter: "Alpha Phase", value: "On request" },
       { parameter: "D50 / BET", value: "As per application" }
     ],
     applications: [
-      { title: "Ceramic Glazes", description: "Used in glaze formulations to improve fired hardness, surface durability, and chemical resistance." },
-      { title: "Refractory Castables", description: "Key ingredient in high-alumina refractory castables and monolithic lining systems." },
-      { title: "Abrasives & Grinding Media", description: "Used in abrasive grains, grinding media, and technical ceramic wear parts requiring high hardness." },
-      { title: "Advanced Ceramics", description: "Applied in electronics, biomedical, and specialty technical ceramic applications requiring high purity." }
+      { title: "Ceramic Glazes", description: "Improves fired hardness, surface durability, and chemical resistance in glaze systems." },
+      { title: "Refractory Castables", description: "Key ingredient in high-alumina refractory castables and monolithic systems." },
+      { title: "Advanced Ceramics", description: "Applied in electronics, biomedical, and technical ceramic applications." }
     ],
     industries: ["Ceramics", "Refractories", "Abrasives", "Electronics"],
-    technicalProfileLabel: "Download Alumina & Calcined Alumina Technical Profile",
-    inquiryTitle: "Request Alumina / Calcined Alumina Supply",
-    image: "/images/minerals/alumina.png"
+    technicalProfileLabel: "Download Alumina Technical Profile",
+    inquiryTitle: "Request Alumina Supply",
+    image: "/images/minerals/calcined-alumina.png"
   },
 
   {
     name: "Zinc Oxide",
     slug: "zinc-oxide",
     category: "Glaze & Surface Mineral",
-    industryGroup: "Ceramic & Porcelain Industry",
+    industryGroups: ["Ceramic & Porcelain Industry"],
     subCategory: "Glaze & Surface Minerals",
     formula: "ZnO",
-    shortDescription: "Zinc oxide supplied for ceramic glazes, rubber, paints, and specialty industrial formulations.",
-    overview: "Zinc oxide is a versatile industrial mineral used in ceramic glazes as a flux and crystallisation promoter, in rubber as a vulcanisation activator, and in paints and coatings as a corrosion inhibitor and UV absorber. In ceramic applications, it develops matte surface textures, improves glaze adhesion, and contributes to the formation of specialty crystalline finishes.",
+    shortDescription: "Zinc oxide supplied for ceramic glazes, rubber compounding, paints, and specialty industrial formulations.",
+    overview: "Zinc oxide is a versatile industrial mineral used in ceramic glazes as a flux and crystallisation promoter, developing matte surface textures and improving fired adhesion. In rubber it is a vulcanisation activator, and in coatings it provides corrosion inhibition and UV absorption.",
     sourceDetails: {
       sourceName: "Industrial Zinc Oxide Supply",
       region: "Multi-Origin",
       country: "India / China / Belgium",
       dispatchPorts: ["Mundra", "Nhava Sheva"],
-      sourcingNote: "Available in direct and indirect process grades. Supply structured by ZnO purity, particle size, and application requirement."
+      sourcingNote: "Available in direct and indirect process grades by ZnO purity and particle size."
     },
-    contactDetails: {
-      exportAvailability: "Containerized supply available for ceramic and industrial buyers"
-    },
+    contactDetails: { exportAvailability: "Containerized supply available" },
     packaging: ["25 kg bags", "50 kg bags", "1 MT jumbo bags"],
     qualityParameters: [
       { parameter: "ZnO", value: "99% min (grade dependent)" },
-      { parameter: "Pb", value: "As per confirmed grade" },
-      { parameter: "Cd", value: "As per confirmed grade" },
-      { parameter: "Particle Size / D50", value: "As per application" },
-      { parameter: "Surface Area (BET)", value: "On request" }
+      { parameter: "Pb", value: "As per grade" },
+      { parameter: "Cd", value: "As per grade" },
+      { parameter: "D50", value: "As per application" }
     ],
     applications: [
-      { title: "Ceramic Glazes", description: "Used in glaze compositions as a flux, crystallisation promoter, and matte effect developer." },
-      { title: "Rubber Compounding", description: "Functions as a vulcanisation activator in rubber and elastomer formulations." },
-      { title: "Paints & Coatings", description: "Used as a corrosion-inhibiting pigment and UV absorber in industrial coatings." },
-      { title: "Specialty Ceramics", description: "Applied in varistor, ferrite, and piezoelectric ceramic formulations." }
+      { title: "Ceramic Glazes", description: "Flux and crystallisation promoter developing matte and specialty effects in glazes." },
+      { title: "Rubber Compounding", description: "Vulcanisation activator in rubber and elastomer formulations." },
+      { title: "Paints & Coatings", description: "Corrosion-inhibiting pigment and UV absorber in industrial coatings." }
     ],
     industries: ["Ceramics", "Glazes & Enamels", "Rubber", "Paints & Coatings"],
     technicalProfileLabel: "Download Zinc Oxide Technical Profile",
@@ -1032,109 +760,100 @@ export const minerals: Mineral[] = [
     name: "Barium Carbonate",
     slug: "barium-carbonate",
     category: "Glaze & Surface Mineral",
-    industryGroup: "Ceramic & Porcelain Industry",
+    industryGroups: ["Ceramic & Porcelain Industry"],
     subCategory: "Glaze & Surface Minerals",
-    formula: "BaCO3",
-    shortDescription: "Barium carbonate supplied for ceramic glazes, glass, and specialty industrial formulations requiring baria flux.",
-    overview: "Barium carbonate is an important ceramic glaze additive that introduces barium oxide (BaO) into glaze melts after decomposition during firing. It acts as a flux at high temperatures, improves glaze smoothness, suppresses crawling defects, and combats the formation of scum on ceramic bodies. In glass, it improves refractive index and chemical durability.",
+    formula: "BaCO₃",
+    shortDescription: "Barium carbonate supplied for ceramic glaze flux, scum prevention in ceramic bodies, and specialty glass applications.",
+    overview: "Barium carbonate introduces BaO into ceramic glaze melts after decomposition during firing, acting as a high-temperature flux that improves glaze smoothness and suppresses crawling and scum defects. In glass, it improves refractive index and chemical durability.",
     sourceDetails: {
       sourceName: "Industrial Barium Carbonate Supply",
       region: "Multi-Origin",
       country: "China / India / Germany",
       dispatchPorts: ["Mundra", "Nhava Sheva"],
-      sourcingNote: "Available in ceramic and industrial grades. Supply structured by BaCO3 purity and particle size specification."
+      sourcingNote: "Available in ceramic and industrial grades by BaCO₃ purity and particle size."
     },
-    contactDetails: {
-      exportAvailability: "Containerized supply available for ceramic and glass buyers"
-    },
+    contactDetails: { exportAvailability: "Containerized supply available" },
     packaging: ["25 kg bags", "50 kg bags", "1 MT jumbo bags"],
     qualityParameters: [
-      { parameter: "BaCO3", value: "99% min" },
-      { parameter: "BaSO4", value: "As per confirmed grade" },
+      { parameter: "BaCO₃", value: "99% min" },
+      { parameter: "BaSO₄", value: "As per grade" },
       { parameter: "Moisture", value: "On request" },
       { parameter: "Particle Size", value: "As per application" }
     ],
     applications: [
-      { title: "Ceramic Glazes", description: "Introduces BaO flux into glaze systems, improving surface smoothness and suppressing crawling and scum defects." },
-      { title: "Glass Formulations", description: "Used in specialty glass to improve refractive index, chemical durability, and brilliance." },
-      { title: "Ceramic Body Scum Prevention", description: "Applied in ceramic body formulations to neutralise soluble sulphates and prevent surface discolouration." }
+      { title: "Ceramic Glazes", description: "High-temperature BaO flux improving surface smoothness and suppressing glaze defects." },
+      { title: "Body Scum Prevention", description: "Neutralises soluble sulphates in ceramic bodies preventing surface discolouration." },
+      { title: "Specialty Glass", description: "Improves refractive index and chemical durability in specialty glass formulations." }
     ],
-    industries: ["Ceramics", "Glazes & Enamels", "Glass", "Chemical Processing"],
+    industries: ["Ceramics", "Glazes & Enamels", "Glass"],
     technicalProfileLabel: "Download Barium Carbonate Technical Profile",
     inquiryTitle: "Request Barium Carbonate Supply",
-    image: "/images/minerals/barium-carbonate.png"
+    image: "/images/minerals/calcined-alumina.png"
   },
 
   {
     name: "Strontium Carbonate",
     slug: "strontium-carbonate",
     category: "Glaze & Surface Mineral",
-    industryGroup: "Ceramic & Porcelain Industry",
+    industryGroups: ["Ceramic & Porcelain Industry"],
     subCategory: "Glaze & Surface Minerals",
-    formula: "SrCO3",
-    shortDescription: "Strontium carbonate supplied for ceramic glazes, specialty glass, ferrites, and electronic ceramic applications.",
-    overview: "Strontium carbonate introduces strontium oxide (SrO) into ceramic glaze and glass systems after decomposition during firing. It acts as a mid-to-high temperature flux, improving glaze surface quality, reducing surface tension, and enhancing fired brilliance. It is also commercially important in ferrite magnets and specialty electronic ceramics.",
+    formula: "SrCO₃",
+    shortDescription: "Strontium carbonate supplied for ceramic glazes, specialty glass, ferrite magnets, and electronic ceramic applications.",
+    overview: "Strontium carbonate introduces SrO into ceramic glaze and glass systems after decomposition during firing, acting as a mid-to-high temperature flux that improves glaze surface quality and fired brilliance. It is also a key raw material in strontium ferrite permanent magnets and specialty electronic ceramics.",
     sourceDetails: {
       sourceName: "Industrial Strontium Carbonate Supply",
       region: "Multi-Origin",
       country: "China / Germany / Mexico",
       dispatchPorts: ["Mundra", "Nhava Sheva"],
-      sourcingNote: "Available in ceramic, electronic, and industrial grades. Supply structured by SrCO3 purity and particle size specification."
+      sourcingNote: "Available in ceramic, electronic, and industrial grades by SrCO₃ purity and PSD."
     },
-    contactDetails: {
-      exportAvailability: "Containerized supply available for ceramic and electronic buyers"
-    },
+    contactDetails: { exportAvailability: "Containerized supply available" },
     packaging: ["25 kg bags", "50 kg bags"],
     qualityParameters: [
-      { parameter: "SrCO3", value: "97–99% min (grade dependent)" },
-      { parameter: "BaCO3", value: "As per confirmed grade" },
-      { parameter: "CaCO3", value: "As per confirmed grade" },
+      { parameter: "SrCO₃", value: "97–99% min" },
+      { parameter: "BaCO₃", value: "As per grade" },
+      { parameter: "CaCO₃", value: "As per grade" },
       { parameter: "Particle Size", value: "As per application" }
     ],
     applications: [
-      { title: "Ceramic Glazes", description: "Introduces SrO as a high-temperature flux improving surface quality, flow, and fired brilliance." },
-      { title: "Specialty Glass", description: "Used in CRT glass and specialty optics for refractive index and colour improvement." },
-      { title: "Ferrite Magnets", description: "Key raw material in strontium ferrite (SrFe12O19) permanent magnets." },
+      { title: "Ceramic Glazes", description: "SrO flux improving surface quality, flow, and fired brilliance in glaze systems." },
+      { title: "Ferrite Magnets", description: "Key raw material in strontium ferrite permanent magnet production." },
       { title: "Electronic Ceramics", description: "Used in PTC thermistors and piezoelectric ceramic compositions." }
     ],
     industries: ["Ceramics", "Glazes & Enamels", "Glass", "Electronics"],
     technicalProfileLabel: "Download Strontium Carbonate Technical Profile",
     inquiryTitle: "Request Strontium Carbonate Supply",
-    image: "/images/minerals/strontium-carbonate.png"
+    image: "/images/minerals/calcined-alumina.png"
   },
 
   {
     name: "Lithium Feldspar",
     slug: "lithium-feldspar",
     category: "Glaze & Surface Mineral",
-    industryGroup: "Ceramic & Porcelain Industry",
+    industryGroups: ["Ceramic & Porcelain Industry"],
     subCategory: "Glaze & Surface Minerals",
-    formula: "LiAlSi2O6 / LiAlSi4O10",
-    shortDescription: "Lithium-bearing feldspathoid minerals (spodumene, petalite, lepidolite) supplied for low-expansion ceramics, glazes, and glass-ceramic applications.",
-    overview: "Lithium feldspar encompasses lithium-bearing minerals including spodumene, petalite, and lepidolite, which introduce lithia (Li2O) into ceramic and glass systems. Lithia is a powerful flux that significantly lowers melting temperatures and thermal expansion. These minerals are commercially important in low-expansion glass ceramics, fast-fire tile glazes, and specialty porcelain formulations.",
+    formula: "LiAlSi₂O₆ / LiAlSi₄O₁₀",
+    shortDescription: "Lithium-bearing feldspathoid minerals supplied for low-expansion glass ceramics, fast-fire glazes, and specialty porcelain.",
+    overview: "Lithium feldspar encompasses spodumene, petalite, and lepidolite minerals that introduce Li₂O — the most powerful ceramic flux — into ceramic and glass systems. Lithia significantly reduces melting temperatures and thermal expansion, making these minerals commercially critical in fast-fire tile glazes, low-expansion glass ceramics, and specialty porcelain formulations.",
     sourceDetails: {
       sourceName: "Lithium Mineral Supply Network",
       region: "Multi-Origin",
       country: "Australia / Zimbabwe / Brazil / Portugal",
       dispatchPorts: ["Mundra", "Nhava Sheva"],
-      sourcingNote: "Available in spodumene, petalite, and lepidolite grades. Supply structured by Li2O content, mineral type, and particle size requirements."
+      sourcingNote: "Available in spodumene, petalite, and lepidolite grades by Li₂O content and mineral type."
     },
-    contactDetails: {
-      exportAvailability: "Containerized supply available subject to origin and grade availability"
-    },
+    contactDetails: { exportAvailability: "Containerized supply available subject to grade availability" },
     packaging: ["25 kg bags", "1 MT jumbo bags"],
     qualityParameters: [
-      { parameter: "Li2O", value: "As per confirmed grade / mineral type" },
-      { parameter: "Al2O3", value: "As per confirmed grade" },
-      { parameter: "SiO2", value: "As per confirmed grade" },
-      { parameter: "Fe2O3", value: "As per confirmed grade" },
-      { parameter: "Particle Size", value: "As per application" }
+      { parameter: "Li₂O", value: "As per mineral type and grade" },
+      { parameter: "Al₂O₃", value: "As per grade" },
+      { parameter: "SiO₂", value: "As per grade" },
+      { parameter: "Fe₂O₃", value: "As per grade" }
     ],
     applications: [
-      { title: "Low-Expansion Glass Ceramics", description: "Used in glass-ceramic formulations (e.g., cooktops, telescope mirrors) requiring near-zero thermal expansion." },
-      { title: "Fast-Fire Ceramic Glazes", description: "Introduced in glaze compositions as a powerful flux for reduced firing temperatures and fast-fire operations." },
-      { title: "Specialty Porcelain", description: "Used in dental, technical, and sanitary porcelain bodies requiring controlled expansion and whiteness." },
-      { title: "Glass Manufacturing", description: "Contributes lithia flux to glass batches improving melt efficiency and thermal shock resistance." }
+      { title: "Low-Expansion Glass Ceramics", description: "Used in glass-ceramic cooktops and specialty optics requiring near-zero thermal expansion." },
+      { title: "Fast-Fire Ceramic Glazes", description: "Powerful flux for reduced firing temperatures in fast-fire tile operations." },
+      { title: "Specialty Porcelain", description: "Used in dental, technical, and sanitary porcelain bodies requiring controlled expansion." }
     ],
     industries: ["Ceramics", "Glazes & Enamels", "Glass", "Technical Ceramics"],
     technicalProfileLabel: "Download Lithium Feldspar Technical Profile",
@@ -1142,105 +861,131 @@ export const minerals: Mineral[] = [
     image: "/images/minerals/lithium-feldspar.png"
   },
 
-  // ── Ceramic & Porcelain Industry — Ceramic Glazes & Frits ────────────────
+  {
+    name: "Calcined Alumina",
+    slug: "calcined-alumina",
+    category: "Glaze & Surface Mineral",
+    industryGroups: ["Ceramic & Porcelain Industry"],
+    subCategory: "Glaze & Surface Minerals",
+    formula: "α-Al₂O₃",
+    shortDescription: "High-purity calcined alumina supplied for advanced ceramics, refractory castables, abrasives, and precision polishing applications.",
+    overview: "Calcined alumina is produced by calcining aluminium hydroxide to form stable alpha-Al₂O₃, with controlled particle size, purity, and crystal structure. It is the primary alumina material for technical ceramics, high-purity refractory castables, abrasive grains, and precision polishing applications requiring maximum hardness and chemical purity.",
+    sourceDetails: {
+      sourceName: "Calcined Alumina Supply",
+      region: "Multi-Origin",
+      country: "India / China / Australia",
+      dispatchPorts: ["Mundra", "Kandla", "Nhava Sheva"],
+      sourcingNote: "Available in standard, reactive, and low-soda grades by Al₂O₃ purity, alpha content, and PSD."
+    },
+    contactDetails: { exportAvailability: "Containerized supply available for advanced ceramic and refractory buyers" },
+    packaging: ["25 kg bags", "50 kg bags", "1 MT jumbo bags"],
+    qualityParameters: [
+      { parameter: "Al₂O₃", value: "99.0–99.6% min" },
+      { parameter: "Na₂O", value: "<0.5%" },
+      { parameter: "SiO₂", value: "<0.03%" },
+      { parameter: "Fe₂O₃", value: "<0.03%" },
+      { parameter: "D50 / BET", value: "As per application" }
+    ],
+    applications: [
+      { title: "Technical Ceramics", description: "Primary alumina for substrate, wear part, and electronic ceramic applications." },
+      { title: "Refractory Castables", description: "Key ingredient in ultra-high purity refractory systems for petrochemical furnaces." },
+      { title: "Abrasives & Polishing", description: "Used in precision lapping, polishing, and abrasive grain applications." }
+    ],
+    industries: ["Ceramics", "Refractories", "Abrasives", "Electronics"],
+    technicalProfileLabel: "Download Calcined Alumina Technical Profile",
+    inquiryTitle: "Request Calcined Alumina Supply",
+    image: "/images/minerals/calcined-alumina.png"
+  },
+
+  // ─── CERAMIC & PORCELAIN INDUSTRY — Ceramic Glazes & Frits ──────────────
 
   {
     name: "Ceramic Frits",
     slug: "ceramic-frits",
     category: "Ceramic Glaze & Frit",
-    industryGroup: "Ceramic & Porcelain Industry",
+    industryGroups: ["Ceramic & Porcelain Industry"],
     subCategory: "Ceramic Glazes & Frits",
-    formula: "Custom glass frit composition (silicate-based)",
+    formula: "Custom silicate glass composition",
     shortDescription: "Pre-melted glass frit compositions supplied for ceramic tile glazes, sanitaryware enamels, and specialty ceramic surface finishes.",
-    overview: "Ceramic frits are pre-melted and rapidly quenched glass compositions produced to provide controlled, reproducible glaze and enamel properties in ceramic manufacturing. Fritting insolubilises toxic raw materials (lead, barium, boron), stabilises volatile components, and ensures batch consistency. Frits are used as the principal or partial glaze component in tiles, sanitaryware, tableware, and technical ceramic applications.",
+    overview: "Ceramic frits are pre-melted and rapidly quenched glass compositions providing controlled, reproducible glaze and enamel properties. Fritting insolubilises reactive raw materials, stabilises volatile components, and ensures batch consistency. They are the principal glaze component in tiles, sanitaryware, tableware, and technical ceramic applications.",
     sourceDetails: {
       sourceName: "Ceramic Frit Supply",
       region: "Multi-Origin",
       country: "Spain / Italy / India / Turkey",
-      dispatchPorts: ["Mundra", "Nhava Sheva", "Barcelona", "Genoa"],
-      sourcingNote: "Available in transparent, opaque, matte, and specialty frit compositions. Supply structured by application, firing temperature range, and thermal expansion coefficient."
+      dispatchPorts: ["Mundra", "Nhava Sheva", "Barcelona"],
+      sourcingNote: "Available in transparent, opaque, matte, and specialty compositions by firing temperature and thermal expansion."
     },
-    contactDetails: {
-      exportAvailability: "Containerized supply available for ceramic tile and sanitaryware manufacturers"
-    },
+    contactDetails: { exportAvailability: "Supply available for tile and sanitaryware manufacturers" },
     packaging: ["25 kg bags", "1 MT jumbo bags"],
     qualityParameters: [
       { parameter: "Composition Type", value: "As per frit specification" },
       { parameter: "Firing Temperature", value: "As per application" },
       { parameter: "Thermal Expansion", value: "On request" },
-      { parameter: "Particle Size", value: "As per application" },
       { parameter: "Opacity / Transparency", value: "As per specification" }
     ],
     applications: [
-      { title: "Tile Glaze Systems", description: "Used as the principal glaze component in floor tiles, wall tiles, and porcelain slab production." },
-      { title: "Sanitaryware Enamels", description: "Provides controlled enamel surface on vitreous china and sanitaryware bodies." },
-      { title: "Tableware & Artware", description: "Applied in fine tableware, decorative ceramics, and artware glaze formulations." },
+      { title: "Tile Glaze Systems", description: "Principal glaze component in floor tiles, wall tiles, and porcelain slab production." },
+      { title: "Sanitaryware Enamels", description: "Controlled enamel surface on vitreous china and sanitaryware bodies." },
       { title: "Specialty Surface Finishes", description: "Used in matte, metallic, crystalline, and specialty effect glaze systems." }
     ],
     industries: ["Ceramics", "Sanitaryware", "Glazes & Enamels", "Tiles"],
     technicalProfileLabel: "Download Ceramic Frits Technical Profile",
     inquiryTitle: "Request Ceramic Frits Supply",
-    image: "/images/minerals/ceramic-frits.png"
+    image: "/images/minerals/zircon-sand.png"
   },
 
   {
     name: "Digital Printing Inks",
     slug: "digital-printing-inks",
     category: "Ceramic Glaze & Frit",
-    industryGroup: "Ceramic & Porcelain Industry",
+    industryGroups: ["Ceramic & Porcelain Industry"],
     subCategory: "Ceramic Glazes & Frits",
-    formula: "Pigment-based suspension (inorganic ceramic pigments in carrier)",
+    formula: "Inorganic pigment suspension",
     shortDescription: "Inkjet ceramic inks supplied for digital decoration of tiles, slabs, sanitaryware, and technical ceramic surfaces.",
-    overview: "Ceramic digital printing inks are precision-engineered suspensions of inorganic ceramic pigments in controlled-viscosity carriers, designed for inkjet printing on ceramic surfaces. They enable photorealistic surface decoration, wood and stone effect printing, and complex design reproduction on tiles, porcelain slabs, and sanitary ware. Pigments are thermally stable and maintain colour integrity through high-temperature firing cycles.",
+    overview: "Ceramic digital printing inks are precision-engineered suspensions of inorganic ceramic pigments in controlled-viscosity carriers, designed for inkjet printing on ceramic surfaces. They enable photorealistic surface decoration, wood and stone effects, and complex design reproduction on tiles and porcelain slabs. Pigments maintain colour integrity through high-temperature firing cycles.",
     sourceDetails: {
       sourceName: "Ceramic Digital Ink Supply",
       region: "Multi-Origin",
       country: "Spain / Italy / Germany",
       dispatchPorts: ["Barcelona", "Genoa", "Mundra"],
-      sourcingNote: "Available in full colour ranges and specialty effect inks. Supply structured by colour specification, firing temperature range, and printer compatibility."
+      sourcingNote: "Available in full CMYK colour ranges and specialty effect inks by firing temperature and printer compatibility."
     },
-    contactDetails: {
-      exportAvailability: "Supply available for tile manufacturers and ceramic decoration operations"
-    },
+    contactDetails: { exportAvailability: "Supply available for tile manufacturers and ceramic decoration operations" },
     packaging: ["5 kg containers", "25 kg drums", "IBC containers"],
     qualityParameters: [
       { parameter: "Pigment Type", value: "Inorganic ceramic pigment" },
       { parameter: "Viscosity", value: "As per printer specification" },
-      { parameter: "Particle Size", value: "Submicron (as per specification)" },
-      { parameter: "Firing Temperature", value: "As per application" },
-      { parameter: "Colour Gamut", value: "CMYK + specialty colours available" }
+      { parameter: "Particle Size", value: "Submicron" },
+      { parameter: "Firing Temperature", value: "As per application" }
     ],
     applications: [
-      { title: "Ceramic Tile Decoration", description: "Used in inkjet printers to produce high-resolution wood, stone, and design effects on ceramic tile surfaces." },
-      { title: "Porcelain Slab Printing", description: "Applied in large-format porcelain slab production for architectural surface decoration." },
-      { title: "Sanitaryware Decoration", description: "Used for decorative printing applications on sanitary porcelain surfaces." },
-      { title: "Technical Ceramic Marking", description: "Applicable in industrial and technical ceramic surface marking and identification." }
+      { title: "Ceramic Tile Decoration", description: "High-resolution wood, stone, and design effects on ceramic tile surfaces." },
+      { title: "Porcelain Slab Printing", description: "Large-format porcelain slab decoration for architectural surfaces." },
+      { title: "Sanitaryware Decoration", description: "Decorative printing on sanitary porcelain surfaces." }
     ],
-    industries: ["Ceramics", "Tiles", "Sanitaryware", "Technical Ceramics"],
+    industries: ["Ceramics", "Tiles", "Sanitaryware"],
     technicalProfileLabel: "Download Digital Printing Inks Technical Profile",
     inquiryTitle: "Request Digital Printing Inks Supply",
-    image: "/images/minerals/digital-printing-inks.png"
+    image: "/images/minerals/rutile.png"
   },
 
   {
     name: "Engobes",
     slug: "engobes",
     category: "Ceramic Glaze & Frit",
-    industryGroup: "Ceramic & Porcelain Industry",
+    industryGroups: ["Ceramic & Porcelain Industry"],
     subCategory: "Ceramic Glazes & Frits",
-    formula: "Ceramic slip composition (clay + minerals + oxides)",
-    shortDescription: "Ceramic engobe slips supplied as intermediate surface coatings for tiles, bricks, and ceramic ware to improve colour, texture, and glaze adhesion.",
-    overview: "Engobes are ceramic slip coatings applied between the ceramic body and the glaze layer to mask body colour, improve surface uniformity, enhance glaze adhesion, and provide a controlled intermediate ceramic layer. They are formulated from clays, quartz, feldspar, and colouring oxides and must be thermally compatible with both the ceramic body and the applied glaze during firing.",
+    formula: "Ceramic slip (clay + quartz + feldspar + oxides)",
+    shortDescription: "Ceramic engobe slips supplied as intermediate surface coatings for tiles, bricks, and ceramic ware.",
+    overview: "Engobes are ceramic slip coatings applied between the ceramic body and the glaze layer to mask body colour, improve surface uniformity, and enhance glaze adhesion. They are formulated from clays, quartz, feldspar, and colouring oxides and must be thermally compatible with both the body and glaze during firing.",
     sourceDetails: {
       sourceName: "Ceramic Engobe Supply",
       region: "Multi-Origin",
       country: "Spain / Italy / India / Turkey",
       dispatchPorts: ["Barcelona", "Mundra"],
-      sourcingNote: "Available in white base and coloured engobe formulations. Supply structured by application substrate, firing temperature, and glaze compatibility."
+      sourcingNote: "Available in white base and coloured formulations by substrate, firing temperature, and glaze compatibility."
     },
-    contactDetails: {
-      exportAvailability: "Supply available for tile and ceramic manufacturing operations"
-    },
+    contactDetails: { exportAvailability: "Supply available for tile and ceramic manufacturing operations" },
     packaging: ["25 kg bags (powder)", "Liquid slip on request"],
     qualityParameters: [
       { parameter: "Composition", value: "Clay + feldspar + quartz + additives" },
@@ -1249,133 +994,264 @@ export const minerals: Mineral[] = [
       { parameter: "Whiteness / Colour", value: "As per specification" }
     ],
     applications: [
-      { title: "Ceramic Tile Manufacturing", description: "Applied between body and glaze to mask body colour and improve surface uniformity in tile production." },
-      { title: "Sanitaryware", description: "Used as an intermediate layer on sanitary ware bodies for improved fired surface quality." },
-      { title: "Facade & Brick Products", description: "Applied to extruded brick and facade ceramic surfaces for decorative and functional finish." },
-      { title: "Technical Ceramics", description: "Used in controlled ceramic systems requiring specific surface dielectric or mechanical properties." }
+      { title: "Ceramic Tile Manufacturing", description: "Masks body colour and improves surface uniformity between body and glaze." },
+      { title: "Sanitaryware", description: "Intermediate layer on sanitary ware bodies for improved fired surface quality." },
+      { title: "Facade & Brick Products", description: "Decorative and functional surface finish on extruded brick and facade products." }
     ],
     industries: ["Ceramics", "Tiles", "Sanitaryware", "Construction Materials"],
     technicalProfileLabel: "Download Engobes Technical Profile",
     inquiryTitle: "Request Engobes Supply",
-    image: "/images/minerals/engobes.png"
+    image: "/images/minerals/kaolin.png"
   },
 
-  // ── Refractory & Steel Industry — Core Refractory Minerals ───────────────
+  {
+    name: "Glazes",
+    slug: "glazes",
+    category: "Ceramic Glaze & Frit",
+    industryGroups: ["Ceramic & Porcelain Industry"],
+    subCategory: "Ceramic Glazes & Frits",
+    formula: "Glassy silicate coating (variable composition)",
+    shortDescription: "Ceramic glazes supplied for tiles, sanitaryware, tableware, and technical ceramic surface finishing.",
+    overview: "Ceramic glazes are glassy silicate coatings applied to ceramic surfaces that, upon firing, fuse to form a dense, impermeable layer providing aesthetics, hygiene, and mechanical protection. Supplied as ready-to-apply suspensions or dry powder compositions, they are formulated for specific firing temperature ranges, surface effects (matte, gloss, satin), and substrate compatibility.",
+    sourceDetails: {
+      sourceName: "Ceramic Glaze Supply",
+      region: "Multi-Origin",
+      country: "Spain / Italy / India / Turkey",
+      dispatchPorts: ["Barcelona", "Genoa", "Mundra"],
+      sourcingNote: "Available in matte, gloss, satin, and specialty effect formulations. Supply by firing temperature and substrate type."
+    },
+    contactDetails: { exportAvailability: "Supply available for ceramic tile and tableware manufacturers" },
+    packaging: ["25 kg bags (dry)", "Liquid suspension in drums", "1 MT IBC"],
+    qualityParameters: [
+      { parameter: "Firing Temperature Range", value: "950–1250 °C (as per specification)" },
+      { parameter: "Surface Effect", value: "Matte / Gloss / Satin as specified" },
+      { parameter: "Thermal Expansion", value: "Compatible with substrate" },
+      { parameter: "Colour", value: "As per specification" }
+    ],
+    applications: [
+      { title: "Ceramic Floor & Wall Tiles", description: "Surface glaze providing aesthetics, wear resistance, and impermeability in tile production." },
+      { title: "Sanitaryware", description: "Applied to vitreous china and porcelain bodies for hygiene and surface quality." },
+      { title: "Tableware & Artware", description: "Used in fine tableware, decorative ceramics, and artware surface finishing." }
+    ],
+    industries: ["Ceramics", "Tiles", "Sanitaryware", "Glazes & Enamels"],
+    technicalProfileLabel: "Download Glazes Technical Profile",
+    inquiryTitle: "Request Glazes Supply",
+    image: "/images/minerals/glazes.png"
+  },
+
+  // ─── REFRACTORY & STEEL INDUSTRY — Core Refractory Minerals ─────────────
+
+  {
+    name: "Calcined Bauxite",
+    slug: "bauxite",
+    category: "Core Refractory Mineral",
+    industryGroups: ["Refractory & Steel Industry"],
+    subCategory: "Core Refractory Minerals",
+    formula: "Al₂O₃·nH₂O",
+    shortDescription: "Aluminum-bearing ore supplied for refractories, cement, abrasives, and metallurgical applications.",
+    overview: "Calcined bauxite is a commercially important alumina-rich mineral used across refractory, abrasive, and cement industries. It is valued for its alumina content, thermal stability, and suitability for downstream processing in applications requiring strength, heat resistance, and mineral consistency.",
+    sourceDetails: {
+      sourceName: "Global Bauxite Supply Network",
+      region: "Multi-Origin",
+      country: "India / Guinea / Australia",
+      dispatchPorts: ["Mundra", "Kandla", "Vizag"],
+      sourcingNote: "Available through qualified sourcing channels by grade, alumina content, and end-use requirements."
+    },
+    contactDetails: { exportAvailability: "Bulk export, containerized dispatch, and contract supply available" },
+    packaging: ["Bulk vessel", "1 MT jumbo bags", "25 kg bags"],
+    qualityParameters: [
+      { parameter: "Al₂O₃", value: "As per confirmed grade" },
+      { parameter: "SiO₂", value: "As per confirmed grade" },
+      { parameter: "Fe₂O₃", value: "As per confirmed grade" },
+      { parameter: "TiO₂", value: "As per confirmed grade" },
+      { parameter: "LOI", value: "As per confirmed grade" }
+    ],
+    applications: [
+      { title: "Refractory Manufacturing", description: "Used in refractory bricks, castables, and high-temperature linings." },
+      { title: "Cement Industry", description: "Alumina-bearing corrective material in cement raw mix formulations." },
+      { title: "Abrasives", description: "Suitable for abrasive and calcined mineral applications by grade." }
+    ],
+    industries: ["Refractories", "Cement", "Abrasives", "Metallurgy"],
+    technicalProfileLabel: "Download Calcined Bauxite Technical Profile",
+    inquiryTitle: "Request Calcined Bauxite Supply",
+    image: "/images/minerals/bauxite.png"
+  },
+
+  {
+    name: "DBM (Dead Burnt Magnesite)",
+    slug: "dead-burnt-magnesite",
+    category: "Core Refractory Mineral",
+    industryGroups: ["Refractory & Steel Industry"],
+    subCategory: "Core Refractory Minerals",
+    formula: "MgO",
+    shortDescription: "High-density dead burnt magnesite supplied for refractory bricks, furnace linings, and high-temperature industrial applications.",
+    overview: "Dead Burnt Magnesite (DBM) is produced by calcining natural magnesite at 1600–2000 °C, yielding a dense sintered periclase product with extremely low reactivity and high refractoriness. It is one of the most critical raw materials in the refractory industry, used in steel, cement, and non-ferrous furnace linings, valued for high MgO, high bulk density, and resistance to basic slag attack.",
+    sourceDetails: {
+      sourceName: "Global DBM Supply Network",
+      region: "Multi-Origin",
+      country: "China / India / Turkey / North Korea",
+      dispatchPorts: ["Mundra", "Kandla", "Tianjin", "Qingdao"],
+      sourcingNote: "Available in multiple grades by MgO content, bulk density, and CaO/SiO₂ ratio."
+    },
+    contactDetails: { exportAvailability: "Bulk vessel, jumbo bags, and containerized dispatch available" },
+    packaging: ["Bulk vessel", "1 MT jumbo bags", "25 kg bags"],
+    qualityParameters: [
+      { parameter: "MgO", value: "90–97% min (grade dependent)" },
+      { parameter: "SiO₂", value: "As per grade" },
+      { parameter: "CaO", value: "As per grade" },
+      { parameter: "Fe₂O₃", value: "As per grade" },
+      { parameter: "Bulk Density", value: "3.0–3.40 g/cc" }
+    ],
+    applications: [
+      { title: "Refractory Brick Manufacturing", description: "Primary raw material for magnesia, magnesia-carbon, and magnesia-chrome bricks." },
+      { title: "Steel & Metallurgy", description: "Furnace linings for BOF, EAF, and secondary metallurgy vessels." },
+      { title: "Cement Industry", description: "Rotary kiln linings and high-temperature zones in cement production." }
+    ],
+    industries: ["Refractories", "Steel & Metallurgy", "Cement", "Non-Ferrous Metals"],
+    technicalProfileLabel: "Download Dead Burnt Magnesite Technical Profile",
+    inquiryTitle: "Request Dead Burnt Magnesite Supply",
+    image: "/images/minerals/magnesite.png"
+  },
 
   {
     name: "Fused Magnesia",
     slug: "fused-magnesia",
-    category: "Refractory Raw Material",
-    industryGroup: "Refractory & Steel Industry",
+    category: "Core Refractory Mineral",
+    industryGroups: ["Refractory & Steel Industry"],
     subCategory: "Core Refractory Minerals",
     formula: "MgO",
-    shortDescription: "High-density fused magnesia supplied for premium refractory bricks, steel furnace linings, and electrical insulation applications.",
-    overview: "Fused magnesia (FM) is produced by arc-fusion of magnesite or caustic calcined magnesia at temperatures exceeding 2800°C, resulting in large periclase crystals of exceptional purity, density, and thermal stability. It offers superior performance to dead burnt magnesite in applications demanding the highest MgO purity, electrical resistivity, and resistance to corrosion by basic slags. It is used in premium steel refractories, induction furnace linings, and high-temperature electrical insulation.",
+    shortDescription: "High-density fused magnesia supplied for premium refractory bricks, steel furnace linings, and electrical insulation.",
+    overview: "Fused magnesia (FM) is produced by arc-fusion of magnesite above 2800 °C, yielding large periclase crystals of exceptional purity, density, and thermal stability. It outperforms DBM in applications demanding maximum MgO purity, electrical resistivity, and resistance to corrosion by basic slags in premium steel refractories and electrical insulation systems.",
     sourceDetails: {
       sourceName: "Fused Magnesia Supply Network",
       region: "Multi-Origin",
       country: "China / Austria / India",
       dispatchPorts: ["Tianjin", "Qingdao", "Mundra"],
-      sourcingNote: "Available in multiple purity grades (97–99.9% MgO) and grain sizes. Supply structured for refractory manufacturers and electrical insulation producers."
+      sourcingNote: "Available in 97–99.9% MgO grades and multiple grain sizes for refractory and insulation manufacturers."
     },
-    contactDetails: {
-      exportAvailability: "Bulk and containerized supply available"
-    },
+    contactDetails: { exportAvailability: "Bulk and containerized supply available" },
     packaging: ["Bulk vessel", "1 MT jumbo bags", "25 kg bags"],
     qualityParameters: [
-      { parameter: "MgO", value: "97–99.9% min (grade dependent)" },
-      { parameter: "SiO2", value: "As per confirmed grade" },
-      { parameter: "CaO", value: "As per confirmed grade" },
-      { parameter: "Fe2O3", value: "As per confirmed grade" },
-      { parameter: "Bulk Density", value: "3.40–3.58 g/cc (grade dependent)" },
-      { parameter: "Grain Size", value: "As per application" }
+      { parameter: "MgO", value: "97–99.9% min" },
+      { parameter: "SiO₂", value: "As per grade" },
+      { parameter: "CaO", value: "As per grade" },
+      { parameter: "Fe₂O₃", value: "As per grade" },
+      { parameter: "Bulk Density", value: "3.40–3.58 g/cc" }
     ],
     applications: [
-      { title: "Premium Steel Refractories", description: "Used in magnesia-carbon bricks and castables for EAF, BOF, and ladle linings requiring maximum performance." },
-      { title: "Induction Furnace Linings", description: "Applied in coreless induction furnace linings for non-ferrous and steel melting operations." },
-      { title: "Electrical Insulation", description: "Used as a high-purity MgO filler in mineral-insulated cables and heating elements." },
-      { title: "Non-Ferrous Smelting", description: "Applied in copper, nickel, and platinum smelting furnace refractories." }
+      { title: "Premium Steel Refractories", description: "MgO-C bricks and castables for EAF, BOF, and ladle linings requiring maximum performance." },
+      { title: "Induction Furnace Linings", description: "Applied in coreless induction furnace linings for non-ferrous and steel melting." },
+      { title: "Electrical Insulation", description: "High-purity MgO filler in mineral-insulated cables and heating elements." }
     ],
     industries: ["Refractories", "Steel & Metallurgy", "Electrical Insulation", "Non-Ferrous Metals"],
     technicalProfileLabel: "Download Fused Magnesia Technical Profile",
     inquiryTitle: "Request Fused Magnesia Supply",
-    image: "/images/minerals/fused-magnesia.png"
+    image: "/images/minerals/magnesite.png"
+  },
+
+  {
+    name: "Chrome Ore",
+    slug: "chrome-ore",
+    category: "Core Refractory Mineral",
+    industryGroups: ["Refractory & Steel Industry"],
+    subCategory: "Core Refractory Minerals",
+    formula: "FeCr₂O₄",
+    shortDescription: "Chromium-bearing ore supplied for ferroalloys, stainless steel, refractories, and foundry applications.",
+    overview: "Chrome ore is a critical metallurgical mineral used in ferrochrome production, stainless steel manufacturing, refractory systems, and specialty foundry applications. It is valued for its chromium content, thermal resistance, and strategic role in alloy performance.",
+    sourceDetails: {
+      sourceName: "Global Chrome Ore Supply Network",
+      region: "Multi-Origin",
+      country: "South Africa / Turkey / Oman",
+      dispatchPorts: ["Durban", "Mundra", "Sohar"],
+      sourcingNote: "Commercial supply can be structured by chrome content, Cr:Fe ratio, size fraction, and end-use specification."
+    },
+    contactDetails: { exportAvailability: "Spot cargo and contract volumes available subject to origin and grade" },
+    packaging: ["Bulk cargo", "1 MT jumbo bags"],
+    qualityParameters: [
+      { parameter: "Cr₂O₃", value: "As per confirmed grade" },
+      { parameter: "Cr:Fe Ratio", value: "On request" },
+      { parameter: "SiO₂", value: "On request" },
+      { parameter: "Al₂O₃", value: "On request" },
+      { parameter: "Size", value: "Lumpy / calibrated / fines as required" }
+    ],
+    applications: [
+      { title: "Ferroalloy Production", description: "Feedstock in ferrochrome manufacturing for stainless and alloy steel." },
+      { title: "Stainless Steel", description: "Chromium input for corrosion resistance and alloy performance." },
+      { title: "Refractory Systems", description: "Used in chrome-bearing refractory formulations for high-temperature linings." }
+    ],
+    industries: ["Steel & Metallurgy", "Ferroalloys", "Refractories", "Foundry"],
+    technicalProfileLabel: "Download Chrome Ore Technical Profile",
+    inquiryTitle: "Request Chrome Ore Supply",
+    image: "/images/minerals/chrome-ore.png"
   },
 
   {
     name: "Chromite Sand",
     slug: "chromite-sand",
-    category: "Refractory Raw Material",
-    industryGroup: "Refractory & Steel Industry",
+    category: "Core Refractory Mineral",
+    industryGroups: ["Refractory & Steel Industry"],
     subCategory: "Core Refractory Minerals",
-    formula: "FeCr2O4",
-    shortDescription: "Angular chromite sand supplied for foundry moulding, refractory applications, and specialty casting operations.",
-    overview: "Chromite sand is a processed chromite mineral in angular sand form, distinct from metallurgical chrome ore in particle size, shape, and end-use. It is primarily used in foundry moulding and core-making as a chemically stable, high-density facing sand that prevents metal penetration and veining defects. In refractories, it is used in chrome-bearing brick formulations and specialty linings.",
+    formula: "FeCr₂O₄",
+    shortDescription: "Angular chromite sand supplied for foundry moulding, refractory applications, and precision steel casting operations.",
+    overview: "Chromite sand is a processed chromite mineral in angular sand form, used primarily in foundry moulding and core-making as a chemically stable, high-density facing sand that prevents metal penetration and veining defects in steel castings. In refractories, it is used in chrome-bearing brick formulations.",
     sourceDetails: {
       sourceName: "Chromite Sand Supply",
       region: "Multi-Origin",
       country: "South Africa / Kazakhstan / India",
       dispatchPorts: ["Durban", "Mundra", "Nhava Sheva"],
-      sourcingNote: "Available in standard foundry and refractory grades. Supply structured by Cr2O3 content, particle sizing, and AFS grain fineness."
+      sourcingNote: "Available in standard foundry and refractory grades by Cr₂O₃ content and AFS grain fineness."
     },
-    contactDetails: {
-      exportAvailability: "Regular containerized and bulk supply available"
-    },
+    contactDetails: { exportAvailability: "Regular containerized and bulk supply available" },
     packaging: ["1 MT jumbo bags", "25 kg bags", "Bulk"],
     qualityParameters: [
-      { parameter: "Cr2O3", value: "As per confirmed grade / assay" },
-      { parameter: "Fe2O3 (total)", value: "As per confirmed grade" },
-      { parameter: "SiO2", value: "As per confirmed grade" },
-      { parameter: "Al2O3", value: "On request" },
+      { parameter: "Cr₂O₃", value: "As per grade" },
+      { parameter: "Fe₂O₃ (total)", value: "As per grade" },
+      { parameter: "SiO₂", value: "As per grade" },
       { parameter: "AFS Grain Fineness", value: "As per application" },
       { parameter: "Size Distribution", value: "Customized on request" }
     ],
     applications: [
-      { title: "Foundry Moulding", description: "Used as facing and backing sand in ferrous and non-ferrous casting moulds to prevent metal penetration and surface defects." },
-      { title: "Core Making", description: "Applied in core-making operations for precision casting applications requiring dimensional accuracy." },
-      { title: "Refractory Linings", description: "Used in chrome-bearing refractory bricks and monolithic linings for selected high-temperature applications." },
-      { title: "Steel Casting", description: "Used as mould facing sand in steel casting operations where veining resistance is critical." }
+      { title: "Foundry Moulding", description: "Facing and backing sand in ferrous and non-ferrous casting moulds." },
+      { title: "Steel Casting", description: "Mould facing sand in steel casting operations where veining resistance is critical." },
+      { title: "Refractory Linings", description: "Used in chrome-bearing refractory bricks for selected high-temperature applications." }
     ],
     industries: ["Foundry", "Steel & Metallurgy", "Refractories"],
     technicalProfileLabel: "Download Chromite Sand Technical Profile",
     inquiryTitle: "Request Chromite Sand Supply",
-    image: "/images/minerals/chromite-sand.png"
+    image: "/images/minerals/chrome-ore.png"
   },
 
   {
     name: "Graphite",
     slug: "graphite",
-    category: "Refractory Raw Material",
-    industryGroup: "Refractory & Steel Industry",
+    category: "Core Refractory Mineral",
+    industryGroups: ["Refractory & Steel Industry"],
     subCategory: "Core Refractory Minerals",
     formula: "C",
     shortDescription: "Natural and synthetic graphite supplied for refractory bricks, electrodes, lubricants, and advanced energy applications.",
-    overview: "Graphite is a crystalline form of carbon with exceptional thermal conductivity, lubricity, chemical inertness, and electrical conductivity. In the refractory industry, it is a critical component in magnesia-carbon bricks used in steelmaking furnaces. Natural flake graphite is used in lubricants, foundry coatings, and batteries; synthetic graphite in electrodes, EDM, and advanced applications.",
+    overview: "Graphite is a crystalline carbon mineral with exceptional thermal conductivity, lubricity, chemical inertness, and electrical conductivity. It is a critical component in magnesia-carbon refractory bricks for steelmaking furnaces, and is widely used in lubricants, foundry coatings, and battery anode materials.",
     sourceDetails: {
       sourceName: "Industrial Graphite Supply",
       region: "Multi-Origin",
       country: "China / India / Mozambique / Canada",
       dispatchPorts: ["Qingdao", "Mundra", "Nacala"],
-      sourcingNote: "Available in natural flake, amorphous, and synthetic grades. Supply structured by carbon content, flake size, and end-use specification."
+      sourcingNote: "Available in natural flake, amorphous, and synthetic grades by fixed carbon content and flake size."
     },
-    contactDetails: {
-      exportAvailability: "Containerized and bulk supply available"
-    },
+    contactDetails: { exportAvailability: "Containerized and bulk supply available" },
     packaging: ["25 kg bags", "1 MT jumbo bags", "Bulk"],
     qualityParameters: [
-      { parameter: "Fixed Carbon", value: "As per confirmed grade (85–99%)" },
-      { parameter: "Ash", value: "As per confirmed grade" },
+      { parameter: "Fixed Carbon", value: "85–99% (grade dependent)" },
+      { parameter: "Ash", value: "As per grade" },
       { parameter: "Moisture", value: "On request" },
       { parameter: "Sulphur", value: "On request" },
-      { parameter: "Flake Size", value: "As per application (natural flake)" }
+      { parameter: "Flake Size", value: "As per application" }
     ],
     applications: [
-      { title: "Magnesia-Carbon Bricks", description: "Key ingredient in MgO-C refractory bricks used in steel converter, EAF, and ladle linings." },
-      { title: "Lubricants", description: "Used as a dry lubricant and lubricant additive in high-temperature and extreme-pressure applications." },
-      { title: "Foundry Coatings", description: "Applied in foundry mould coatings and release agents for improved casting surface quality." },
+      { title: "Magnesia-Carbon Bricks", description: "Key ingredient in MgO-C refractory bricks for steel converter and EAF linings." },
+      { title: "Lubricants", description: "Dry lubricant and lubricant additive for high-temperature and extreme-pressure applications." },
       { title: "Battery Anode Materials", description: "Natural and synthetic graphite used in lithium-ion battery anode formulations." }
     ],
-    industries: ["Refractories", "Steel & Metallurgy", "Lubricants", "Batteries", "Foundry"],
+    industries: ["Refractories", "Steel & Metallurgy", "Lubricants", "Batteries"],
     technicalProfileLabel: "Download Graphite Technical Profile",
     inquiryTitle: "Request Graphite Supply",
     image: "/images/minerals/graphite.png"
@@ -1384,36 +1260,32 @@ export const minerals: Mineral[] = [
   {
     name: "Brown Fused Alumina",
     slug: "brown-fused-alumina",
-    category: "Refractory Raw Material",
-    industryGroup: "Refractory & Steel Industry",
+    category: "Core Refractory Mineral",
+    industryGroups: ["Refractory & Steel Industry"],
     subCategory: "Core Refractory Minerals",
-    formula: "Al2O3",
+    formula: "Al₂O₃",
     shortDescription: "Brown fused alumina supplied for abrasives, refractory castables, surface blasting, and wear-resistant ceramic applications.",
-    overview: "Brown fused alumina (BFA) is produced by fusing calcined bauxite in an electric arc furnace at temperatures above 2000°C, yielding a dense, hard, and tough alpha-alumina product. Its combination of hardness, toughness, and chemical stability makes it ideal for bonded and coated abrasives, refractory castables, and surface preparation applications. BFA is one of the most widely used synthetic abrasive materials worldwide.",
+    overview: "Brown fused alumina (BFA) is produced by fusing calcined bauxite in an electric arc furnace above 2000 °C, yielding a dense, hard, and tough alpha-alumina product. Its combination of hardness, toughness, and chemical stability makes it ideal for bonded and coated abrasives, refractory castables, and surface preparation applications.",
     sourceDetails: {
       sourceName: "Brown Fused Alumina Supply",
       region: "Multi-Origin",
       country: "China / India / Russia",
       dispatchPorts: ["Qingdao", "Tianjin", "Mundra"],
-      sourcingNote: "Available in multiple grit sizes per FEPA/ANSI standards and refractory grain grades. Supply structured by Al2O3 content, hardness, and application requirement."
+      sourcingNote: "Available in multiple grit sizes per FEPA/ANSI standards and refractory grain grades."
     },
-    contactDetails: {
-      exportAvailability: "Containerized and bulk supply available for abrasive and refractory buyers"
-    },
+    contactDetails: { exportAvailability: "Containerized and bulk supply available" },
     packaging: ["25 kg bags", "1 MT jumbo bags", "Bulk"],
     qualityParameters: [
-      { parameter: "Al2O3", value: "94–97% min (grade dependent)" },
-      { parameter: "TiO2", value: "As per confirmed grade" },
-      { parameter: "Fe2O3", value: "As per confirmed grade" },
-      { parameter: "SiO2", value: "As per confirmed grade" },
-      { parameter: "Grit Size", value: "F4–F220 / P12–P220 / macro and micro grits" },
+      { parameter: "Al₂O₃", value: "94–97% min" },
+      { parameter: "TiO₂", value: "As per grade" },
+      { parameter: "Fe₂O₃", value: "As per grade" },
+      { parameter: "Grit Size", value: "F4–F220 per FEPA / macro and micro grits" },
       { parameter: "Hardness (Mohs)", value: "9" }
     ],
     applications: [
-      { title: "Bonded & Coated Abrasives", description: "Used in grinding wheels, sandpaper, abrasive discs, and cutting tools for metal and surface grinding." },
-      { title: "Refractory Castables", description: "Key aggregate in high-alumina refractory castables for steel, cement, and petrochemical furnaces." },
-      { title: "Surface Preparation", description: "Used in blasting media applications for metallic and industrial surface cleaning and profiling." },
-      { title: "Wear-Resistant Ceramics", description: "Applied in ceramic wear tiles, lining systems, and impact-resistant components." }
+      { title: "Bonded & Coated Abrasives", description: "Grinding wheels, sandpaper, and cutting tools for metal and surface grinding." },
+      { title: "Refractory Castables", description: "High-alumina refractory castables for steel, cement, and petrochemical furnaces." },
+      { title: "Surface Preparation", description: "Blasting media for metallic and industrial surface cleaning and profiling." }
     ],
     industries: ["Abrasives", "Refractories", "Steel & Metallurgy", "Surface Treatment"],
     technicalProfileLabel: "Download Brown Fused Alumina Technical Profile",
@@ -1424,36 +1296,32 @@ export const minerals: Mineral[] = [
   {
     name: "White Fused Alumina",
     slug: "white-fused-alumina",
-    category: "Refractory Raw Material",
-    industryGroup: "Refractory & Steel Industry",
+    category: "Core Refractory Mineral",
+    industryGroups: ["Refractory & Steel Industry"],
     subCategory: "Core Refractory Minerals",
-    formula: "Al2O3",
-    shortDescription: "High-purity white fused alumina supplied for precision abrasives, advanced refractories, ceramics, and electronics-grade applications.",
-    overview: "White fused alumina (WFA) is produced by fusing high-purity calcined alumina in an electric arc furnace, yielding a product of >99% Al2O3 purity with exceptional hardness, friability, and chemical purity. Compared to brown fused alumina, WFA has higher purity, greater friability, and is preferred in precision grinding, advanced refractories, electronics ceramics, and pharmaceutical polishing applications.",
+    formula: "Al₂O₃",
+    shortDescription: "High-purity white fused alumina supplied for precision abrasives, advanced refractories, and electronics-grade ceramic applications.",
+    overview: "White fused alumina (WFA) is produced by fusing high-purity calcined alumina in an electric arc furnace, yielding >99% Al₂O₃ purity with exceptional hardness, friability, and chemical purity. Compared to BFA, WFA has higher purity and is preferred in precision grinding, advanced refractories, electronics ceramics, and pharmaceutical polishing.",
     sourceDetails: {
       sourceName: "White Fused Alumina Supply",
       region: "Multi-Origin",
       country: "China / India / Austria",
       dispatchPorts: ["Qingdao", "Tianjin", "Mundra"],
-      sourcingNote: "Available in standard and premium purity grades across full FEPA grit range. Supply structured by purity, grit size, and end-use specification."
+      sourcingNote: "Available in standard and premium purity grades across the full FEPA grit range."
     },
-    contactDetails: {
-      exportAvailability: "Containerized supply available for abrasive and advanced ceramic buyers"
-    },
+    contactDetails: { exportAvailability: "Containerized supply available" },
     packaging: ["25 kg bags", "1 MT jumbo bags"],
     qualityParameters: [
-      { parameter: "Al2O3", value: "99% min" },
-      { parameter: "Na2O", value: "As per confirmed grade" },
-      { parameter: "Fe2O3", value: "As per confirmed grade" },
-      { parameter: "SiO2", value: "As per confirmed grade" },
+      { parameter: "Al₂O₃", value: "99% min" },
+      { parameter: "Na₂O", value: "As per grade" },
+      { parameter: "Fe₂O₃", value: "As per grade" },
       { parameter: "Grit Size", value: "F4–F1200 / micro grits on request" },
       { parameter: "Hardness (Mohs)", value: "9" }
     ],
     applications: [
-      { title: "Precision Grinding", description: "Used in precision bonded abrasives for tool and cutter grinding, high-finish surface grinding operations." },
-      { title: "Advanced Refractory Castables", description: "Applied in ultra-high purity refractory systems for petrochemical and specialty metallurgical furnaces." },
-      { title: "Advanced Ceramics & Electronics", description: "Used in high-purity ceramic substrates, electronic packaging, and semiconductor process components." },
-      { title: "Lapping & Polishing", description: "Applied in precision lapping and polishing of optical, electronic, and precision mechanical components." }
+      { title: "Precision Grinding", description: "Premium bonded abrasives for tool grinding and high-finish surface operations." },
+      { title: "Advanced Refractory Castables", description: "Ultra-high purity refractory systems for petrochemical and specialty furnaces." },
+      { title: "Lapping & Polishing", description: "Precision lapping of optical, electronic, and precision mechanical components." }
     ],
     industries: ["Abrasives", "Refractories", "Electronics", "Technical Ceramics"],
     technicalProfileLabel: "Download White Fused Alumina Technical Profile",
@@ -1464,35 +1332,31 @@ export const minerals: Mineral[] = [
   {
     name: "Silicon Carbide",
     slug: "silicon-carbide",
-    category: "Refractory Raw Material",
-    industryGroup: "Refractory & Steel Industry",
+    category: "Core Refractory Mineral",
+    industryGroups: ["Refractory & Steel Industry"],
     subCategory: "Core Refractory Minerals",
     formula: "SiC",
     shortDescription: "Silicon carbide supplied for refractories, abrasives, kiln furniture, metallurgical de-oxidation, and advanced ceramic applications.",
-    overview: "Silicon carbide is a synthetic mineral combining silicon and carbon, offering exceptional hardness, thermal conductivity, chemical resistance, and high-temperature stability. In refractories, SiC-bearing linings provide superior abrasion resistance and thermal shock performance. As an abrasive, it is used for cutting non-ferrous metals and hard ceramics. In metallurgy, it serves as a de-oxidiser and carburiser in iron and steel production.",
+    overview: "Silicon carbide is a synthetic mineral offering exceptional hardness, thermal conductivity, chemical resistance, and high-temperature stability. In refractories, SiC provides superior abrasion resistance and thermal shock performance. As an abrasive it is used for cutting hard ceramics and non-ferrous metals. In metallurgy it serves as a de-oxidiser and carburiser.",
     sourceDetails: {
       sourceName: "Industrial Silicon Carbide Supply",
       region: "Multi-Origin",
       country: "China / India / Norway",
       dispatchPorts: ["Qingdao", "Mundra", "Nhava Sheva"],
-      sourcingNote: "Available in black and green grades across multiple grit and granular sizes. Supply structured by SiC content, application, and purity requirement."
+      sourcingNote: "Available in black and green grades across multiple grit and granular sizes by SiC content and application."
     },
-    contactDetails: {
-      exportAvailability: "Containerized and bulk supply available"
-    },
+    contactDetails: { exportAvailability: "Containerized and bulk supply available" },
     packaging: ["25 kg bags", "1 MT jumbo bags", "Bulk"],
     qualityParameters: [
       { parameter: "SiC", value: "88–98% min (grade dependent)" },
-      { parameter: "Free Carbon", value: "As per confirmed grade" },
-      { parameter: "Free Si", value: "As per confirmed grade" },
-      { parameter: "Fe2O3", value: "As per confirmed grade" },
+      { parameter: "Free Carbon", value: "As per grade" },
+      { parameter: "Fe₂O₃", value: "As per grade" },
       { parameter: "Grit / Granular Size", value: "As per application" }
     ],
     applications: [
-      { title: "Refractory Linings", description: "Used in SiC-containing refractory bricks and castables for furnaces, kilns, and incinerators requiring abrasion and thermal shock resistance." },
-      { title: "Abrasive Products", description: "Used in bonded and coated abrasives for grinding hard and non-ferrous materials including cemented carbide and ceramics." },
-      { title: "Kiln Furniture", description: "Applied in SiC kiln furniture (shelves, posts, setters) for ceramic firing operations." },
-      { title: "Metallurgical De-oxidation", description: "Used as a de-oxidiser, carburiser, and silicon addition in iron, steel, and ferroalloy production." }
+      { title: "Refractory Linings", description: "SiC bricks and castables for furnaces and kilns requiring abrasion and thermal shock resistance." },
+      { title: "Kiln Furniture", description: "SiC kiln shelves, posts, and setters for ceramic firing operations." },
+      { title: "Abrasive Products", description: "Bonded and coated abrasives for grinding hard materials including cemented carbide." }
     ],
     industries: ["Refractories", "Abrasives", "Ceramics", "Steel & Metallurgy"],
     technicalProfileLabel: "Download Silicon Carbide Technical Profile",
@@ -1503,36 +1367,32 @@ export const minerals: Mineral[] = [
   {
     name: "Mullite",
     slug: "mullite",
-    category: "Refractory Raw Material",
-    industryGroup: "Refractory & Steel Industry",
+    category: "Core Refractory Mineral",
+    industryGroups: ["Refractory & Steel Industry"],
     subCategory: "Core Refractory Minerals",
-    formula: "3Al2O3·2SiO2",
+    formula: "3Al₂O₃·2SiO₂",
     shortDescription: "Synthetic and fused mullite supplied for high-performance refractories, kiln furniture, and advanced technical ceramics.",
-    overview: "Mullite is a stable alumino-silicate phase (3Al2O3·2SiO2) with outstanding high-temperature strength, low thermal expansion, excellent thermal shock resistance, and chemical stability. Both fused and sintered mullite grades are used in premium refractories for glass, ceramic, and petrochemical furnaces, as well as in kiln furniture and advanced technical ceramics requiring dimensional stability at high temperatures.",
+    overview: "Mullite is a stable alumino-silicate phase with outstanding high-temperature strength, low thermal expansion, excellent thermal shock resistance, and chemical stability. Both fused and sintered mullite grades serve premium refractories for glass, ceramic, and petrochemical furnaces, as well as kiln furniture and advanced technical ceramics.",
     sourceDetails: {
       sourceName: "Mullite Supply Network",
       region: "Multi-Origin",
       country: "China / Germany / India",
       dispatchPorts: ["Qingdao", "Mundra"],
-      sourcingNote: "Available in sintered and fused grades with varying Al2O3 content. Supply structured by density, chemical analysis, and grain size specification."
+      sourcingNote: "Available in sintered and fused grades with varying Al₂O₃ content, density, and grain size."
     },
-    contactDetails: {
-      exportAvailability: "Containerized supply available for refractory and ceramic buyers"
-    },
+    contactDetails: { exportAvailability: "Containerized supply available" },
     packaging: ["25 kg bags", "1 MT jumbo bags"],
     qualityParameters: [
-      { parameter: "Al2O3", value: "60–77% (grade dependent)" },
-      { parameter: "SiO2", value: "As per confirmed grade" },
-      { parameter: "Fe2O3", value: "As per confirmed grade" },
-      { parameter: "TiO2", value: "As per confirmed grade" },
+      { parameter: "Al₂O₃", value: "60–77% (grade dependent)" },
+      { parameter: "SiO₂", value: "As per grade" },
+      { parameter: "Fe₂O₃", value: "As per grade" },
       { parameter: "Bulk Density", value: "On request" },
       { parameter: "Grain Size", value: "As per application" }
     ],
     applications: [
-      { title: "High-Performance Refractories", description: "Used in mullite bricks, castables, and monolithics for glass furnaces, ceramic kilns, and petrochemical reactors." },
-      { title: "Kiln Furniture", description: "Applied in kiln setters, batts, and furniture requiring dimensional stability and thermal shock resistance at high temperatures." },
-      { title: "Advanced Technical Ceramics", description: "Used in engineering ceramic components requiring low thermal expansion and high-temperature mechanical stability." },
-      { title: "Aerospace & Defense", description: "Applied in selected high-temperature structural ceramic applications." }
+      { title: "High-Performance Refractories", description: "Mullite bricks and castables for glass furnaces, ceramic kilns, and petrochemical reactors." },
+      { title: "Kiln Furniture", description: "Setters, batts, and furniture requiring dimensional stability and thermal shock resistance." },
+      { title: "Advanced Technical Ceramics", description: "Engineering ceramic components requiring low thermal expansion and high-temperature stability." }
     ],
     industries: ["Refractories", "Ceramics", "Glass", "Technical Ceramics"],
     technicalProfileLabel: "Download Mullite Technical Profile",
@@ -1543,36 +1403,32 @@ export const minerals: Mineral[] = [
   {
     name: "Andalusite",
     slug: "andalusite",
-    category: "Refractory Raw Material",
-    industryGroup: "Refractory & Steel Industry",
+    category: "Core Refractory Mineral",
+    industryGroups: ["Refractory & Steel Industry"],
     subCategory: "Core Refractory Minerals",
-    formula: "Al2SiO5",
-    shortDescription: "Natural andalusite supplied for high-performance refractories, steel ladles, and kilns requiring thermal shock resistance and dimensional stability.",
-    overview: "Andalusite is a naturally occurring alumino-silicate polymorph (Al2SiO5) that converts to mullite and silica glass upon heating above ~1350°C, generating a controlled volume expansion that minimises porosity and improves joint integrity in refractory products. It is prized in the refractory industry for its low impurity level, self-sintering behaviour, and superior performance in steel ladles, blast furnace troughs, and ceramic kilns.",
+    formula: "Al₂SiO₅",
+    shortDescription: "Natural andalusite supplied for high-performance refractories, steel ladles, and kilns requiring thermal shock resistance.",
+    overview: "Andalusite is a naturally occurring Al₂SiO₅ polymorph that converts to mullite upon heating above ~1350 °C, generating controlled expansion that minimises porosity and improves joint integrity in refractory products. It is prized for its low impurity level, self-sintering behaviour, and superior performance in steel ladles, blast furnace troughs, and ceramic kilns.",
     sourceDetails: {
       sourceName: "Andalusite Supply Network",
       region: "Multi-Origin",
       country: "South Africa / France / China",
       dispatchPorts: ["Durban", "Mundra", "Le Havre"],
-      sourcingNote: "Available in calcined and raw grades. Supply structured by Al2O3 content, grain size, and refractory application requirements."
+      sourcingNote: "Available in calcined and raw grades by Al₂O₃ content, grain size, and refractory application."
     },
-    contactDetails: {
-      exportAvailability: "Containerized supply available for refractory manufacturers"
-    },
+    contactDetails: { exportAvailability: "Containerized supply available for refractory manufacturers" },
     packaging: ["1 MT jumbo bags", "25 kg bags", "Bulk"],
     qualityParameters: [
-      { parameter: "Al2O3", value: "57–60%" },
-      { parameter: "SiO2", value: "As per confirmed grade" },
-      { parameter: "Fe2O3", value: "As per confirmed grade" },
-      { parameter: "TiO2", value: "As per confirmed grade" },
-      { parameter: "LOI", value: "On request" },
+      { parameter: "Al₂O₃", value: "57–60%" },
+      { parameter: "SiO₂", value: "As per grade" },
+      { parameter: "Fe₂O₃", value: "As per grade" },
+      { parameter: "TiO₂", value: "As per grade" },
       { parameter: "Grain Size", value: "As per application" }
     ],
     applications: [
-      { title: "Steel Ladle Refractories", description: "Used in steel ladle brick formulations for superior thermal shock resistance and slag corrosion resistance." },
+      { title: "Steel Ladle Refractories", description: "Superior thermal shock and slag corrosion resistance in steel ladle brick formulations." },
       { title: "Blast Furnace Troughs", description: "Applied in cast house and trough refractories for blast furnace operations." },
-      { title: "Ceramic Kiln Linings", description: "Used in ceramic and glass kiln linings where thermal cycling resistance is required." },
-      { title: "Monolithic Refractory Systems", description: "Incorporated in castable and gunning mix formulations for high-performance monolithic applications." }
+      { title: "Monolithic Refractory Systems", description: "Incorporated in castable and gunning mix formulations." }
     ],
     industries: ["Refractories", "Steel & Metallurgy", "Glass", "Ceramics"],
     technicalProfileLabel: "Download Andalusite Technical Profile",
@@ -1583,36 +1439,32 @@ export const minerals: Mineral[] = [
   {
     name: "Kyanite",
     slug: "kyanite",
-    category: "Refractory Raw Material",
-    industryGroup: "Refractory & Steel Industry",
+    category: "Core Refractory Mineral",
+    industryGroups: ["Refractory & Steel Industry"],
     subCategory: "Core Refractory Minerals",
-    formula: "Al2SiO5",
-    shortDescription: "Natural kyanite supplied for refractories, mullite synthesis, and high-temperature ceramic applications requiring thermal expansion control.",
-    overview: "Kyanite is a naturally occurring alumino-silicate polymorph (Al2SiO5) that, like andalusite and sillimanite, converts to mullite upon high-temperature calcination. Calcined kyanite undergoes controlled expansion and forms high-purity mullite, making it highly valued in refractory formulations, precision investment casting shells, and specialty ceramic systems requiring low shrinkage and high refractoriness.",
+    formula: "Al₂SiO₅",
+    shortDescription: "Natural kyanite supplied for refractories, mullite synthesis, and high-temperature ceramic applications.",
+    overview: "Kyanite is a naturally occurring Al₂SiO₅ polymorph that converts to mullite on high-temperature calcination, undergoing controlled expansion. It is highly valued in refractory formulations, precision investment casting shells, and specialty ceramic systems requiring low shrinkage and high refractoriness.",
     sourceDetails: {
       sourceName: "Kyanite Supply Network",
       region: "Multi-Origin",
       country: "USA / India / Zimbabwe / Brazil",
       dispatchPorts: ["Mundra", "Nhava Sheva"],
-      sourcingNote: "Available in raw and calcined grades. Supply structured by Al2O3 content, conversion characteristics, and application requirements."
+      sourcingNote: "Available in raw and calcined grades by Al₂O₃ content and conversion characteristics."
     },
-    contactDetails: {
-      exportAvailability: "Containerized supply available for refractory and ceramic buyers"
-    },
+    contactDetails: { exportAvailability: "Containerized supply available" },
     packaging: ["1 MT jumbo bags", "25 kg bags"],
     qualityParameters: [
-      { parameter: "Al2O3", value: "57–63% (grade dependent)" },
-      { parameter: "SiO2", value: "As per confirmed grade" },
-      { parameter: "Fe2O3", value: "As per confirmed grade" },
-      { parameter: "TiO2", value: "On request" },
+      { parameter: "Al₂O₃", value: "57–63%" },
+      { parameter: "SiO₂", value: "As per grade" },
+      { parameter: "Fe₂O₃", value: "As per grade" },
       { parameter: "LOI", value: "On request" },
       { parameter: "Grain Size", value: "As per application" }
     ],
     applications: [
-      { title: "Refractory Products", description: "Used in refractory bricks and monolithics where mullite formation and volume stability during service are required." },
-      { title: "Investment Casting Shells", description: "Applied in precision investment casting shell systems requiring dimensional accuracy and refractoriness." },
-      { title: "Mullite Synthesis", description: "Used as a feedstock for mullite production in refractories and technical ceramics." },
-      { title: "Ceramic Bodies", description: "Incorporated in specialty high-temperature ceramic formulations requiring controlled expansion." }
+      { title: "Refractory Products", description: "Mullite formation and volume stability in refractory bricks and monolithics." },
+      { title: "Investment Casting Shells", description: "Precision investment casting shell systems requiring refractoriness and dimensional accuracy." },
+      { title: "Mullite Synthesis", description: "Feedstock for mullite production in refractories and technical ceramics." }
     ],
     industries: ["Refractories", "Steel & Metallurgy", "Ceramics", "Technical Ceramics"],
     technicalProfileLabel: "Download Kyanite Technical Profile",
@@ -1623,35 +1475,32 @@ export const minerals: Mineral[] = [
   {
     name: "Sillimanite",
     slug: "sillimanite",
-    category: "Refractory Raw Material",
-    industryGroup: "Refractory & Steel Industry",
+    category: "Core Refractory Mineral",
+    industryGroups: ["Refractory & Steel Industry"],
     subCategory: "Core Refractory Minerals",
-    formula: "Al2SiO5",
+    formula: "Al₂SiO₅",
     shortDescription: "Natural sillimanite supplied for high-alumina refractories, specialty ceramics, and high-temperature industrial applications.",
-    overview: "Sillimanite is the third naturally occurring polymorph of Al2SiO5, alongside kyanite and andalusite. It is found in metamorphic rocks and offers similar high-temperature conversion to mullite with controlled expansion behaviour. It is used in high-alumina refractory bricks, steel industry refractories, specialty ceramics, and selected glass industry applications requiring stable alumino-silicate mineral input.",
+    overview: "Sillimanite is the third naturally occurring Al₂SiO₅ polymorph, found in metamorphic rocks. It converts to mullite with controlled expansion behaviour and is used in high-alumina refractory bricks, steel industry refractories, specialty ceramics, and selected glass industry applications.",
     sourceDetails: {
       sourceName: "Sillimanite Supply Network",
       region: "Multi-Origin",
       country: "India / South Africa / Madagascar",
       dispatchPorts: ["Mundra", "Kandla", "Durban"],
-      sourcingNote: "Available in raw and processed grades. Supply structured by Al2O3 content, grade purity, and application specification."
+      sourcingNote: "Available in raw and processed grades by Al₂O₃ content, grade purity, and application specification."
     },
-    contactDetails: {
-      exportAvailability: "Containerized supply available for refractory and ceramic buyers"
-    },
+    contactDetails: { exportAvailability: "Containerized supply available" },
     packaging: ["1 MT jumbo bags", "25 kg bags"],
     qualityParameters: [
-      { parameter: "Al2O3", value: "57–63% (grade dependent)" },
-      { parameter: "SiO2", value: "As per confirmed grade" },
-      { parameter: "Fe2O3", value: "As per confirmed grade" },
-      { parameter: "TiO2", value: "On request" },
+      { parameter: "Al₂O₃", value: "57–63%" },
+      { parameter: "SiO₂", value: "As per grade" },
+      { parameter: "Fe₂O₃", value: "As per grade" },
+      { parameter: "TiO₂", value: "On request" },
       { parameter: "Grain Size", value: "As per application" }
     ],
     applications: [
-      { title: "High-Alumina Refractory Bricks", description: "Used in the manufacture of high-alumina bricks for steel, glass, and cement industry furnaces." },
-      { title: "Steel Industry Refractories", description: "Applied in tundish linings, ladle bricks, and other steel plant refractory systems." },
-      { title: "Specialty Ceramics", description: "Incorporated in specialty high-temperature ceramic bodies requiring stable alumino-silicate phase." },
-      { title: "Glass Industry Linings", description: "Used in selected glass furnace refractory applications." }
+      { title: "High-Alumina Refractory Bricks", description: "Manufacture of high-alumina bricks for steel, glass, and cement furnaces." },
+      { title: "Steel Industry Refractories", description: "Applied in tundish linings, ladle bricks, and steel plant refractory systems." },
+      { title: "Specialty Ceramics", description: "High-temperature ceramic bodies requiring stable alumino-silicate phase." }
     ],
     industries: ["Refractories", "Steel & Metallurgy", "Ceramics", "Glass"],
     technicalProfileLabel: "Download Sillimanite Technical Profile",
@@ -1662,35 +1511,32 @@ export const minerals: Mineral[] = [
   {
     name: "Chamotte",
     slug: "chamotte",
-    category: "Refractory Raw Material",
-    industryGroup: "Refractory & Steel Industry",
+    category: "Core Refractory Mineral",
+    industryGroups: ["Refractory & Steel Industry"],
     subCategory: "Core Refractory Minerals",
-    formula: "Fired fireclay aggregate (Al2O3·SiO2 variable)",
-    shortDescription: "Calcined fireclay chamotte supplied for refractory bricks, monolithic linings, and ceramic body formulations requiring grog aggregate.",
-    overview: "Chamotte is produced by calcining or firing fireclay or kaolin at high temperatures to produce a stable, low-shrinkage refractory aggregate (grog). It is a fundamental raw material in refractory brick manufacture, monolithic refractory systems, and ceramic body formulations where reduction of shrinkage and thermal shock resistance are required. The Al2O3 content governs the classification and temperature rating of the chamotte grade.",
+    formula: "Fired fireclay aggregate (Al₂O₃·SiO₂)",
+    shortDescription: "Calcined fireclay chamotte supplied for refractory bricks, monolithic linings, and ceramic body grog applications.",
+    overview: "Chamotte is produced by calcining or firing fireclay at high temperatures to produce a stable, low-shrinkage refractory aggregate. It is a fundamental raw material in refractory brick manufacture, monolithic refractory systems, and ceramic body formulations where reduction of shrinkage and improved thermal shock resistance are required.",
     sourceDetails: {
       sourceName: "Industrial Chamotte Supply",
       region: "Multi-Origin",
       country: "China / India / Poland / Germany",
       dispatchPorts: ["Qingdao", "Mundra", "Hamburg"],
-      sourcingNote: "Available in standard and high-alumina grades. Supply structured by Al2O3 content, grain size, and refractory classification."
+      sourcingNote: "Available in standard and high-alumina grades by Al₂O₃ content and grain size specification."
     },
-    contactDetails: {
-      exportAvailability: "Containerized and bulk supply available"
-    },
+    contactDetails: { exportAvailability: "Containerized and bulk supply available" },
     packaging: ["1 MT jumbo bags", "25 kg bags", "Bulk"],
     qualityParameters: [
-      { parameter: "Al2O3", value: "30–45% (standard) / 45–55% (HA grade)" },
-      { parameter: "SiO2", value: "As per confirmed grade" },
-      { parameter: "Fe2O3", value: "As per confirmed grade" },
+      { parameter: "Al₂O₃", value: "30–45% (standard) / 45–55% (HA)" },
+      { parameter: "SiO₂", value: "As per grade" },
+      { parameter: "Fe₂O₃", value: "As per grade" },
       { parameter: "LOI", value: "<1% (calcined)" },
-      { parameter: "Grain Size", value: "As per application (0–1, 1–3, 3–6 mm etc.)" }
+      { parameter: "Grain Size", value: "0–1, 1–3, 3–6 mm as required" }
     ],
     applications: [
-      { title: "Refractory Brick Manufacturing", description: "Used as the primary aggregate in fireclay and high-alumina refractory brick formulations." },
-      { title: "Monolithic Refractory Systems", description: "Incorporated in castables, ramming mixes, and gunning materials as graded refractory aggregate." },
-      { title: "Ceramic Body Grog", description: "Used in ceramic tile, sanitaryware, and stoneware body formulations as grog for shrinkage control." },
-      { title: "Kiln Furniture", description: "Applied in kiln furniture manufacture for thermal shock resistance and dimensional stability." }
+      { title: "Refractory Brick Manufacturing", description: "Primary aggregate in fireclay and high-alumina refractory brick formulations." },
+      { title: "Monolithic Refractory Systems", description: "Graded aggregate in castables, ramming mixes, and gunning materials." },
+      { title: "Ceramic Body Grog", description: "Used in tile and sanitaryware body formulations for shrinkage control." }
     ],
     industries: ["Refractories", "Ceramics", "Steel & Metallurgy"],
     technicalProfileLabel: "Download Chamotte Technical Profile",
@@ -1701,36 +1547,32 @@ export const minerals: Mineral[] = [
   {
     name: "Fire Clay",
     slug: "fire-clay",
-    category: "Refractory Raw Material",
-    industryGroup: "Refractory & Steel Industry",
+    category: "Core Refractory Mineral",
+    industryGroups: ["Refractory & Steel Industry"],
     subCategory: "Core Refractory Minerals",
-    formula: "Al2O3·2SiO2·2H2O (variable composition)",
-    shortDescription: "Natural refractory clay supplied for fireclay bricks, refractory mortars, monolithic linings, and ceramic body applications.",
-    overview: "Fire clay is a naturally occurring refractory clay mineral with sufficient alumina content to withstand high temperatures in industrial furnace and kiln environments. It serves as a plastic binder and filler in fireclay refractory products, and as a raw material for chamotte production. Selection is based on refractoriness under load (RUL), alumina content, plasticity, and mineral purity.",
+    formula: "Al₂O₃·2SiO₂·2H₂O (variable)",
+    shortDescription: "Natural refractory clay supplied for fireclay bricks, refractory mortars, and monolithic lining systems.",
+    overview: "Fire clay is a naturally occurring refractory clay mineral with sufficient alumina content to withstand high industrial temperatures. It serves as a plastic binder and filler in fireclay refractory products and as a raw material for chamotte production. Selection is based on refractoriness under load (RUL), alumina content, plasticity, and mineral purity.",
     sourceDetails: {
       sourceName: "Refractory Fire Clay Supply",
       region: "Multi-Origin",
       country: "India / China / Ukraine / Poland",
       dispatchPorts: ["Mundra", "Kandla", "Qingdao"],
-      sourcingNote: "Available in lump, crushed, and washed grades. Supply structured by Al2O3 content, RUL, and plasticity requirements."
+      sourcingNote: "Available in lump, crushed, and washed grades by Al₂O₃, RUL, and plasticity requirements."
     },
-    contactDetails: {
-      exportAvailability: "Containerized and bulk supply available for refractory manufacturers"
-    },
+    contactDetails: { exportAvailability: "Containerized and bulk supply available" },
     packaging: ["1 MT jumbo bags", "25 kg bags", "Bulk"],
     qualityParameters: [
-      { parameter: "Al2O3", value: "25–45% (grade dependent)" },
-      { parameter: "SiO2", value: "As per confirmed grade" },
-      { parameter: "Fe2O3", value: "As per confirmed grade" },
-      { parameter: "TiO2", value: "As per confirmed grade" },
-      { parameter: "LOI", value: "As per confirmed grade" },
-      { parameter: "PCE (Pyrometric Cone Equiv.)", value: "On request" }
+      { parameter: "Al₂O₃", value: "25–45% (grade dependent)" },
+      { parameter: "SiO₂", value: "As per grade" },
+      { parameter: "Fe₂O₃", value: "As per grade" },
+      { parameter: "LOI", value: "As per grade" },
+      { parameter: "PCE", value: "On request" }
     ],
     applications: [
       { title: "Fireclay Refractory Bricks", description: "Primary raw material in fireclay brick manufacture for industrial furnaces and kilns." },
-      { title: "Refractory Mortars & Castables", description: "Used as a plastic binder and filler component in refractory mortar and castable formulations." },
-      { title: "Chamotte Production", description: "Calcined to produce chamotte aggregate for use in refractory and ceramic applications." },
-      { title: "Ceramic Body Applications", description: "Used in selected ceramic body formulations requiring moderate refractoriness and plasticity." }
+      { title: "Refractory Mortars & Castables", description: "Plastic binder and filler in refractory mortar and castable formulations." },
+      { title: "Chamotte Production", description: "Calcined to produce chamotte aggregate for refractory and ceramic applications." }
     ],
     industries: ["Refractories", "Ceramics", "Steel & Metallurgy"],
     technicalProfileLabel: "Download Fire Clay Technical Profile",
@@ -1738,41 +1580,72 @@ export const minerals: Mineral[] = [
     image: "/images/minerals/fire-clay.png"
   },
 
-  // ── Refractory & Steel Industry — Steel & Foundry Raw Materials ──────────
+  // ─── REFRACTORY & STEEL INDUSTRY — Steel & Foundry Raw Materials ─────────
+
+  {
+    name: "Manganese Ore",
+    slug: "manganese-ore",
+    category: "Steel & Foundry Raw Material",
+    industryGroups: ["Refractory & Steel Industry"],
+    subCategory: "Steel & Foundry Raw Materials",
+    formula: "MnO₂ / Mn-bearing ore",
+    shortDescription: "Manganese-bearing ore supplied for steelmaking, ferroalloy production, and metallurgical processing.",
+    overview: "Manganese ore is a strategically important metallurgical mineral used primarily in steelmaking and ferroalloy production. It plays an essential role in deoxidation, alloy balance, and metallurgical efficiency, with commercial selection based on manganese content, gangue profile, and sizing.",
+    sourceDetails: {
+      sourceName: "Global Manganese Ore Supply",
+      region: "Multi-Origin",
+      country: "South Africa / Gabon / India",
+      dispatchPorts: ["Durban", "Port Elizabeth", "Mundra"],
+      sourcingNote: "Supplied in commercial grades suitable for metallurgical buyers requiring stable quality and supply continuity."
+    },
+    contactDetails: { exportAvailability: "Bulk and containerized dispatch available depending on grade and tonnage" },
+    packaging: ["Bulk cargo", "1 MT jumbo bags"],
+    qualityParameters: [
+      { parameter: "Mn", value: "As per confirmed grade" },
+      { parameter: "Fe", value: "On request" },
+      { parameter: "SiO₂", value: "On request" },
+      { parameter: "P", value: "On request" },
+      { parameter: "Size", value: "Lumpy / fines as specified" }
+    ],
+    applications: [
+      { title: "Steelmaking", description: "Supports alloy balance and metallurgical performance in carbon and alloy steel production." },
+      { title: "Ferroalloy Production", description: "Feedstock for manganese alloy manufacturing across industrial steel applications." }
+    ],
+    industries: ["Steel & Metallurgy", "Ferroalloys", "Foundry"],
+    technicalProfileLabel: "Download Manganese Ore Technical Profile",
+    inquiryTitle: "Request Manganese Ore Supply",
+    image: "/images/minerals/manganese-ore.png"
+  },
 
   {
     name: "Ferro Manganese",
     slug: "ferro-manganese",
-    category: "Ferroalloy",
-    industryGroup: "Refractory & Steel Industry",
+    category: "Steel & Foundry Raw Material",
+    industryGroups: ["Refractory & Steel Industry"],
     subCategory: "Steel & Foundry Raw Materials",
     formula: "FeMn",
     shortDescription: "Ferro manganese supplied for steelmaking deoxidation, alloying, and sulphur control in carbon and alloy steel production.",
-    overview: "Ferro manganese is a ferroalloy containing manganese and iron, commercially produced in high-carbon (HC), medium-carbon (MC), and low-carbon (LC) grades. It is a primary alloying addition in steelmaking, providing manganese for deoxidation, desulphurisation, and alloy composition control. Manganese improves tensile strength, hardenability, and wear resistance in carbon and alloy steel grades.",
+    overview: "Ferro manganese is a ferroalloy containing manganese and iron, produced in high-carbon (HC), medium-carbon (MC), and low-carbon (LC) grades. It is the primary manganese alloying addition in steelmaking, providing deoxidation, desulphurisation, and alloy composition control. Manganese improves tensile strength, hardenability, and wear resistance.",
     sourceDetails: {
       sourceName: "Ferro Manganese Supply",
       region: "Multi-Origin",
       country: "China / South Africa / India / Norway",
       dispatchPorts: ["Qingdao", "Durban", "Mundra"],
-      sourcingNote: "Available in HC, MC, and LC grades. Supply structured by Mn content, carbon level, and sizing specification."
+      sourcingNote: "Available in HC, MC, and LC grades by Mn content, carbon level, and sizing specification."
     },
-    contactDetails: {
-      exportAvailability: "Bulk and containerized supply available for steelmakers and foundries"
-    },
+    contactDetails: { exportAvailability: "Bulk and containerized supply available" },
     packaging: ["Bulk cargo", "1 MT jumbo bags"],
     qualityParameters: [
       { parameter: "Mn", value: "65–80% (grade dependent)" },
       { parameter: "C", value: "HC: 6–8% / MC: 1–2% / LC: <0.5%" },
-      { parameter: "Si", value: "As per confirmed grade" },
-      { parameter: "P", value: "As per confirmed grade" },
-      { parameter: "S", value: "On request" },
+      { parameter: "Si", value: "As per grade" },
+      { parameter: "P", value: "As per grade" },
       { parameter: "Size", value: "Lumpy / screened as required" }
     ],
     applications: [
-      { title: "Steel Deoxidation", description: "Added to steel as a deoxidiser to remove dissolved oxygen and improve steel cleanliness." },
-      { title: "Alloy Composition Control", description: "Used to achieve target manganese content in carbon, structural, and alloy steel grades." },
-      { title: "Desulphurisation", description: "Reacts with sulphur to form MnS, improving steel workability and reducing hot-shortness." },
-      { title: "Foundry & Cast Iron", description: "Used in foundry operations for manganese alloying of cast iron and steel castings." }
+      { title: "Steel Deoxidation", description: "Removes dissolved oxygen and improves steel cleanliness during tapping." },
+      { title: "Alloy Composition Control", description: "Achieves target manganese content in carbon and structural steel grades." },
+      { title: "Desulphurisation", description: "Reacts with sulphur to form MnS, improving steel workability." }
     ],
     industries: ["Steel & Metallurgy", "Ferroalloys", "Foundry"],
     technicalProfileLabel: "Download Ferro Manganese Technical Profile",
@@ -1783,36 +1656,31 @@ export const minerals: Mineral[] = [
   {
     name: "Silico Manganese",
     slug: "silico-manganese",
-    category: "Ferroalloy",
-    industryGroup: "Refractory & Steel Industry",
+    category: "Steel & Foundry Raw Material",
+    industryGroups: ["Refractory & Steel Industry"],
     subCategory: "Steel & Foundry Raw Materials",
     formula: "SiMn",
-    shortDescription: "Silico manganese supplied as a combined silicon-manganese deoxidiser and alloying agent for steelmaking operations.",
-    overview: "Silico manganese is a ferroalloy combining manganese, silicon, and iron, produced by smelting manganese ore with quartzite and coke in submerged arc furnaces. It is widely used in steelmaking as a combined deoxidant and alloying agent, contributing both manganese and silicon to the steel heat simultaneously. Its cost efficiency and dual alloying function make it one of the most commonly used ferroalloys globally.",
+    shortDescription: "Silico manganese supplied as a combined silicon-manganese deoxidiser and alloying agent for steelmaking.",
+    overview: "Silico manganese combines manganese, silicon, and iron and is widely used in steelmaking as a cost-efficient combined deoxidant and alloying agent, contributing both Mn and Si to the steel heat simultaneously. Its dual alloying function makes it one of the most commonly used ferroalloys globally.",
     sourceDetails: {
       sourceName: "Silico Manganese Supply",
       region: "Multi-Origin",
       country: "India / China / South Africa / Ukraine",
       dispatchPorts: ["Mundra", "Qingdao", "Durban"],
-      sourcingNote: "Available in standard and high manganese grades. Supply structured by Mn, Si, and C content with customer sizing specification."
+      sourcingNote: "Available in standard and high-Mn grades by Mn, Si, and C content with customer sizing specification."
     },
-    contactDetails: {
-      exportAvailability: "Bulk and containerized supply available"
-    },
+    contactDetails: { exportAvailability: "Bulk and containerized supply available" },
     packaging: ["Bulk cargo", "1 MT jumbo bags"],
     qualityParameters: [
       { parameter: "Mn", value: "60–70% (grade dependent)" },
       { parameter: "Si", value: "14–20% (grade dependent)" },
-      { parameter: "C", value: "As per confirmed grade" },
-      { parameter: "P", value: "As per confirmed grade" },
-      { parameter: "S", value: "On request" },
+      { parameter: "C", value: "As per grade" },
+      { parameter: "P", value: "As per grade" },
       { parameter: "Size", value: "Lumpy / screened as required" }
     ],
     applications: [
-      { title: "Steelmaking Deoxidation", description: "Used as a combined Si-Mn deoxidant added during tapping or ladle metallurgy to remove dissolved oxygen." },
-      { title: "Silicon & Manganese Alloying", description: "Provides both Si and Mn alloying additions to carbon and structural steel grades in a single addition." },
-      { title: "Low-Carbon Steel Production", description: "Applied in carbon steel and HSLA steel production where balanced Si-Mn alloying is required." },
-      { title: "Foundry Operations", description: "Used in selected foundry alloy additions for cast steel and ductile iron production." }
+      { title: "Steelmaking Deoxidation", description: "Combined Si-Mn deoxidant added during tapping or ladle metallurgy." },
+      { title: "Silicon & Manganese Alloying", description: "Single addition providing both Si and Mn alloying to carbon and structural steel grades." }
     ],
     industries: ["Steel & Metallurgy", "Ferroalloys"],
     technicalProfileLabel: "Download Silico Manganese Technical Profile",
@@ -1823,36 +1691,32 @@ export const minerals: Mineral[] = [
   {
     name: "Ferro Chrome",
     slug: "ferro-chrome",
-    category: "Ferroalloy",
-    industryGroup: "Refractory & Steel Industry",
+    category: "Steel & Foundry Raw Material",
+    industryGroups: ["Refractory & Steel Industry"],
     subCategory: "Steel & Foundry Raw Materials",
     formula: "FeCr",
     shortDescription: "Ferro chrome supplied for stainless steel production, chrome alloying, and specialty steel applications.",
-    overview: "Ferro chrome is a ferroalloy of chromium and iron, produced primarily by smelting chrome ore with coke in electric arc or submerged arc furnaces. It is the primary source of chromium addition in stainless steel production, providing corrosion resistance, hardness, and heat resistance. High-carbon ferrochrome (HCFeCr) is used in stainless steel, while charge chrome is used in the integrated melting route.",
+    overview: "Ferro chrome is a ferroalloy of chromium and iron and the primary source of chromium addition in stainless steel production, providing corrosion resistance, hardness, and heat resistance. High-carbon ferrochrome is used in stainless steel production while charge chrome is used in the integrated melting route.",
     sourceDetails: {
       sourceName: "Ferro Chrome Supply Network",
       region: "Multi-Origin",
       country: "South Africa / India / Kazakhstan / Zimbabwe",
       dispatchPorts: ["Durban", "Mundra", "Aktau"],
-      sourcingNote: "Available in charge chrome, high-carbon, and low-carbon grades. Supply structured by Cr content, carbon level, and sizing."
+      sourcingNote: "Available in charge chrome, high-carbon, and low-carbon grades by Cr content, carbon level, and sizing."
     },
-    contactDetails: {
-      exportAvailability: "Bulk and containerized supply available for steelmakers"
-    },
+    contactDetails: { exportAvailability: "Bulk and containerized supply available for steelmakers" },
     packaging: ["Bulk cargo", "1 MT jumbo bags"],
     qualityParameters: [
       { parameter: "Cr", value: "50–70% (grade dependent)" },
       { parameter: "C", value: "HC: 6–9% / LC: <0.5%" },
-      { parameter: "Si", value: "As per confirmed grade" },
-      { parameter: "P", value: "As per confirmed grade" },
-      { parameter: "S", value: "On request" },
+      { parameter: "Si", value: "As per grade" },
+      { parameter: "P", value: "As per grade" },
       { parameter: "Size", value: "As per application" }
     ],
     applications: [
-      { title: "Stainless Steel Production", description: "Primary chromium alloying addition in austenitic, ferritic, and martensitic stainless steel production." },
-      { title: "Alloy & Tool Steel", description: "Used in chromium-bearing alloy and tool steel grades for wear and corrosion resistance." },
-      { title: "Superalloy Manufacturing", description: "Applied in selected nickel and cobalt-base superalloy formulations requiring chromium input." },
-      { title: "Specialty Castings", description: "Used in white iron and chromium-bearing casting alloys for abrasion-resistant components." }
+      { title: "Stainless Steel Production", description: "Primary chromium alloying addition in austenitic, ferritic, and martensitic stainless steel." },
+      { title: "Alloy & Tool Steel", description: "Chromium-bearing alloy and tool steel grades for wear and corrosion resistance." },
+      { title: "Specialty Castings", description: "White iron and chromium-bearing casting alloys for abrasion-resistant components." }
     ],
     industries: ["Steel & Metallurgy", "Ferroalloys", "Stainless Steel"],
     technicalProfileLabel: "Download Ferro Chrome Technical Profile",
@@ -1863,36 +1727,32 @@ export const minerals: Mineral[] = [
   {
     name: "Iron Ore",
     slug: "iron-ore",
-    category: "Metallurgical Mineral",
-    industryGroup: "Refractory & Steel Industry",
+    category: "Steel & Foundry Raw Material",
+    industryGroups: ["Refractory & Steel Industry"],
     subCategory: "Steel & Foundry Raw Materials",
-    formula: "Fe2O3 / Fe3O4",
+    formula: "Fe₂O₃ / Fe₃O₄",
     shortDescription: "Iron ore supplied for blast furnace ironmaking, direct reduction, and sintering plant operations in integrated steel production.",
-    overview: "Iron ore is the primary raw material for iron and steel production globally. Haematite (Fe2O3) and magnetite (Fe3O4) are the dominant commercial iron ore minerals. It is supplied in lump, sinter feed, and pellet feed forms for blast furnace ironmaking, direct reduced iron (DRI) production, and electric arc furnace (EAF) steelmaking. Commercial selection depends on Fe grade, gangue profile, moisture, and sizing.",
+    overview: "Iron ore is the primary raw material for iron and steel production globally. Haematite (Fe₂O₃) and magnetite (Fe₃O₄) are the dominant commercial minerals. It is supplied in lump, sinter feed, and pellet feed forms for blast furnace ironmaking, direct reduced iron (DRI) production, and EAF steelmaking.",
     sourceDetails: {
       sourceName: "Global Iron Ore Supply",
       region: "Multi-Origin",
       country: "India / Brazil / Australia / South Africa",
       dispatchPorts: ["Visakhapatnam", "Mundra", "Tubarao", "Port Hedland"],
-      sourcingNote: "Available in lump, fines, pellet, and sinter feed grades. Supply structured by Fe content, Al2O3, SiO2 gangue, and LOI specification."
+      sourcingNote: "Available in lump, fines, pellet, and sinter feed grades by Fe content, Al₂O₃, SiO₂ gangue, and LOI specification."
     },
-    contactDetails: {
-      exportAvailability: "Bulk cargo supply available for integrated steel and DRI plants"
-    },
+    contactDetails: { exportAvailability: "Bulk cargo supply available for integrated steel and DRI plants" },
     packaging: ["Bulk cargo", "Cape / Panamax / Supramax vessel"],
     qualityParameters: [
-      { parameter: "Fe (Total)", value: "As per confirmed grade / assay" },
-      { parameter: "SiO2", value: "As per confirmed grade" },
-      { parameter: "Al2O3", value: "As per confirmed grade" },
-      { parameter: "P", value: "As per confirmed grade" },
-      { parameter: "S", value: "On request" },
+      { parameter: "Fe (Total)", value: "As per confirmed grade" },
+      { parameter: "SiO₂", value: "As per grade" },
+      { parameter: "Al₂O₃", value: "As per grade" },
+      { parameter: "P", value: "As per grade" },
       { parameter: "Size", value: "Lump / sinter fines / pellet feed" }
     ],
     applications: [
-      { title: "Blast Furnace Ironmaking", description: "Primary raw material charged to blast furnaces for hot metal (pig iron) production." },
-      { title: "Direct Reduction (DRI/HBI)", description: "Used as pellet/lump feed in gas-based direct reduction plants producing sponge iron for EAF steelmaking." },
-      { title: "Sintering Plants", description: "Sinter fines are used in sintering plants to produce sinter burden for blast furnaces." },
-      { title: "Foundry Pig Iron", description: "Selected iron ore grades used in foundry pig iron production for cast iron manufacturing." }
+      { title: "Blast Furnace Ironmaking", description: "Primary raw material charged to blast furnaces for hot metal production." },
+      { title: "Direct Reduction (DRI/HBI)", description: "Pellet/lump feed in gas-based direct reduction plants for sponge iron." },
+      { title: "Sintering Plants", description: "Sinter fines for sintering plants producing blast furnace burden." }
     ],
     industries: ["Steel & Metallurgy", "Iron Production", "Foundry"],
     technicalProfileLabel: "Download Iron Ore Technical Profile",
@@ -1901,42 +1761,75 @@ export const minerals: Mineral[] = [
   },
 
   {
+    name: "Fluorspar",
+    slug: "fluorspar",
+    category: "Steel & Foundry Raw Material",
+    industryGroups: ["Refractory & Steel Industry"],
+    subCategory: "Steel & Foundry Raw Materials",
+    formula: "CaF₂",
+    shortDescription: "Fluorspar supplied for metallurgical flux, aluminum production, chemical processing, and industrial flux applications.",
+    overview: "Fluorspar is a strategically important fluorine-bearing mineral used across metallurgical, aluminum, and chemical processing industries. It is commercially relevant in steelmaking as a fluxing mineral and as a feed mineral in downstream fluorochemical value chains. Selection depends on CaF₂ content, impurity profile, and process suitability.",
+    sourceDetails: {
+      sourceName: "Multi-Origin Fluorspar Supply",
+      region: "Multi-Origin",
+      country: "India / Mongolia / Mexico / South Africa",
+      dispatchPorts: ["Mundra", "Kandla", "Durban"],
+      sourcingNote: "Commercially structured supply available for metallurgical and industrial buyers by grade and impurity profile."
+    },
+    contactDetails: { exportAvailability: "Containerized and contract supply available subject to grade and market conditions" },
+    packaging: ["1 MT jumbo bags", "Bulk bags", "Containerized dispatch"],
+    qualityParameters: [
+      { parameter: "CaF₂", value: "As per confirmed grade" },
+      { parameter: "SiO₂", value: "On request" },
+      { parameter: "CaCO₃", value: "On request" },
+      { parameter: "Fe₂O₃", value: "On request" },
+      { parameter: "LOI", value: "On request" }
+    ],
+    applications: [
+      { title: "Steelmaking", description: "Fluxing mineral in metallurgical operations supporting process behaviour and slag control." },
+      { title: "Aluminium Production", description: "Applicable in aluminum-related industrial systems requiring fluorine-bearing mineral input." },
+      { title: "Chemical Processing", description: "Feed mineral in fluorochemical value chains depending on grade." }
+    ],
+    industries: ["Steel & Metallurgy", "Aluminium", "Chemical Processing", "Industrial Flux Systems"],
+    technicalProfileLabel: "Download Fluorspar Technical Profile",
+    inquiryTitle: "Request Fluorspar Supply",
+    image: "/images/minerals/fluorspar.png"
+  },
+
+  {
     name: "Lime",
     slug: "lime",
-    category: "Industrial Mineral",
-    industryGroup: "Refractory & Steel Industry",
+    category: "Steel & Foundry Raw Material",
+    industryGroups: ["Refractory & Steel Industry"],
     subCategory: "Steel & Foundry Raw Materials",
     formula: "CaO",
     shortDescription: "Quicklime and hydrated lime supplied for steelmaking slag conditioning, water treatment, construction, and chemical processing.",
-    overview: "Lime (quicklime, CaO) is produced by calcining limestone at high temperatures and is an essential industrial mineral with applications spanning steelmaking, water treatment, construction, and chemical processing. In steel production, lime is used in the BOF and EAF as a primary slag-forming material controlling basicity, desulphurisation, and slag fluidity. Hydrated lime (Ca(OH)2) is used in water and flue gas treatment systems.",
+    overview: "Lime (quicklime, CaO) is produced by calcining limestone and is an essential industrial mineral in steelmaking, water treatment, construction, and chemical processing. In steel production, it is used in BOF and EAF as the primary slag-forming material controlling basicity, desulphurisation, and slag fluidity.",
     sourceDetails: {
       sourceName: "Industrial Lime Supply",
       region: "Multi-Origin",
       country: "India / Oman / Turkey",
       dispatchPorts: ["Mundra", "Kandla", "Sohar"],
-      sourcingNote: "Available in quicklime lump, quicklime powder, and hydrated lime grades. Supply structured by CaO content, reactivity, and end-use requirements."
+      sourcingNote: "Available in quicklime lump, quicklime powder, and hydrated lime grades by CaO content and reactivity."
     },
-    contactDetails: {
-      exportAvailability: "Bulk and packaged supply available"
-    },
+    contactDetails: { exportAvailability: "Bulk and packaged supply available" },
     packaging: ["Bulk cargo", "1 MT jumbo bags", "25 kg bags"],
     qualityParameters: [
-      { parameter: "CaO", value: "As per confirmed grade / assay" },
+      { parameter: "CaO", value: "As per confirmed grade" },
       { parameter: "MgO", value: "On request" },
-      { parameter: "SiO2", value: "As per confirmed grade" },
-      { parameter: "Fe2O3", value: "On request" },
+      { parameter: "SiO₂", value: "As per grade" },
       { parameter: "Reactivity (t60)", value: "On request" },
       { parameter: "LOI", value: "On request" }
     ],
     applications: [
-      { title: "Steelmaking", description: "Used in BOF and EAF steelmaking as a primary slag-forming agent for basicity control and desulphurisation." },
-      { title: "Water Treatment", description: "Applied in municipal and industrial water treatment for pH adjustment and softening." },
-      { title: "Construction Materials", description: "Used in mortars, plasters, soil stabilisation, and construction mineral applications." },
-      { title: "Chemical Processing", description: "Used in industrial chemical processes including carbide production, pulp bleaching, and acid neutralisation." }
+      { title: "Steelmaking", description: "Primary slag-forming agent in BOF and EAF steelmaking for basicity control and desulphurisation." },
+      { title: "Water Treatment", description: "pH adjustment and softening in municipal and industrial water treatment." },
+      { title: "Construction Materials", description: "Used in mortars, plasters, soil stabilisation, and construction mineral applications." }
     ],
     industries: ["Steel & Metallurgy", "Construction Materials", "Chemical Processing", "Water Treatment"],
     technicalProfileLabel: "Download Lime Technical Profile",
     inquiryTitle: "Request Lime Supply",
     image: "/images/minerals/lime.png"
   }
+
 ];
