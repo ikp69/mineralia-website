@@ -11,12 +11,45 @@ const jpMinerals = allMinerals.filter(m =>
 );
 
 export default function JapaneseMarketPage() {
-  const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success">("idle");
+  const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormStatus("submitting");
-    setTimeout(() => setFormStatus("success"), 1500);
+    setErrorMessage("");
+
+    try {
+      const formData = new FormData(e.currentTarget);
+      const data = {
+        companyName: formData.get("companyName") as string,
+        contactName: formData.get("contactName") as string,
+        email: formData.get("email") as string,
+        targetMineral: formData.get("targetMineral") as string || undefined,
+        specifications: formData.get("specifications") as string,
+      };
+
+      console.log('📝 [FORM] Collected data:', data);
+
+      const response = await fetch("/api/send-japanese-inquiry", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || "Failed to send inquiry");
+      }
+
+      setFormStatus("success");
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setErrorMessage(error instanceof Error ? error.message : "An error occurred");
+      setFormStatus("error");
+    }
   };
 
   return (
@@ -156,46 +189,54 @@ export default function JapaneseMarketPage() {
                 <p className="text-slate-300">Thank you. Our technical sales team will contact you shortly.</p>
               </div>
             ) : (
-              <div className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Company Name (会社名)</label>
-                    <input required type="text" className="w-full bg-transparent border-b border-slate-600 focus:border-accent-terra focus:outline-none py-2 text-white transition-colors" />
+              <>
+                {formStatus === "error" && (
+                  <div className="bg-red-500/20 border border-red-500 rounded-sm p-4 mb-6">
+                    <p className="text-red-100 text-sm font-medium">{errorMessage}</p>
                   </div>
-                  <div>
-                    <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Contact Name (担当者名)</label>
-                    <input required type="text" className="w-full bg-transparent border-b border-slate-600 focus:border-accent-terra focus:outline-none py-2 text-white transition-colors" />
+                )}
+                <div className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Company Name (会社名)</label>
+                      <input required name="companyName" type="text" className="w-full bg-transparent border-b border-slate-600 focus:border-accent-terra focus:outline-none py-2 text-white transition-colors" />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Contact Name (担当者名)</label>
+                      <input required name="contactName" type="text" className="w-full bg-transparent border-b border-slate-600 focus:border-accent-terra focus:outline-none py-2 text-white transition-colors" />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Email (メールアドレス)</label>
+                      <input required name="email" type="email" className="w-full bg-transparent border-b border-slate-600 focus:border-accent-terra focus:outline-none py-2 text-white transition-colors" />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Target Mineral</label>
+                      <select name="targetMineral" className="w-full bg-transparent border-b border-slate-600 focus:border-accent-terra focus:outline-none py-2 text-slate-300 transition-colors appearance-none">
+                        <option className="bg-[#111827]" value="">Select...</option>
+                        <option className="bg-[#111827]" value="silica">Silica Sand</option>
+                        <option className="bg-[#111827]" value="alumina">Calcined Alumina</option>
+                        <option className="bg-[#111827]" value="zircon">Zircon Sand</option>
+                        <option className="bg-[#111827]" value="other">Other</option>
+                      </select>
+                    </div>
                   </div>
-                  <div>
-                    <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Email (メールアドレス)</label>
-                    <input required type="email" className="w-full bg-transparent border-b border-slate-600 focus:border-accent-terra focus:outline-none py-2 text-white transition-colors" />
+                  
+                  <div className="pt-4">
+                    <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Specification Requirements / inquiry Details</label>
+                    <textarea required name="specifications" rows={4} className="w-full bg-transparent border-b border-slate-600 focus:border-accent-terra focus:outline-none py-2 text-white transition-colors resize-none placeholder:text-slate-600" placeholder="Please list desired grading, purity thresholds, or delivery volumes..."></textarea>
                   </div>
-                  <div>
-                    <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Target Mineral</label>
-                    <select className="w-full bg-transparent border-b border-slate-600 focus:border-accent-terra focus:outline-none py-2 text-slate-300 transition-colors appearance-none">
-                      <option className="bg-[#111827]" value="silica">Silica Sand</option>
-                      <option className="bg-[#111827]" value="alumina">Calcined Alumina</option>
-                      <option className="bg-[#111827]" value="zircon">Zircon Sand</option>
-                      <option className="bg-[#111827]" value="other">Other</option>
-                    </select>
-                  </div>
-                </div>
-                
-                <div className="pt-4">
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Specification Requirements / inquiry Details</label>
-                  <textarea required rows={4} className="w-full bg-transparent border-b border-slate-600 focus:border-accent-terra focus:outline-none py-2 text-white transition-colors resize-none placeholder:text-slate-600" placeholder="Please list desired grading, purity thresholds, or delivery volumes..."></textarea>
-                </div>
 
-                <div className="pt-8 text-center">
-                  <button 
-                    type="submit" 
-                    disabled={formStatus === "submitting"}
-                    className="bg-accent-terra hover:bg-[#A85F33] text-white px-12 py-3 rounded-sm font-medium tracking-wide transition-all min-w-[200px]"
-                  >
-                    {formStatus === "submitting" ? "Sending..." : "Submit Inquiry"}
-                  </button>
+                  <div className="pt-8 text-center">
+                    <button 
+                      type="submit" 
+                      disabled={formStatus === "submitting"}
+                      className="bg-accent-terra hover:bg-[#A85F33] text-white px-12 py-3 rounded-sm font-medium tracking-wide transition-all min-w-[200px] disabled:opacity-70"
+                    >
+                      {formStatus === "submitting" ? "Sending..." : "Submit Inquiry"}
+                    </button>
+                  </div>
                 </div>
-              </div>
+              </>
             )}
           </form>
         </div>

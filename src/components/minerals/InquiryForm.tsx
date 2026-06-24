@@ -8,15 +8,42 @@ interface InquiryFormProps {
 }
 
 export default function InquiryForm({ mineralName }: InquiryFormProps) {
-  const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success">("idle");
+  const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormStatus("submitting");
-    // Simulate API call
-    setTimeout(() => {
+    setErrorMessage("");
+
+    try {
+      const formData = new FormData(e.currentTarget);
+      const data = {
+        name: formData.get("name") as string,
+        company: formData.get("company") as string,
+        email: formData.get("email") as string,
+        message: formData.get("message") as string,
+      };
+
+      const response = await fetch("/api/send-inquiry", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || "Failed to send inquiry");
+      }
+
       setFormStatus("success");
-    }, 1500);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setErrorMessage(error instanceof Error ? error.message : "An error occurred");
+      setFormStatus("error");
+    }
   };
 
   if (formStatus === "success") {
@@ -39,6 +66,22 @@ export default function InquiryForm({ mineralName }: InquiryFormProps) {
     );
   }
 
+  if (formStatus === "error") {
+    return (
+      <div className="bg-white p-8 rounded-lg border border-red-200 shadow-lg">
+        <div className="bg-red-50 border border-red-200 rounded p-4 mb-4">
+          <p className="text-red-800 text-sm font-medium">{errorMessage}</p>
+        </div>
+        <button 
+          onClick={() => setFormStatus("idle")}
+          className="text-mineralia-teal font-medium hover:underline"
+        >
+          Try again
+        </button>
+      </div>
+    );
+  }
+
   return (
     <div className="bg-white p-8 rounded-lg border border-slate-200 shadow-lg sticky top-24">
       <h3 className="font-serif text-2xl font-bold text-mineralia-navy mb-2">
@@ -51,29 +94,29 @@ export default function InquiryForm({ mineralName }: InquiryFormProps) {
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label className="block text-sm font-medium text-slate-700 mb-1">Name *</label>
-          <input required type="text" className="w-full px-4 py-2 rounded border border-slate-300 focus:ring-2 focus:ring-mineralia-teal focus:border-transparent outline-none transition-all" placeholder="John Doe" />
+          <input required name="name" type="text" className="w-full px-4 py-2 rounded border border-slate-300 focus:ring-2 focus:ring-mineralia-teal focus:border-transparent outline-none transition-all" placeholder="John Doe" />
         </div>
         <div>
           <label className="block text-sm font-medium text-slate-700 mb-1">Company *</label>
-          <input required type="text" className="w-full px-4 py-2 rounded border border-slate-300 focus:ring-2 focus:ring-mineralia-teal focus:border-transparent outline-none transition-all" placeholder="Company Ltd." />
+          <input required name="company" type="text" className="w-full px-4 py-2 rounded border border-slate-300 focus:ring-2 focus:ring-mineralia-teal focus:border-transparent outline-none transition-all" placeholder="Company Ltd." />
         </div>
         <div>
           <label className="block text-sm font-medium text-slate-700 mb-1">Email *</label>
-          <input required type="email" className="w-full px-4 py-2 rounded border border-slate-300 focus:ring-2 focus:ring-mineralia-teal focus:border-transparent outline-none transition-all" placeholder="john@company.com" />
+          <input required name="email" type="email" className="w-full px-4 py-2 rounded border border-slate-300 focus:ring-2 focus:ring-mineralia-teal focus:border-transparent outline-none transition-all" placeholder="john@company.com" />
         </div>
         <div className="grid grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-slate-700 mb-1">Quantity</label>
-            <input type="text" className="w-full px-4 py-2 rounded border border-slate-300 focus:ring-2 focus:ring-mineralia-teal focus:border-transparent outline-none transition-all" placeholder="e.g. 500 MT" />
+            <input name="quantity" type="text" className="w-full px-4 py-2 rounded border border-slate-300 focus:ring-2 focus:ring-mineralia-teal focus:border-transparent outline-none transition-all" placeholder="e.g. 500 MT" />
           </div>
           <div>
             <label className="block text-sm font-medium text-slate-700 mb-1">Port</label>
-            <input type="text" className="w-full px-4 py-2 rounded border border-slate-300 focus:ring-2 focus:ring-mineralia-teal focus:border-transparent outline-none transition-all" placeholder="Destination" />
+            <input name="port" type="text" className="w-full px-4 py-2 rounded border border-slate-300 focus:ring-2 focus:ring-mineralia-teal focus:border-transparent outline-none transition-all" placeholder="Destination" />
           </div>
         </div>
         <div>
           <label className="block text-sm font-medium text-slate-700 mb-1">Message</label>
-          <textarea rows={3} className="w-full px-4 py-2 rounded border border-slate-300 focus:ring-2 focus:ring-mineralia-teal focus:border-transparent outline-none transition-all" placeholder="Additional requirements..."></textarea>
+          <textarea required name="message" rows={3} className="w-full px-4 py-2 rounded border border-slate-300 focus:ring-2 focus:ring-mineralia-teal focus:border-transparent outline-none transition-all" placeholder="Additional requirements..."></textarea>
         </div>
         <button 
           type="submit" 

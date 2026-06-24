@@ -109,7 +109,7 @@ export default function CareersPage() {
         </div>
       </section>
 
-      <CTASection title="Don't see a fit?" description="Send your resume to careers@mineralia.com and we'll keep you in mind for future opportunities." />
+      <CTASection title="Don't see a fit?" description="Send your resume to bhavishya@mineralia.org.in or v.tyagi@mineralia.org.in and we'll keep you in mind for future opportunities." />
     </div>
   );
 }

@@ -6,8 +6,9 @@ import allMinerals from "@/data/minerals.json";
 import CTASection from "@/components/ui/CTASection";
 
 export default function ContactPage() {
-  const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success">("idle");
+  const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [errorMessage, setErrorMessage] = useState("");
 
   const validateForm = (formData: FormData) => {
     const newErrors: Record<string, string> = {};
@@ -19,13 +20,45 @@ export default function ContactPage() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     
     if (validateForm(formData)) {
       setFormStatus("submitting");
-      setTimeout(() => setFormStatus("success"), 1500);
+      setErrorMessage("");
+
+      try {
+        const data = {
+          name: formData.get("name") as string,
+          email: formData.get("email") as string,
+          company: formData.get("company") as string || undefined,
+          phone: formData.get("phone") as string || undefined,
+          country: formData.get("country") as string || undefined,
+          mineral: formData.get("mineral") as string || undefined,
+          inquiryType: formData.get("inquiryType") as string || undefined,
+          message: formData.get("message") as string,
+        };
+
+        const response = await fetch("/api/send-contact", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+
+        if (!response.ok) {
+          const error = await response.json();
+          throw new Error(error.error || "Failed to send inquiry");
+        }
+
+        setFormStatus("success");
+      } catch (error) {
+        console.error("Error submitting form:", error);
+        setErrorMessage(error instanceof Error ? error.message : "An error occurred");
+        setFormStatus("error");
+      }
     }
   };
 
@@ -65,82 +98,86 @@ export default function ContactPage() {
                     <p className="text-slate-600">Our technical sales engineers will review your requirements and respond within 24 hours.</p>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-6" noValidate>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="space-y-2">
-                        <label htmlFor="name" className="text-sm font-medium text-slate-700">Full Name *</label>
-                        <input id="name" name="name" type="text" className={`w-full border rounded-sm p-3 focus:outline-none focus:border-accent-terra ${errors.name ? 'border-red-500' : 'border-slate-300'}`} placeholder="Jane Doe" />
-                        {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
+                  <>
+                    {formStatus === "error" && (
+                      <div className="bg-red-50 border border-red-200 rounded-sm p-6 mb-6">
+                        <p className="text-red-800 text-sm font-medium">{errorMessage}</p>
                       </div>
-                      <div className="space-y-2">
-                        <label htmlFor="company" className="text-sm font-medium text-slate-700">Company Name</label>
-                        <input id="company" name="company" type="text" className="w-full border border-slate-300 rounded-sm p-3 focus:outline-none focus:border-accent-terra" placeholder="Acme Industries" />
+                      )}
+                    <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="space-y-2">
+                          <label htmlFor="name" className="text-sm font-medium text-slate-700">Full Name *</label>
+                          <input id="name" name="name" type="text" className={`w-full border rounded-sm p-3 focus:outline-none focus:border-accent-terra ${errors.name ? 'border-red-500' : 'border-slate-300'}`} placeholder="Jane Doe" />
+                          {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
+                        </div>
+                        <div className="space-y-2">
+                          <label htmlFor="company" className="text-sm font-medium text-slate-700">Company Name</label>
+                          <input id="company" name="company" type="text" className="w-full border border-slate-300 rounded-sm p-3 focus:outline-none focus:border-accent-terra" placeholder="Acme Industries" />
+                        </div>
                       </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="space-y-2">
-                        <label htmlFor="email" className="text-sm font-medium text-slate-700">Work Email *</label>
-                        <input id="email" name="email" type="email" className={`w-full border rounded-sm p-3 focus:outline-none focus:border-accent-terra ${errors.email ? 'border-red-500' : 'border-slate-300'}`} placeholder="jane@acme.com" />
-                        {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
-                      </div>
-                      <div className="space-y-2">
-                        <label htmlFor="phone" className="text-sm font-medium text-slate-700">Phone Number</label>
-                        <input id="phone" name="phone" type="tel" className="w-full border border-slate-300 rounded-sm p-3 focus:outline-none focus:border-accent-terra" placeholder="+1 (555) 000-0000" />
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="space-y-2">
-                        <label htmlFor="country" className="text-sm font-medium text-slate-700">Country</label>
-                        <select id="country" name="country" className="w-full border border-slate-300 rounded-sm p-3 focus:outline-none focus:border-accent-terra bg-white">
-                          <option value="US">United States</option>
-                          <option value="JP">Japan</option>
-                          <option value="DE">Germany</option>
-                          <option value="KR">South Korea</option>
-                          <option value="CH">Switzerland</option>
-                          <option value="Other">Other</option>
-                        </select>
-                      </div>
-                      <div className="space-y-2">
-                        <label htmlFor="mineral" className="text-sm font-medium text-slate-700">Primary Mineral Interest</label>
-                        <select id="mineral" name="mineral" className="w-full border border-slate-300 rounded-sm p-3 focus:outline-none focus:border-accent-terra bg-white">
-                          <option value="">Select a mineral...</option>
-                          {allMinerals.map(m => (
-                            <option key={m.slug} value={m.slug}>{m.name}</option>
-                          ))}
-                        </select>
-                      </div>
-                    </div>
-
-                    <div className="space-y-2">
-                      <label htmlFor="inquiryType" className="text-sm font-medium text-slate-700">Inquiry Type</label>
-                      <select id="inquiryType" name="inquiryType" className="w-full border border-slate-300 rounded-sm p-3 focus:outline-none focus:border-accent-terra bg-white">
-                        <option value="trading">Spot Trading / Supply Order</option>
-                        <option value="technical">Technical Consultancy & Specs</option>
-                        <option value="partnership">Long-term Supply Partnership</option>
-                        <option value="other">Other Inquiry</option>
-                      </select>
-                    </div>
-
-                    <div className="space-y-2">
-                      <label htmlFor="message" className="text-sm font-medium text-slate-700">Message / Technical Requirements *</label>
-                      <textarea id="message" name="message" rows={5} className={`w-full border rounded-sm p-3 focus:outline-none focus:border-accent-terra resize-y ${errors.message ? 'border-red-500' : 'border-slate-300'}`} placeholder="Please provide details regarding expected volumes, required purity grades, and delivery schedules..."></textarea>
-                      {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message}</p>}
-                    </div>
-
-                    <button
-                      type="submit"
-                      disabled={formStatus === "submitting"}
-                      className="bg-accent-terra hover:bg-[#A85F33] text-white px-8 py-4 rounded-sm font-medium text-lg transition-colors w-full md:w-auto min-w-[250px] shadow-md"
-                    >
-                      {formStatus === "submitting" ? "Submitting Request..." : "Submit Technical Inquiry"}
-                    </button>
                     
-                    <p className="text-xs text-slate-500 mt-4">
-                      By submitting this form, you agree to our Privacy Policy regarding the handling of corporate information.
-                    </p>
-                  </form>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="space-y-2">
+                          <label htmlFor="email" className="text-sm font-medium text-slate-700">Work Email *</label>
+                          <input id="email" name="email" type="email" className={`w-full border rounded-sm p-3 focus:outline-none focus:border-accent-terra ${errors.email ? 'border-red-500' : 'border-slate-300'}`} placeholder="jane@acme.com" />
+                          {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
+                        </div>
+                        <div className="space-y-2">
+                          <label htmlFor="phone" className="text-sm font-medium text-slate-700">Phone Number</label>
+                          <input id="phone" name="phone" type="tel" className="w-full border border-slate-300 rounded-sm p-3 focus:outline-none focus:border-accent-terra" placeholder="+1 (555) 000-0000" />
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="space-y-2">
+                          <label htmlFor="country" className="text-sm font-medium text-slate-700">Country</label>
+                          <select id="country" name="country" className="w-full border border-slate-300 rounded-sm p-3 focus:outline-none focus:border-accent-terra bg-white">
+                            <option value="US">United States</option>
+                            <option value="JP">Japan</option>
+                            <option value="DE">Germany</option>
+                            <option value="KR">South Korea</option>
+                            <option value="CH">Switzerland</option>
+                            <option value="Other">Other</option>
+                          </select>
+                        </div>
+                        <div className="space-y-2">
+                          <label htmlFor="mineral" className="text-sm font-medium text-slate-700">Primary Mineral Interest</label>
+                          <select id="mineral" name="mineral" className="w-full border border-slate-300 rounded-sm p-3 focus:outline-none focus:border-accent-terra bg-white">
+                            <option value="">Select a mineral...</option>
+                            {allMinerals.map(m => (
+                              <option key={m.slug} value={m.slug}>{m.name}</option>
+                            ))}
+                          </select>
+                        </div>
+                    </div>
+
+                      <div className="space-y-2">
+                        <label htmlFor="inquiryType" className="text-sm font-medium text-slate-700">Inquiry Type</label>
+                        <select id="inquiryType" name="inquiryType" className="w-full border border-slate-300 rounded-sm p-3 focus:outline-none focus:border-accent-terra bg-white">
+                          <option value="trading">Spot Trading / Supply Order</option>
+                          <option value="technical">Technical Consultancy & Specs</option>
+                          <option value="partnership">Long-term Supply Partnership</option>
+                          <option value="other">Other Inquiry</option>
+                        </select>
+                      </div>
+                      <div className="space-y-2">
+                        <label htmlFor="message" className="text-sm font-medium text-slate-700">Message / Technical Requirements *</label>
+                        <textarea id="message" name="message" rows={5} className={`w-full border rounded-sm p-3 focus:outline-none focus:border-accent-terra resize-y ${errors.message ? 'border-red-500' : 'border-slate-300'}`} placeholder="Please provide details regarding expected volumes, required purity grades, and delivery schedules..."></textarea>
+                        {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message}</p>}
+                      </div>
+                    <button
+                        type="submit"
+                        disabled={formStatus === "submitting"}
+                        className="bg-accent-terra hover:bg-[#A85F33] text-white px-8 py-4 rounded-sm font-medium text-lg transition-colors w-full md:w-auto min-w-[250px] shadow-md"
+                      >
+                        {formStatus === "submitting" ? "Submitting Request..." : "Submit Technical Inquiry"}
+                      </button>
+                      
+                      <p className="text-xs text-slate-500 mt-4">
+                        By submitting this form, you agree to our Privacy Policy regarding the handling of corporate information.
+                      </p>
+                    </form>
+                  </>
                 )}
               </div>
             </div>
